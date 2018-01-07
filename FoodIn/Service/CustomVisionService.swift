@@ -22,7 +22,7 @@ class CustomVisionService {
         request.addValue(contentType, forHTTPHeaderField: "Content-Type")
   
         URLSession.shared.uploadTask(with: request, from: image) { (data, response, error) in
-            guard let data = data, response != nil, error == nil else { return completion(nil, error) }
+            guard let data = data, response != nil, error == nil else { return }
             do{
                 let result = try JSONDecoder().decode(CustomVisionResult.self, from: data)
                 print(result)
@@ -30,7 +30,7 @@ class CustomVisionService {
             } catch let jsonError{
                 print(jsonError)
             }
-            }.resume()
+        }.resume()
     }
     
     // (0%) proximity range get all results. HIGHER proximity range (e.g 90% -> 0.9) get result of HIGHER proximity.

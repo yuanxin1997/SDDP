@@ -14,12 +14,22 @@ class NutrientViewController: UIViewController, IndicatorInfoProvider {
 
     @IBOutlet weak var pieChart: PieChartView!
     
-    var calories = 643
+    var fService = FoodService()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        pieChartUpdate()
-        // Do any additional setup after loading the view.
+        print("Nutrient")
+        
+        fService.getFoodDetails(foodName: FoodDetailsController.parentFoodName!, completion: { (result: Food?, error: Error?) in
+            DispatchQueue.main.async {
+                if let error = error {
+                    print("error: " + error.localizedDescription)
+                } else if let result = result {
+                    self.pieChartUpdate(calories: result.calories, carbs: result.carbohydrate, protein: result.protein, fats: result.fat)
+                }
+            }
+        })
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -31,13 +41,18 @@ class NutrientViewController: UIViewController, IndicatorInfoProvider {
         return IndicatorInfo(title: "Nutrient")
     }
     
-    func pieChartUpdate () {
+    func pieChartUpdate (calories: Double, carbs: Double, protein: Double, fats: Double) {
+        // 1g carbohydrate = 4 calories
+        // 1g protein = 4 calories
+        // 1g fat = 9 calories
+        let caloriesInCarbs = carbs * 4
+        let caloriesInProtein = protein * 4
+        let caloriesInFats = fats * 9
         
         // Basic set up of plan chart
-        
-        let entry1 = PieChartDataEntry(value: Double(20.5), label: "Carbs")
-        let entry2 = PieChartDataEntry(value: Double(30.55), label: "Protein")
-        let entry3 = PieChartDataEntry(value: Double(50.63), label: "Fats")
+        let entry1 = PieChartDataEntry(value: caloriesInCarbs, label: "Carbs")
+        let entry2 = PieChartDataEntry(value: caloriesInProtein, label: "Protein")
+        let entry3 = PieChartDataEntry(value: caloriesInFats, label: "Fats")
         
         let dataSet = PieChartDataSet(values: [entry1, entry2, entry3], label: "")
         dataSet.drawIconsEnabled = false
@@ -50,7 +65,7 @@ class NutrientViewController: UIViewController, IndicatorInfoProvider {
         
         let pFormatter = NumberFormatter()
         pFormatter.numberStyle = .percent
-        pFormatter.maximumFractionDigits = 0
+        pFormatter.maximumFractionDigits = 1
         pFormatter.multiplier = 1
         pFormatter.percentSymbol = "%"
         
@@ -70,20 +85,21 @@ class NutrientViewController: UIViewController, IndicatorInfoProvider {
         l.font = UIFont(name: "Arial Rounded MT Bold", size: 12)!
         
         pieChart.animate(xAxisDuration: 1.5, easingOption: .easeOutBack)
+        pieChart.usePercentValuesEnabled = true
         pieChart.drawEntryLabelsEnabled = false
         pieChart.holeColor = UIColor.clear
         pieChart.legend.textColor = Colors.lightgrey
         pieChart.chartDescription?.enabled = false
         pieChart.drawCenterTextEnabled = true
 //        pieChart.backgroundColor = UIColor.black
-        let attributedString = NSMutableAttributedString(string: "\(calories)\nCalories")
+        let attributedString = NSMutableAttributedString(string: "\(Int(calories))\nCalories")
         let paragraphStyle = NSMutableParagraphStyle()
         paragraphStyle.alignment = .center // center the text
 //        paragraphStyle.lineSpacing = 14 //Change spacing between lines
 //        paragraphStyle.paragraphSpacing = 38 //Change space between paragraphs
         attributedString.addAttributes([NSAttributedStringKey.font: UIFont(name: "Arial Rounded MT Bold", size: 16)!, NSAttributedStringKey.foregroundColor : Colors.lightgrey, NSAttributedStringKey.paragraphStyle: paragraphStyle], range: NSRange(location: 0, length: attributedString.length))
         pieChart.centerAttributedText = attributedString;
-        pieChart.holeRadiusPercent = 0.70
+        pieChart.holeRadiusPercent = 0.65
         pieChart.transparentCircleRadiusPercent = 0
         // Refresh chart with new data
         pieChart.notifyDataSetChanged()

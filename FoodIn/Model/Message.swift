@@ -8,6 +8,6 @@
 
 import Foundation
 
-struct Message: Codable {
-    let message: String
+struct Message: Decodable {
+    let message: Int
 }

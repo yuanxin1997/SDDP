@@ -10,6 +10,13 @@ target 'FoodIn' do
   pod 'Charts'
   pod 'UICircularProgressRing'
   pod 'GTProgressBar'
+  pod 'EFCountingLabel'
+  pod 'IQKeyboardManagerSwift'
+  pod 'CheckboxButton'
+  pod 'CryptoSwift'
+  pod 'Navajo-Swift'
+  pod 'NVActivityIndicatorView'
+  pod 'KeychainSwift'
 
   target 'FoodInTests' do
     inherit! :search_paths

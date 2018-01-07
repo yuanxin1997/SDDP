@@ -7,17 +7,26 @@
 //
 
 import UIKit
+import IQKeyboardManagerSwift
+import KeychainSwift
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-
-
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        IQKeyboardManager.sharedManager().enable = true
         Thread.sleep(forTimeInterval: 1.0)
-        //UIApplication.shared.isStatusBarHidden = true
+        
+        if let personId = KeychainSwift().get("id") {
+            // Take user to a home page
+            let mainStoryboard:UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+            let homePage = mainStoryboard.instantiateViewController(withIdentifier: "homePage") as! HomeViewController
+            let nav:UINavigationController = UINavigationController(rootViewController: homePage)
+            self.window?.rootViewController = nav
+        }
         return true
     }
 
@@ -41,8 +50,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+        PersistenceService.saveContext()
     }
 
-
 }
+
 

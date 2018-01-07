@@ -15,10 +15,10 @@ class ActivityIndicatorController: UIViewController {
     @IBOutlet weak var bubbleTwo: UIImageView!
     @IBOutlet weak var bubbleThree: UIImageView!
     
-    var service = CustomVisionService()
+    let snapshot = Snapshot.sharedInstance
     
-    var image: UIImage?
-    var imageData: Data?
+    var cvs = CustomVisionService()
+    
     var finalPredictionResult = [CustomVisionPrediction]()
     
     override func viewDidLoad() {
@@ -27,13 +27,13 @@ class ActivityIndicatorController: UIViewController {
         animateOne()
         
         print("Calling Custom Vision Service...")
-        service.predict(image: imageData!, completion: { (result: CustomVisionResult?, error: Error?) in
+        cvs.predict(image: snapshot.imageData!, completion: { (result: CustomVisionResult?, error: Error?) in
             DispatchQueue.main.async {
                 if let error = error {
                     print("error: " + error.localizedDescription)
                 } else if let result = result {
                     // (0%) proximity range get all results. HIGHER proximity range (e.g 90% -> 0.9) get result of HIGHER proximity.
-                    let arr = self.service.filterProximityResults(proximityRangePercent: 0.9, result: result)
+                    let arr = self.cvs.filterProximityResults(proximityRangePercent: 0.9, result: result)
                     self.finalPredictionResult = arr
                     for value in arr {
                         let probabilityLabel = String(format: "%.1f", value.Probability * 100)
@@ -46,6 +46,10 @@ class ActivityIndicatorController: UIViewController {
         // Do any additional setup after loading the view.
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        setupCustomNavStatusBar(setting: [.blackStatusBar])
+
+    }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -106,7 +110,6 @@ class ActivityIndicatorController: UIViewController {
             let destinationNavigationController = segue.destination as! UINavigationController
             let mrc = destinationNavigationController.topViewController as! MultipleResultsController
             mrc.predictionData = self.finalPredictionResult
-            mrc.image = self.image
         }
     }
 

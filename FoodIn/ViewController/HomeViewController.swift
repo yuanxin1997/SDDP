@@ -15,7 +15,9 @@ class HomeViewController: UIViewController {
     @IBOutlet weak var top: UIImageView!
     @IBOutlet weak var right: UIImageView!
     
-     var centerOrigin: CGPoint!
+    @IBOutlet weak var greetingLabel: UILabel!
+    
+    var centerOrigin: CGPoint!
      var inspectOption: String!
      var timer = Timer()
     
@@ -23,6 +25,18 @@ class HomeViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        for element in MyInfoService().getMyInfo() {
+            print("printing \(element.name) ")
+        }
+        
+        for element in MyIllnessService().getMyIllness() {
+            print("printing \(element.name) ")
+        }
+        
+        for element in MyIndicatorService().getMyIndicator() {
+            print("printing \(element.name) ")
+        }
+       //print("printing \(MyInfoService().getMyInfo()[0].name) ")
         
     }
     
@@ -38,13 +52,10 @@ class HomeViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-         UIApplication.shared.statusBarStyle = .lightContent
-         self.navigationController?.setNavigationBarHidden(true, animated: false)
+         setupCustomNavStatusBar(setting: [.hideNavBar, .whiteStatusBar])
     }
     
     override func viewDidDisappear(_ animated: Bool) {
-        UIApplication.shared.statusBarStyle = .default
-        self.navigationController?.setNavigationBarHidden(false, animated: false)
         timer.invalidate()
     }
     

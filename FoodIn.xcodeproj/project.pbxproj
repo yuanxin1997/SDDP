@@ -9,12 +9,23 @@
 /* Begin PBXBuildFile section */
 		021000FFC2622C890B6CEBF2 /* Pods_FoodIn.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D1C3AC9C444AB976CD0985A7 /* Pods_FoodIn.framework */; };
 		320270B6AD059333954A5E77 /* Pods_FoodInUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DE6276EEC363FA3C9C6980F /* Pods_FoodInUITests.framework */; };
+		6E11142E1FF94E9D00F657AB /* CustNavStatusBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E11142D1FF94E9D00F657AB /* CustNavStatusBar.swift */; };
 		6E16DFF21FF213DA00301322 /* ActivityIndicatorController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E16DFF11FF213DA00301322 /* ActivityIndicatorController.swift */; };
 		6E16DFF41FF2390600301322 /* FoodDetailsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E16DFF31FF2390600301322 /* FoodDetailsController.swift */; };
 		6E20C7A71FE6BED0000C704A /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E20C7A61FE6BED0000C704A /* Message.swift */; };
 		6E20C7A91FE6D3CD000C704A /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E20C7A81FE6D3CD000C704A /* Person.swift */; };
+		6E2C3C572001EC13009B0D13 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E2C3C562001EC13009B0D13 /* ProfileViewController.swift */; };
+		6E2C3C6120020EB6009B0D13 /* MyInfoService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E2C3C6020020EB6009B0D13 /* MyInfoService.swift */; };
+		6E2C3C6320020EC5009B0D13 /* MyIllnessService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E2C3C6220020EC5009B0D13 /* MyIllnessService.swift */; };
+		6E2C3C6520020ED5009B0D13 /* MyIndicatorService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E2C3C6420020ED5009B0D13 /* MyIndicatorService.swift */; };
+		6E2C3C6C20021191009B0D13 /* MyIllness+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E2C3C6620021191009B0D13 /* MyIllness+CoreDataClass.swift */; };
+		6E2C3C6D20021191009B0D13 /* MyIllness+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E2C3C6720021191009B0D13 /* MyIllness+CoreDataProperties.swift */; };
+		6E2C3C6E20021191009B0D13 /* MyInfo+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E2C3C6820021191009B0D13 /* MyInfo+CoreDataClass.swift */; };
+		6E2C3C6F20021191009B0D13 /* MyInfo+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E2C3C6920021191009B0D13 /* MyInfo+CoreDataProperties.swift */; };
+		6E2C3C7020021191009B0D13 /* MyIndicator+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E2C3C6A20021191009B0D13 /* MyIndicator+CoreDataClass.swift */; };
+		6E2C3C7120021191009B0D13 /* MyIndicator+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E2C3C6B20021191009B0D13 /* MyIndicator+CoreDataProperties.swift */; };
+		6E2C3C73200243AB009B0D13 /* Indicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E2C3C72200243AB009B0D13 /* Indicator.swift */; };
 		6E2E409A1FE6B47500405C8B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E2E40991FE6B47500405C8B /* AppDelegate.swift */; };
-		6E2E409C1FE6B47500405C8B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E2E409B1FE6B47500405C8B /* ViewController.swift */; };
 		6E2E409F1FE6B47500405C8B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6E2E409D1FE6B47500405C8B /* Main.storyboard */; };
 		6E2E40A11FE6B47500405C8B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6E2E40A01FE6B47500405C8B /* Assets.xcassets */; };
 		6E2E40A41FE6B47500405C8B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6E2E40A21FE6B47500405C8B /* LaunchScreen.storyboard */; };
@@ -23,13 +34,30 @@
 		6E4199511FF3901700463542 /* VitaminViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E4199501FF3901700463542 /* VitaminViewController.swift */; };
 		6E4199531FF3902A00463542 /* NutrientViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E4199521FF3902A00463542 /* NutrientViewController.swift */; };
 		6E4199551FF3903500463542 /* MineralViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E4199541FF3903500463542 /* MineralViewController.swift */; };
-		6E472D6E1FF45C1A003352BB /* ParentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E472D6D1FF45C1A003352BB /* ParentViewController.swift */; };
 		6E4ADFEA1FF30DDF005F6482 /* Snapshot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E4ADFE91FF30DDF005F6482 /* Snapshot.swift */; };
+		6E555D5A1FF6A12100141FEC /* FoodService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E555D591FF6A12100141FEC /* FoodService.swift */; };
+		6E555D5C1FF6B32D00141FEC /* Food.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E555D5B1FF6B32D00141FEC /* Food.swift */; };
+		6E555D601FF73C9900141FEC /* roundDouble.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E555D5F1FF73C9900141FEC /* roundDouble.swift */; };
+		6E64321E1FF90B9C008A04FE /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E64321D1FF90B9C008A04FE /* WelcomeViewController.swift */; };
 		6E66E2B21FEF3DEB0021B649 /* Pulse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E66E2B11FEF3DEB0021B649 /* Pulse.swift */; };
 		6E66E2B41FEF9B3E0021B649 /* MultipleResultsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E66E2B31FEF9B3E0021B649 /* MultipleResultsController.swift */; };
+		6E6F555E2000824E00B8F517 /* PersonService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E6F555D2000824E00B8F517 /* PersonService.swift */; };
+		6E6F55602000826400B8F517 /* IllnessService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E6F555F2000826400B8F517 /* IllnessService.swift */; };
+		6E6F5562200082E500B8F517 /* Illness.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E6F5561200082E500B8F517 /* Illness.swift */; };
+		6E6F556620008A4600B8F517 /* CustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E6F556520008A4600B8F517 /* CustomCell.swift */; };
+		6E75696E2000508A00471D7E /* Registration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E75696D2000508A00471D7E /* Registration.swift */; };
+		6EA676DA1FFFCC6E009354C4 /* PersistenceService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EA676D91FFFCC6E009354C4 /* PersistenceService.swift */; };
+		6EA6773F2000485B009354C4 /* PersonCoreData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 6EA6773D2000485B009354C4 /* PersonCoreData.xcdatamodeld */; };
+		6EB52BBA1FFDF22500FC1AF4 /* RegViewControllerS1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EB52BB91FFDF22400FC1AF4 /* RegViewControllerS1.swift */; };
+		6EB52BBC1FFDF23300FC1AF4 /* RegViewControllerS2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EB52BBB1FFDF23300FC1AF4 /* RegViewControllerS2.swift */; };
+		6EB52BBE1FFDF24800FC1AF4 /* RegViewControllerS3.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EB52BBD1FFDF24800FC1AF4 /* RegViewControllerS3.swift */; };
+		6EB52BC01FFDF28400FC1AF4 /* RegViewControllerS4.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EB52BBF1FFDF28400FC1AF4 /* RegViewControllerS4.swift */; };
+		6EB52BC21FFDF29300FC1AF4 /* RegViewControllerS5.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EB52BC11FFDF29300FC1AF4 /* RegViewControllerS5.swift */; };
+		6EB52BC41FFDF2A100FC1AF4 /* RegViewControllerS6.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EB52BC31FFDF2A100FC1AF4 /* RegViewControllerS6.swift */; };
 		6ECE2D421FEE0152001B33F8 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ECE2D411FEE0152001B33F8 /* Colors.swift */; };
 		6ECE2D461FEE0217001B33F8 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ECE2D451FEE0217001B33F8 /* HomeViewController.swift */; };
-		6ECE2D4C1FEE733C001B33F8 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ECE2D4B1FEE733C001B33F8 /* LoginViewController.swift */; };
+		6EEC2E411FFE1071003E89EC /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EEC2E401FFE1071003E89EC /* CustomTextField.swift */; };
+		6EEC2E441FFE3BEC003E89EC /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EEC2E431FFE3BEC003E89EC /* SignInViewController.swift */; };
 		6EEDEB361FEA6D95008A4658 /* CustomVisionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EEDEB351FEA6D95008A4658 /* CustomVisionService.swift */; };
 		6EEDEB381FEB303E008A4658 /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EEDEB371FEB303E008A4658 /* CameraViewController.swift */; };
 		6EEDEB3A1FEB40D6008A4658 /* ImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EEDEB391FEB40D6008A4658 /* ImageViewController.swift */; };
@@ -58,13 +86,24 @@
 /* Begin PBXFileReference section */
 		085315057047735A09DAE59C /* Pods_FoodInTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FoodInTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6C5D2AA64CF473EA53B9A117 /* Pods-FoodInUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FoodInUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FoodInUITests/Pods-FoodInUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		6E11142D1FF94E9D00F657AB /* CustNavStatusBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustNavStatusBar.swift; sourceTree = "<group>"; };
 		6E16DFF11FF213DA00301322 /* ActivityIndicatorController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityIndicatorController.swift; sourceTree = "<group>"; };
 		6E16DFF31FF2390600301322 /* FoodDetailsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodDetailsController.swift; sourceTree = "<group>"; };
 		6E20C7A61FE6BED0000C704A /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		6E20C7A81FE6D3CD000C704A /* Person.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Person.swift; sourceTree = "<group>"; };
+		6E2C3C562001EC13009B0D13 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		6E2C3C6020020EB6009B0D13 /* MyInfoService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyInfoService.swift; sourceTree = "<group>"; };
+		6E2C3C6220020EC5009B0D13 /* MyIllnessService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyIllnessService.swift; sourceTree = "<group>"; };
+		6E2C3C6420020ED5009B0D13 /* MyIndicatorService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyIndicatorService.swift; sourceTree = "<group>"; };
+		6E2C3C6620021191009B0D13 /* MyIllness+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MyIllness+CoreDataClass.swift"; sourceTree = "<group>"; };
+		6E2C3C6720021191009B0D13 /* MyIllness+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MyIllness+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		6E2C3C6820021191009B0D13 /* MyInfo+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MyInfo+CoreDataClass.swift"; sourceTree = "<group>"; };
+		6E2C3C6920021191009B0D13 /* MyInfo+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MyInfo+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		6E2C3C6A20021191009B0D13 /* MyIndicator+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MyIndicator+CoreDataClass.swift"; sourceTree = "<group>"; };
+		6E2C3C6B20021191009B0D13 /* MyIndicator+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MyIndicator+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		6E2C3C72200243AB009B0D13 /* Indicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Indicator.swift; sourceTree = "<group>"; };
 		6E2E40961FE6B47500405C8B /* FoodIn.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FoodIn.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6E2E40991FE6B47500405C8B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		6E2E409B1FE6B47500405C8B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		6E2E409E1FE6B47500405C8B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		6E2E40A01FE6B47500405C8B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		6E2E40A31FE6B47500405C8B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -78,13 +117,30 @@
 		6E4199501FF3901700463542 /* VitaminViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VitaminViewController.swift; sourceTree = "<group>"; };
 		6E4199521FF3902A00463542 /* NutrientViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NutrientViewController.swift; sourceTree = "<group>"; };
 		6E4199541FF3903500463542 /* MineralViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MineralViewController.swift; sourceTree = "<group>"; };
-		6E472D6D1FF45C1A003352BB /* ParentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParentViewController.swift; sourceTree = "<group>"; };
 		6E4ADFE91FF30DDF005F6482 /* Snapshot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Snapshot.swift; sourceTree = "<group>"; };
+		6E555D591FF6A12100141FEC /* FoodService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodService.swift; sourceTree = "<group>"; };
+		6E555D5B1FF6B32D00141FEC /* Food.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Food.swift; sourceTree = "<group>"; };
+		6E555D5F1FF73C9900141FEC /* roundDouble.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = roundDouble.swift; sourceTree = "<group>"; };
+		6E64321D1FF90B9C008A04FE /* WelcomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
 		6E66E2B11FEF3DEB0021B649 /* Pulse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pulse.swift; sourceTree = "<group>"; };
 		6E66E2B31FEF9B3E0021B649 /* MultipleResultsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultipleResultsController.swift; sourceTree = "<group>"; };
+		6E6F555D2000824E00B8F517 /* PersonService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonService.swift; sourceTree = "<group>"; };
+		6E6F555F2000826400B8F517 /* IllnessService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IllnessService.swift; sourceTree = "<group>"; };
+		6E6F5561200082E500B8F517 /* Illness.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Illness.swift; sourceTree = "<group>"; };
+		6E6F556520008A4600B8F517 /* CustomCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCell.swift; sourceTree = "<group>"; };
+		6E75696D2000508A00471D7E /* Registration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Registration.swift; sourceTree = "<group>"; };
+		6EA676D91FFFCC6E009354C4 /* PersistenceService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceService.swift; sourceTree = "<group>"; };
+		6EA6773E2000485B009354C4 /* PersonCoreData.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = PersonCoreData.xcdatamodel; sourceTree = "<group>"; };
+		6EB52BB91FFDF22400FC1AF4 /* RegViewControllerS1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegViewControllerS1.swift; sourceTree = "<group>"; };
+		6EB52BBB1FFDF23300FC1AF4 /* RegViewControllerS2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegViewControllerS2.swift; sourceTree = "<group>"; };
+		6EB52BBD1FFDF24800FC1AF4 /* RegViewControllerS3.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegViewControllerS3.swift; sourceTree = "<group>"; };
+		6EB52BBF1FFDF28400FC1AF4 /* RegViewControllerS4.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegViewControllerS4.swift; sourceTree = "<group>"; };
+		6EB52BC11FFDF29300FC1AF4 /* RegViewControllerS5.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegViewControllerS5.swift; sourceTree = "<group>"; };
+		6EB52BC31FFDF2A100FC1AF4 /* RegViewControllerS6.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegViewControllerS6.swift; sourceTree = "<group>"; };
 		6ECE2D411FEE0152001B33F8 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		6ECE2D451FEE0217001B33F8 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
-		6ECE2D4B1FEE733C001B33F8 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		6EEC2E401FFE1071003E89EC /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
+		6EEC2E431FFE3BEC003E89EC /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		6EEDEB351FEA6D95008A4658 /* CustomVisionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomVisionService.swift; sourceTree = "<group>"; };
 		6EEDEB371FEB303E008A4658 /* CameraViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
 		6EEDEB391FEB40D6008A4658 /* ImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageViewController.swift; sourceTree = "<group>"; };
@@ -127,6 +183,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		6E2C3C552001EBDE009B0D13 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				6E2C3C562001EC13009B0D13 /* ProfileViewController.swift */,
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
 		6E2E408D1FE6B47400405C8B = {
 			isa = PBXGroup;
 			children = (
@@ -152,9 +216,11 @@
 		6E2E40981FE6B47500405C8B /* FoodIn */ = {
 			isa = PBXGroup;
 			children = (
+				6E75696C2000506D00471D7E /* Singleton */,
+				6EA676CB1FFFC126009354C4 /* CoreData */,
 				6ECE2D481FEE02EA001B33F8 /* Service */,
 				6ECE2D471FEE02CC001B33F8 /* Model */,
-				6ECE2D401FEE00C4001B33F8 /* Global */,
+				6ECE2D401FEE00C4001B33F8 /* Other */,
 				6ECE2D3F1FEE00A6001B33F8 /* ViewController */,
 				6E2E40991FE6B47500405C8B /* AppDelegate.swift */,
 				6E2E409D1FE6B47500405C8B /* Main.storyboard */,
@@ -183,34 +249,94 @@
 			path = FoodInUITests;
 			sourceTree = "<group>";
 		};
+		6E75696C2000506D00471D7E /* Singleton */ = {
+			isa = PBXGroup;
+			children = (
+				6E4ADFE91FF30DDF005F6482 /* Snapshot.swift */,
+				6E75696D2000508A00471D7E /* Registration.swift */,
+			);
+			path = Singleton;
+			sourceTree = "<group>";
+		};
+		6EA676CB1FFFC126009354C4 /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				6EA67718200045C2009354C4 /* Model */,
+				6EA676CC1FFFC130009354C4 /* Service */,
+				6EA6773D2000485B009354C4 /* PersonCoreData.xcdatamodeld */,
+			);
+			path = CoreData;
+			sourceTree = "<group>";
+		};
+		6EA676CC1FFFC130009354C4 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				6EA676D91FFFCC6E009354C4 /* PersistenceService.swift */,
+				6E2C3C6020020EB6009B0D13 /* MyInfoService.swift */,
+				6E2C3C6220020EC5009B0D13 /* MyIllnessService.swift */,
+				6E2C3C6420020ED5009B0D13 /* MyIndicatorService.swift */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
+		6EA67718200045C2009354C4 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				6E2C3C6620021191009B0D13 /* MyIllness+CoreDataClass.swift */,
+				6E2C3C6720021191009B0D13 /* MyIllness+CoreDataProperties.swift */,
+				6E2C3C6820021191009B0D13 /* MyInfo+CoreDataClass.swift */,
+				6E2C3C6920021191009B0D13 /* MyInfo+CoreDataProperties.swift */,
+				6E2C3C6A20021191009B0D13 /* MyIndicator+CoreDataClass.swift */,
+				6E2C3C6B20021191009B0D13 /* MyIndicator+CoreDataProperties.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		6EB52BB81FFDF1C400FC1AF4 /* Register */ = {
+			isa = PBXGroup;
+			children = (
+				6EB52BB91FFDF22400FC1AF4 /* RegViewControllerS1.swift */,
+				6EB52BBB1FFDF23300FC1AF4 /* RegViewControllerS2.swift */,
+				6EB52BBD1FFDF24800FC1AF4 /* RegViewControllerS3.swift */,
+				6EB52BBF1FFDF28400FC1AF4 /* RegViewControllerS4.swift */,
+				6EB52BC11FFDF29300FC1AF4 /* RegViewControllerS5.swift */,
+				6EB52BC31FFDF2A100FC1AF4 /* RegViewControllerS6.swift */,
+			);
+			path = Register;
+			sourceTree = "<group>";
+		};
 		6ECE2D3F1FEE00A6001B33F8 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
+				6E2C3C552001EBDE009B0D13 /* Profile */,
+				6EEC2E421FFE3BCD003E89EC /* SignIn */,
+				6EB52BB81FFDF1C400FC1AF4 /* Register */,
 				6EEDEB371FEB303E008A4658 /* CameraViewController.swift */,
-				6E2E409B1FE6B47500405C8B /* ViewController.swift */,
 				6EEDEB391FEB40D6008A4658 /* ImageViewController.swift */,
 				6ECE2D451FEE0217001B33F8 /* HomeViewController.swift */,
-				6ECE2D4B1FEE733C001B33F8 /* LoginViewController.swift */,
 				6E66E2B31FEF9B3E0021B649 /* MultipleResultsController.swift */,
 				6E16DFF11FF213DA00301322 /* ActivityIndicatorController.swift */,
 				6E16DFF31FF2390600301322 /* FoodDetailsController.swift */,
 				6E4199501FF3901700463542 /* VitaminViewController.swift */,
 				6E4199521FF3902A00463542 /* NutrientViewController.swift */,
 				6E4199541FF3903500463542 /* MineralViewController.swift */,
-				6E472D6D1FF45C1A003352BB /* ParentViewController.swift */,
+				6E64321D1FF90B9C008A04FE /* WelcomeViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
 		};
-		6ECE2D401FEE00C4001B33F8 /* Global */ = {
+		6ECE2D401FEE00C4001B33F8 /* Other */ = {
 			isa = PBXGroup;
 			children = (
-				6E4ADFE91FF30DDF005F6482 /* Snapshot.swift */,
 				6ECE2D411FEE0152001B33F8 /* Colors.swift */,
 				6E66E2B11FEF3DEB0021B649 /* Pulse.swift */,
 				6EFAF04D1FF154BA009E93F2 /* ViewBorder.swift */,
+				6E555D5F1FF73C9900141FEC /* roundDouble.swift */,
+				6E11142D1FF94E9D00F657AB /* CustNavStatusBar.swift */,
+				6EEC2E401FFE1071003E89EC /* CustomTextField.swift */,
+				6E6F556520008A4600B8F517 /* CustomCell.swift */,
 			);
-			path = Global;
+			path = Other;
 			sourceTree = "<group>";
 		};
 		6ECE2D471FEE02CC001B33F8 /* Model */ = {
@@ -219,6 +345,9 @@
 				6E20C7A61FE6BED0000C704A /* Message.swift */,
 				6E20C7A81FE6D3CD000C704A /* Person.swift */,
 				6EEDEB3B1FEB8DDA008A4658 /* CustomVisionResult.swift */,
+				6E555D5B1FF6B32D00141FEC /* Food.swift */,
+				6E6F5561200082E500B8F517 /* Illness.swift */,
+				6E2C3C72200243AB009B0D13 /* Indicator.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -227,8 +356,19 @@
 			isa = PBXGroup;
 			children = (
 				6EEDEB351FEA6D95008A4658 /* CustomVisionService.swift */,
+				6E555D591FF6A12100141FEC /* FoodService.swift */,
+				6E6F555D2000824E00B8F517 /* PersonService.swift */,
+				6E6F555F2000826400B8F517 /* IllnessService.swift */,
 			);
 			path = Service;
+			sourceTree = "<group>";
+		};
+		6EEC2E421FFE3BCD003E89EC /* SignIn */ = {
+			isa = PBXGroup;
+			children = (
+				6EEC2E431FFE3BEC003E89EC /* SignInViewController.swift */,
+			);
+			path = SignIn;
 			sourceTree = "<group>";
 		};
 		86318C5388DAB9D11C228818 /* Frameworks */ = {
@@ -419,14 +559,28 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-FoodIn/Pods-FoodIn-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Charts/Charts.framework",
+				"${BUILT_PRODUCTS_DIR}/CheckboxButton/CheckboxButton.framework",
+				"${BUILT_PRODUCTS_DIR}/CryptoSwift/CryptoSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/EFCountingLabel/EFCountingLabel.framework",
 				"${BUILT_PRODUCTS_DIR}/GTProgressBar/GTProgressBar.framework",
+				"${BUILT_PRODUCTS_DIR}/IQKeyboardManagerSwift/IQKeyboardManagerSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/KeychainSwift/KeychainSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/NVActivityIndicatorView/NVActivityIndicatorView.framework",
+				"${BUILT_PRODUCTS_DIR}/Navajo-Swift/Navajo_Swift.framework",
 				"${BUILT_PRODUCTS_DIR}/UICircularProgressRing/UICircularProgressRing.framework",
 				"${BUILT_PRODUCTS_DIR}/XLPagerTabStrip/XLPagerTabStrip.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Charts.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CheckboxButton.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CryptoSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/EFCountingLabel.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTProgressBar.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/IQKeyboardManagerSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/KeychainSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/NVActivityIndicatorView.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Navajo_Swift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/UICircularProgressRing.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/XLPagerTabStrip.framework",
 			);
@@ -553,26 +707,54 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6ECE2D4C1FEE733C001B33F8 /* LoginViewController.swift in Sources */,
 				6E20C7A91FE6D3CD000C704A /* Person.swift in Sources */,
 				6ECE2D421FEE0152001B33F8 /* Colors.swift in Sources */,
+				6EB52BBE1FFDF24800FC1AF4 /* RegViewControllerS3.swift in Sources */,
 				6E4199531FF3902A00463542 /* NutrientViewController.swift in Sources */,
 				6E66E2B21FEF3DEB0021B649 /* Pulse.swift in Sources */,
+				6EB52BBA1FFDF22500FC1AF4 /* RegViewControllerS1.swift in Sources */,
 				6E20C7A71FE6BED0000C704A /* Message.swift in Sources */,
-				6E2E409C1FE6B47500405C8B /* ViewController.swift in Sources */,
+				6E2C3C6C20021191009B0D13 /* MyIllness+CoreDataClass.swift in Sources */,
+				6EB52BC41FFDF2A100FC1AF4 /* RegViewControllerS6.swift in Sources */,
+				6EB52BBC1FFDF23300FC1AF4 /* RegViewControllerS2.swift in Sources */,
 				6EEDEB3A1FEB40D6008A4658 /* ImageViewController.swift in Sources */,
 				6E16DFF41FF2390600301322 /* FoodDetailsController.swift in Sources */,
+				6E64321E1FF90B9C008A04FE /* WelcomeViewController.swift in Sources */,
+				6EA6773F2000485B009354C4 /* PersonCoreData.xcdatamodeld in Sources */,
+				6E6F55602000826400B8F517 /* IllnessService.swift in Sources */,
+				6E2C3C73200243AB009B0D13 /* Indicator.swift in Sources */,
+				6EA676DA1FFFCC6E009354C4 /* PersistenceService.swift in Sources */,
 				6E4199511FF3901700463542 /* VitaminViewController.swift in Sources */,
+				6E6F555E2000824E00B8F517 /* PersonService.swift in Sources */,
 				6E4ADFEA1FF30DDF005F6482 /* Snapshot.swift in Sources */,
+				6EB52BC21FFDF29300FC1AF4 /* RegViewControllerS5.swift in Sources */,
+				6E6F556620008A4600B8F517 /* CustomCell.swift in Sources */,
+				6E555D5C1FF6B32D00141FEC /* Food.swift in Sources */,
+				6E2C3C6520020ED5009B0D13 /* MyIndicatorService.swift in Sources */,
+				6E2C3C6F20021191009B0D13 /* MyInfo+CoreDataProperties.swift in Sources */,
 				6ECE2D461FEE0217001B33F8 /* HomeViewController.swift in Sources */,
+				6E2C3C6D20021191009B0D13 /* MyIllness+CoreDataProperties.swift in Sources */,
+				6EEC2E411FFE1071003E89EC /* CustomTextField.swift in Sources */,
+				6E555D601FF73C9900141FEC /* roundDouble.swift in Sources */,
 				6EFAF04E1FF154BA009E93F2 /* ViewBorder.swift in Sources */,
+				6E555D5A1FF6A12100141FEC /* FoodService.swift in Sources */,
 				6EEDEB361FEA6D95008A4658 /* CustomVisionService.swift in Sources */,
+				6E2C3C6120020EB6009B0D13 /* MyInfoService.swift in Sources */,
 				6EEDEB3C1FEB8DDA008A4658 /* CustomVisionResult.swift in Sources */,
+				6E6F5562200082E500B8F517 /* Illness.swift in Sources */,
 				6E4199551FF3903500463542 /* MineralViewController.swift in Sources */,
+				6E11142E1FF94E9D00F657AB /* CustNavStatusBar.swift in Sources */,
 				6E66E2B41FEF9B3E0021B649 /* MultipleResultsController.swift in Sources */,
-				6E472D6E1FF45C1A003352BB /* ParentViewController.swift in Sources */,
 				6E2E409A1FE6B47500405C8B /* AppDelegate.swift in Sources */,
+				6EEC2E441FFE3BEC003E89EC /* SignInViewController.swift in Sources */,
+				6E2C3C7020021191009B0D13 /* MyIndicator+CoreDataClass.swift in Sources */,
+				6EB52BC01FFDF28400FC1AF4 /* RegViewControllerS4.swift in Sources */,
+				6E2C3C6320020EC5009B0D13 /* MyIllnessService.swift in Sources */,
+				6E75696E2000508A00471D7E /* Registration.swift in Sources */,
+				6E2C3C572001EC13009B0D13 /* ProfileViewController.swift in Sources */,
 				6E16DFF21FF213DA00301322 /* ActivityIndicatorController.swift in Sources */,
+				6E2C3C7120021191009B0D13 /* MyIndicator+CoreDataProperties.swift in Sources */,
+				6E2C3C6E20021191009B0D13 /* MyInfo+CoreDataClass.swift in Sources */,
 				6EEDEB381FEB303E008A4658 /* CameraViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -875,6 +1057,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		6EA6773D2000485B009354C4 /* PersonCoreData.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				6EA6773E2000485B009354C4 /* PersonCoreData.xcdatamodel */,
+			);
+			currentVersion = 6EA6773E2000485B009354C4 /* PersonCoreData.xcdatamodel */;
+			path = PersonCoreData.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 6E2E408E1FE6B47400405C8B /* Project object */;
 }

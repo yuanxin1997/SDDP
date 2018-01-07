@@ -12,8 +12,8 @@ struct Person: Codable {
     let name: String
     let email: String
     let password: String
-    let weight: Decimal
-    let height: Decimal
+    let weight: Double
+    let height: Double
     let gender: String
     let dob: String
 }

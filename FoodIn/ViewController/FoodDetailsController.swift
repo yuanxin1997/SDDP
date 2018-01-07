@@ -16,10 +16,15 @@ class FoodDetailsController: ButtonBarPagerTabStripViewController {
     var selectedFoodImage: UIImage?
     var selectedFoodName: String?
     
+    static var parentFoodName: String?
+    
     let snapshot = Snapshot.sharedInstance
 
     override func viewDidLoad() {
+        setupCustomNavStatusBar(setting: [.whiteStatusBar, .whiteNavTitle, .whiteNavTint])
         foodImage.image = snapshot.image
+        print("childdidload")
+        FoodDetailsController.parentFoodName = selectedFoodName
         settings.style.buttonBarBackgroundColor = .white
         settings.style.buttonBarItemBackgroundColor = .white
         settings.style.selectedBarBackgroundColor = Colors.pink
@@ -37,9 +42,16 @@ class FoodDetailsController: ButtonBarPagerTabStripViewController {
             newCell?.label.textColor = Colors.pink
         }
         super.viewDidLoad()
-        setCustomButton()
+        setupSuggestionButton()
         setGradientBackground(colorOne: Colors.overlayShadowBlack, colorTwo: Colors.overlayShadowBlack)
         self.navigationItem.title = selectedFoodName
+
+        
+    }
+    
+    override func willMove(toParentViewController parent: UIViewController?) {
+        setupCustomNavStatusBar(setting: [.blackStatusBar, .greyNavTitle])
+        print("willmove")
     }
     
     override func viewControllers(for pagerTabStripController: PagerTabStripViewController) -> [UIViewController] {
@@ -64,7 +76,7 @@ class FoodDetailsController: ButtonBarPagerTabStripViewController {
         self.foodImage.layer.insertSublayer(gradientLayer, above: foodImage.layer)
     }
     
-    func setCustomButton(){
+    func setupSuggestionButton(){
         suggestionBtn.layer.cornerRadius = suggestionBtn.frame.size.height/2
         suggestionBtn.layer.shadowColor = UIColor.black.cgColor
         suggestionBtn.layer.shadowRadius = 2

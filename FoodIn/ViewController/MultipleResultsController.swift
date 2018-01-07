@@ -13,10 +13,11 @@ class MultipleResultsController: UITableViewController {
     
     @IBOutlet weak var headView: UIView!
     
-    var image: UIImage?
     var predictionData: [CustomVisionPrediction] = []
     
     override func viewDidLoad() {
+        print("parentdidload")
+        setupCustomNavStatusBar(setting: [.blackStatusBar, .greyNavTitle])
         super.viewDidLoad()
         tableView.tableFooterView = UIView()
         tableView.layoutMargins = UIEdgeInsets.zero
@@ -29,22 +30,13 @@ class MultipleResultsController: UITableViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        
         if let index = self.tableView.indexPathForSelectedRow{
             self.tableView.deselectRow(at: index, animated: true)
         }
-        UIApplication.shared.statusBarStyle = .default
-        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
-        self.navigationController?.navigationBar.shadowImage = UIImage()
-        self.navigationController?.navigationBar.isTranslucent = true
-        self.navigationController?.view.backgroundColor = .clear
-        self.navigationController?.navigationBar.titleTextAttributes = [ NSAttributedStringKey.foregroundColor: Colors.darkgrey, NSAttributedStringKey.font: UIFont(name: "Arial Rounded MT Bold", size: 20)!]
-        self.navigationController?.hidesBarsOnSwipe = true
+       
     }
-    override func viewDidDisappear(_ animated: Bool) {
-        self.navigationController?.navigationBar.titleTextAttributes = [ NSAttributedStringKey.foregroundColor: UIColor.white, NSAttributedStringKey.font: UIFont(name: "Arial Rounded MT Bold", size: 20)!]
-        self.navigationController?.navigationBar.tintColor = UIColor.white
-         UIApplication.shared.statusBarStyle = .lightContent
-    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -88,8 +80,8 @@ class MultipleResultsController: UITableViewController {
             if tableView.indexPathForSelectedRow != nil
             {
                 let foodName = predictionData[tableView.indexPathForSelectedRow!.row].Tag
-                fdc.selectedFoodImage = self.image
                 fdc.selectedFoodName = foodName
+               
             }
         }
     }

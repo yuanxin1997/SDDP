@@ -17,7 +17,6 @@ class CameraViewController: UIViewController, AVCapturePhotoCaptureDelegate {
     let snapshot = Snapshot.sharedInstance
     
     var capturedImage: UIImage?
-    var capturedImageData: Data?
     var inspectOption: String?
     
     let session = AVCaptureSession()
@@ -58,7 +57,7 @@ class CameraViewController: UIViewController, AVCapturePhotoCaptureDelegate {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        UIApplication.shared.isStatusBarHidden = true
+        setupCustomNavStatusBar(setting: [.hideStatusBar])
         sessionQueue.async {
             switch self.setupResult {
             case .success:
@@ -109,15 +108,14 @@ class CameraViewController: UIViewController, AVCapturePhotoCaptureDelegate {
     }
     
     override func viewWillDisappear(_ animated: Bool) {
-        UIApplication.shared.isStatusBarHidden = false
+        setupCustomNavStatusBar(setting: [.showStatusBar])
         sessionQueue.async { [unowned self] in
             if self.setupResult == .success {
                 self.session.stopRunning()
             }
         }
-        
-        super.viewWillDisappear(animated)
     }
+    
     
     // MARK: Session Management
     func checkAuthorization() {
@@ -231,32 +229,24 @@ class CameraViewController: UIViewController, AVCapturePhotoCaptureDelegate {
         dismiss(animated: true, completion: nil)
     }
     
-    // MARK: - AVCapturePhotoCaptureDelegate Methods
-    func photoOutput(_ captureOutput: AVCapturePhotoOutput, didFinishProcessingPhoto photoSampleBuffer: CMSampleBuffer?, previewPhoto previewPhotoSampleBuffer: CMSampleBuffer?, resolvedSettings: AVCaptureResolvedPhotoSettings, bracketSettings: AVCaptureBracketedStillImageSettings?, error: Error?) {
-        
+    func photoOutput(_ output: AVCapturePhotoOutput, didFinishProcessingPhoto photo: AVCapturePhoto, error: Error?) {
         if let error = error {
             print("Error capturing photo: \(error)")
         } else {
-            if let sampleBuffer = photoSampleBuffer, let previewBuffer = previewPhotoSampleBuffer, let imageData = AVCapturePhotoOutput.jpegPhotoDataRepresentation(forJPEGSampleBuffer: sampleBuffer, previewPhotoSampleBuffer: previewBuffer) {
-                
-                if let image = UIImage(data: imageData) {
-                   
-                   snapshot.image = image
-                   snapshot.imageData = imageData
-                   self.capturedImage = image
-                   self.capturedImageData = imageData
-                   self.performSegue(withIdentifier: "showImage", sender: self)
-                }
+            let imageData = photo.fileDataRepresentation()
+            if let image = UIImage(data: imageData!) {
+                snapshot.image = image
+                snapshot.imageData = imageData
+                self.capturedImage = image
+                self.performSegue(withIdentifier: "showImage", sender: self)
             }
         }
-        
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showImage" {
             let ivc = segue.destination as! ImageViewController
             ivc.image = self.capturedImage
-            ivc.imageData = self.capturedImageData
         }
     }
 

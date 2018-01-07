@@ -12,7 +12,6 @@ class ImageViewController: UIViewController {
     @IBOutlet weak var imageView: UIImageView!
     
     var image: UIImage?
-    var imageData: Data?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,26 +23,15 @@ class ImageViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-         UIApplication.shared.isStatusBarHidden = true
+         setupCustomNavStatusBar(setting: [.hideStatusBar])
     }
     
     override func viewWillDisappear(_ animated: Bool) {
-         UIApplication.shared.isStatusBarHidden = false
+         setupCustomNavStatusBar(setting: [.showStatusBar])
     }
     
     @IBAction func done(sender: UIButton) {
-        guard let image = image else {
-            return
-        }
         performSegue(withIdentifier: "showActivityIndicator", sender: sender)
-    }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "showActivityIndicator" {
-            let aic = segue.destination as! ActivityIndicatorController
-            aic.imageData = self.imageData
-            aic.image = self.image
-        }
     }
 }
 
