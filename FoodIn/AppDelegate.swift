@@ -14,6 +14,7 @@ import KeychainSwift
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
+    let inspectionMode = InspectionMode.sharedInstance
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
@@ -51,6 +52,27 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
         PersistenceService.saveContext()
+    }
+    
+    func application(_ application: UIApplication, performActionFor shortcutItem: UIApplicationShortcutItem, completionHandler: @escaping (Bool) -> Void) {
+        
+        if shortcutItem.type == "com.yuanxin.FoodIn.snapFoodLabel" {
+            inspectionMode.mode = "Food Label"
+        } else if shortcutItem.type == "com.yuanxin.FoodIn.snapFoodMenu" {
+            inspectionMode.mode = "Food Menu"
+        } else if shortcutItem.type == "com.yuanxin.FoodIn.snapFoodItem" {
+            inspectionMode.mode = "Food Item"
+        }
+        
+        // Get root navigation viewcontroller and its first controller
+        let rootNavigationViewController = window!.rootViewController as? UINavigationController
+        let rootViewController = rootNavigationViewController?.viewControllers.first as UIViewController?
+        
+        // Pop to root view controller so that approperiete segue can be performed
+        rootNavigationViewController?.popToRootViewController(animated: false)
+        rootViewController?.performSegue(withIdentifier: "showCamera", sender: nil)
+        
+        completionHandler(true)
     }
 
 }
