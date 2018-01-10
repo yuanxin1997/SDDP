@@ -10,7 +10,7 @@ import UIKit
 import KeychainSwift
 
 class HomeViewController: UIViewController {
-
+    
     @IBOutlet weak var center: UIImageView!
     @IBOutlet weak var left: UIImageView!
     @IBOutlet weak var top: UIImageView!
@@ -26,43 +26,51 @@ class HomeViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // Retrieve data locally and pass in the value
         greetingLabel.text = "Hi, \(MyInfoService().getMyInfo()[0].name!)."
+
+        // Testing
         for element in MyInfoService().getMyInfo() {
             print("printing \(element.name) ")
         }
-        
+
         for element in MyIllnessService().getMyIllness() {
             print("printing \(element.name) ")
         }
-        
+
         for element in MyIndicatorService().getMyIndicator() {
             print("printing \(element.name) ")
         }
         
-//        KeychainSwift().clear()
-//        MyInfoService().clearMyInfo()
-//        MyIllnessService().clearMyIllness()
-//        MyIndicatorService().clearMyIndicator()
-       //print("printing \(MyInfoService().getMyInfo()[0].name) ")
+//                KeychainSwift().clear()
+//                MyInfoService().clearMyInfo()
+//                MyIllnessService().clearMyIllness()
+//                MyIndicatorService().clearMyIndicator()
+        //print("printing \(MyInfoService().getMyInfo()[0].name) ")
         
     }
     
     override func viewDidAppear(_ animated: Bool) {
+        // Repeat the pulse effect every 0.5 seconds
         timer = Timer.scheduledTimer(withTimeInterval: 0.5, repeats: true) { timer in
             self.addPulse()
         }
     }
     
     override func viewDidLayoutSubviews() {
+        // Remember its original position
         centerOrigin = center.frame.origin
         setGradientBackground(colorOne:Colors.pink , colorTwo: Colors.red)
     }
     
     override func viewWillAppear(_ animated: Bool) {
-         setupCustomNavStatusBar(setting: [.hideNavBar, .whiteStatusBar])
+        // Customize Navigation bar and Status bar
+        setupCustomNavStatusBar(setting: [.hideNavBar, .whiteStatusBar])
     }
     
     override func viewDidDisappear(_ animated: Bool) {
+        // Stop the repeating the pulsing animation after dissapear
         timer.invalidate()
     }
     
@@ -71,13 +79,15 @@ class HomeViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    // Add floating effect to the camera icon
     func addPulse(){
         let pulse = Pulsing(numberOfPulses: 1, radius: 110, position: center.center)
         pulse.animationDuration = 1.5
         pulse.backgroundColor = Colors.white.cgColor
         self.view.layer.insertSublayer(pulse, below: center.layer)
     }
-
+    
+    // Customize the home page with gradient color
     func setGradientBackground(colorOne: UIColor, colorTwo: UIColor) {
         let gradientLayer = CAGradientLayer()
         gradientLayer.frame = self.view.bounds
@@ -122,6 +132,7 @@ class HomeViewController: UIViewController {
         }
     }
     
+    // Allow camera icon to follow your gesture movement
     func moveViewWithPan(view: UIView, sender: UIPanGestureRecognizer) {
         let translation = sender.translation(in: view)
         guard center.frame.intersects(top.frame) || center.frame.intersects(left.frame) || center.frame.intersects(right.frame) else {
@@ -131,12 +142,14 @@ class HomeViewController: UIViewController {
         }
     }
     
+    // Return to origional position after release
     func returnViewToOrigin(view: UIView) {
         UIView.animate(withDuration: 0.5, animations: {
             view.frame.origin = self.centerOrigin
         })
     }
     
+    // Open camera when hit any of the arc
     func touchedView(view: UIView, inspectMode: String) {
         UIView.animate(withDuration: 0.5, animations: {
             self.inspectionMode.mode = inspectMode
@@ -147,3 +160,5 @@ class HomeViewController: UIViewController {
     }
     
 }
+
+

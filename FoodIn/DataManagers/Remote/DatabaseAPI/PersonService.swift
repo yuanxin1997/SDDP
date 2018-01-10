@@ -27,7 +27,7 @@ class PersonService {
                 print(jsonError)
                 completion(nil)
             }
-        }.resume()
+            }.resume()
     }
     
     // [GET]
@@ -47,7 +47,7 @@ class PersonService {
                 print(jsonError)
                 completion(nil)
             }
-        }.resume()
+            }.resume()
     }
     
     // [POST]
@@ -76,7 +76,7 @@ class PersonService {
                 print(jsonError)
                 completion(nil)
             }
-        }.resume()
+            }.resume()
     }
     
     // [POST]
@@ -99,7 +99,7 @@ class PersonService {
             } catch let jsonError {
                 print(jsonError)
             }
-        }.resume()
+            }.resume()
     }
     
     // [GET]
@@ -119,7 +119,7 @@ class PersonService {
                 print(jsonError)
                 completion(nil)
             }
-        }.resume()
+            }.resume()
     }
     
     // [GET]
@@ -139,14 +139,14 @@ class PersonService {
                 print(jsonError)
                 completion(nil)
             }
-        }.resume()
+            }.resume()
     }
     
     // [GET]
     func getIllnessIndicator(id: Int, completion: @escaping ([Indicator]?) -> Void) {
         
         // Define your URL with the combination of Base URL (can be found in global constants) and its Endpoint
-        guard let url = URL(string: "\(APIurl.database)/getIllnessIndicator/\(id)") else { return }
+        guard let url = URL(string: "\(APIurl.database)/person/getIllnessIndicator/\(id)") else { return }
         
         // Execute your request
         URLSession.shared.dataTask(with: url) { (data, response, error) in
@@ -159,7 +159,9 @@ class PersonService {
                 print(jsonError)
                 completion(nil)
             }
-        }.resume()
+            }.resume()
     }
     
 }
+
+

@@ -18,11 +18,11 @@ class NutrientViewController: UIViewController, IndicatorInfoProvider {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("Nutrient")
         
         fService.getFoodDetails(foodName: FoodDetailsController.parentFoodName!, completion: { (result: Food?) in
             DispatchQueue.main.async {
                 if let result = result {
+                    // Refresh UI
                     self.pieChartUpdate(calories: result.calories, carbs: result.carbohydrate, protein: result.protein, fats: result.fat)
                 }
             }
@@ -97,6 +97,7 @@ class NutrientViewController: UIViewController, IndicatorInfoProvider {
         pieChart.centerAttributedText = attributedString;
         pieChart.holeRadiusPercent = 0.65
         pieChart.transparentCircleRadiusPercent = 0
+        
         // Refresh chart with new data
         pieChart.notifyDataSetChanged()
     }

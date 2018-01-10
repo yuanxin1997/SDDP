@@ -9,7 +9,7 @@
 import UIKit
 
 class RegViewControllerS2: UIViewController {
-
+    
     let registration = Registration.sharedInstance
     
     @IBOutlet weak var maleButton: UIButton!
@@ -23,11 +23,15 @@ class RegViewControllerS2: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        // Set default selection to male
         highlight(gender: "male")
+        
+        // Customize Navigation bar and Status bar
         setupCustomNavStatusBar(setting: [.showNavBar, .greyNavTitle]);
     }
     
     override func viewWillDisappear(_ animated: Bool) {
+        // Save input to registration singleton
         registration.gender = selectedGender
         print(registration.gender)
     }
@@ -57,13 +61,14 @@ class RegViewControllerS2: UIViewController {
         }
     }
     
-    
     func highlightMaleButton(){
+        // Higlight male button
         maleButton.layer.shadowColor = UIColor.black.cgColor
         maleButton.layer.shadowRadius = 7
         maleButton.layer.shadowOffset = CGSize(width: 7, height: 7)
         maleButton.layer.shadowOpacity = 0.4
         
+        // Remove highlight for female button
         femaleButton.layer.shadowColor = UIColor.black.cgColor
         femaleButton.layer.shadowRadius = 3
         femaleButton.layer.shadowOffset = CGSize(width: 3, height: 3)
@@ -71,11 +76,13 @@ class RegViewControllerS2: UIViewController {
     }
     
     func highlightFemaleButton(){
+        // Highlight female button
         femaleButton.layer.shadowColor = UIColor.black.cgColor
         femaleButton.layer.shadowRadius = 7
         femaleButton.layer.shadowOffset = CGSize(width: 7, height: 7)
         femaleButton.layer.shadowOpacity = 0.4
         
+        // Remove highlight for male button
         maleButton.layer.shadowColor = UIColor.black.cgColor
         maleButton.layer.shadowRadius = 3
         maleButton.layer.shadowOffset = CGSize(width: 3, height: 3)

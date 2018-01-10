@@ -13,6 +13,7 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
     
     var personInfo: MyInfo?
     var personIllness = [MyIllness]()
+    let myInfoService = MyInfoService()
 
     @IBOutlet weak var table: UITableView!
     @IBOutlet weak var profileView: UIView!
@@ -24,31 +25,36 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
     @IBOutlet weak var heightLabel: UILabel!
     
     override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        // Customize table border
         table.tableFooterView = UIView()
         table.layoutMargins = UIEdgeInsets.zero
         table.separatorInset = UIEdgeInsets.zero
         table.separatorColor = Colors.ghostwhite
-        setupCustomNavStatusBar(setting: [.showNavBar, .whiteNavTitle])
+        
+        // Retrieve data locally
         personInfo = MyInfoService().getMyInfo()[0]
         personIllness = MyIllnessService().getMyIllness()
+        
+        // Pass in values
         nameLabel.text = personInfo!.name
         emailLabel.text = personInfo!.email
         ageLabel.text = String(calcAge(birthday: personInfo!.dob!))
         weightLabel.text = String(personInfo!.weight)
         heightLabel.text = String(personInfo!.height)
-        print(personIllness[0].name!)
-        print(personIllness.count)
-        print(personInfo!.name!)
-        print(personInfo!.email!)
-        print(personInfo!.gender!)
-        print(personInfo!.dob!)
-        print(personInfo!.weight)
-        print(personInfo!.height)
-        super.viewDidLoad()
+        
         self.navigationItem.title = "Profile"
+        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        // Customize Navigation bar and Status bar
+        setupCustomNavStatusBar(setting: [.showNavBar, .whiteNavTitle])
     }
     
     override func viewDidLayoutSubviews() {
+        // Customize profile view
         setGradientBackground(colorOne:Colors.pink , colorTwo: Colors.red)
     }
     
@@ -63,9 +69,11 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! IllnessTag
+       
         cell.illnessIndexLabel.text = "illness #\(indexPath.row + 1)"
         cell.illnessNameLabel.text = personIllness[indexPath.row].name!
         cell.selectionStyle = UITableViewCellSelectionStyle.none
+        
         return cell
     }
     
@@ -74,20 +82,28 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
     }
     
     @IBAction func didTapSignOutBtn(_ sender: Any) {
+        // Clear keychain and local data
         KeychainSwift().clear()
         MyInfoService().clearMyInfo()
         MyIllnessService().clearMyIllness()
         MyIndicatorService().clearMyIndicator()
         
+        // Enable 3D touch feature after sign in
         Touch3D().disableQuickAction()
         
+        // Go to landing page
+        goToLandingPage()
+    }
+    
+    // Change rootview to HomePage
+    func goToLandingPage(){
         let landingPage = self.storyboard?.instantiateViewController(withIdentifier: "landingPage") as! LandingViewController
         let nav:UINavigationController = UINavigationController(rootViewController: landingPage);
         let appDelegate = UIApplication.shared.delegate
         appDelegate?.window??.rootViewController = nav
-
     }
     
+    // Customize the profile view with gradient color
     func setGradientBackground(colorOne: UIColor, colorTwo: UIColor) {
         let gradientLayer = CAGradientLayer()
         gradientLayer.frame = profileView.bounds
@@ -98,6 +114,7 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
         profileView.layer.insertSublayer(gradientLayer, at: 0)
     }
     
+    // Calculate age using data of birth
     func calcAge(birthday: String) -> Int {
         let dateFormater = DateFormatter()
         dateFormater.dateFormat = "dd/MM/yyyy"

@@ -19,11 +19,13 @@ class VitaminViewController: UIViewController, IndicatorInfoProvider, UICircular
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("Vitamin")
+
+        // Set start value and max value
         ringVitaminA.maxValue = 100
         ringVitaminC.maxValue = 100
         ringVitaminA.value = 0
         ringVitaminC.value = 0
+        
         // Set the delegate
         ringVitaminA.delegate = self
         ringVitaminC.delegate = self
@@ -31,6 +33,7 @@ class VitaminViewController: UIViewController, IndicatorInfoProvider, UICircular
         fService.getFoodDetails(foodName: FoodDetailsController.parentFoodName!, completion: { (result: Food?) in
             DispatchQueue.main.async {
                 if let result = result {
+                    // Refresh 
                     self.circularProgressBarUpdate(mcgOfvitaminA: result.vitaminA, mcgOfvitaminC: result.vitaminC)
                 }
             }

@@ -22,10 +22,12 @@ class RegViewControllerS3: UIViewController {
     }
 
     override func viewWillAppear(_ animated: Bool) {
-        setupCustomNavStatusBar(setting: [.showNavBar, .greyNavTitle]);
+        // Customize Navigation bar and Status bar
+        setupCustomNavStatusBar(setting: [.showNavBar, .greyNavTitle])
     }
     
     override func viewWillDisappear(_ animated: Bool) {
+        // Save input to registration singleton
         let formatter = DateFormatter()
         formatter.dateFormat = "dd/MM/yyyy"
         selectedDateOfBirth = formatter.string(from: datePicker.date)

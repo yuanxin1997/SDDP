@@ -23,10 +23,12 @@ class ImageViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        // Customize Navigation bar and Status bar
          setupCustomNavStatusBar(setting: [.hideStatusBar])
     }
     
     override func viewWillDisappear(_ animated: Bool) {
+        // Customize Navigation bar and Status bar
          setupCustomNavStatusBar(setting: [.showStatusBar])
     }
     

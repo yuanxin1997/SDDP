@@ -21,9 +21,11 @@ class FoodDetailsController: ButtonBarPagerTabStripViewController {
     let snapshot = Snapshot.sharedInstance
 
     override func viewDidLoad() {
-        setupCustomNavStatusBar(setting: [.whiteStatusBar, .whiteNavTitle, .whiteNavTint])
         foodImage.image = snapshot.image
-        print("childdidload")
+        
+        // Customize Navigation bar and Status bar
+        setupCustomNavStatusBar(setting: [.whiteStatusBar, .whiteNavTitle, .whiteNavTint])
+
         FoodDetailsController.parentFoodName = selectedFoodName
         settings.style.buttonBarBackgroundColor = .white
         settings.style.buttonBarItemBackgroundColor = .white
@@ -41,17 +43,19 @@ class FoodDetailsController: ButtonBarPagerTabStripViewController {
             oldCell?.label.textColor = Colors.lightgrey
             newCell?.label.textColor = Colors.pink
         }
+        
         super.viewDidLoad()
+        
         setupSuggestionButton()
         setGradientBackground(colorOne: Colors.overlayShadowBlack, colorTwo: Colors.overlayShadowBlack)
+        
         self.navigationItem.title = selectedFoodName
-
         
     }
     
     override func willMove(toParentViewController parent: UIViewController?) {
+        // Customize Navigation bar and Status bar
         setupCustomNavStatusBar(setting: [.blackStatusBar, .greyNavTitle])
-        print("willmove")
     }
     
     override func viewControllers(for pagerTabStripController: PagerTabStripViewController) -> [UIViewController] {
@@ -66,6 +70,7 @@ class FoodDetailsController: ButtonBarPagerTabStripViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    // Customize food image view with overlay later
     func setGradientBackground(colorOne: UIColor, colorTwo: UIColor) {
         let gradientLayer = CAGradientLayer()
         gradientLayer.frame = self.foodImage.frame
@@ -76,6 +81,7 @@ class FoodDetailsController: ButtonBarPagerTabStripViewController {
         self.foodImage.layer.insertSublayer(gradientLayer, above: foodImage.layer)
     }
     
+    // Customize suggestion button
     func setupSuggestionButton(){
         suggestionBtn.layer.cornerRadius = suggestionBtn.frame.size.height/2
         suggestionBtn.layer.shadowColor = UIColor.black.cgColor

@@ -21,11 +21,14 @@ class LandingViewController: UIViewController {
     @IBOutlet weak var labelTwo: UILabel!
     @IBOutlet weak var labelThree: UILabel!
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // Modify corner radius of the button
         registerBtn.layer.cornerRadius = registerBtn.frame.size.height/2
         registerBtn.layer.masksToBounds = true
+        
+        // hide all UI component
         registerBtn.alpha = 0
         loginBtn.alpha = 0
         bubbleOne.alpha = 0
@@ -34,6 +37,8 @@ class LandingViewController: UIViewController {
         labelOne.alpha = 0
         labelTwo.alpha = 0
         labelThree.alpha = 0
+        
+        // Start animation chaining
         animateOne()
     }
     
@@ -44,6 +49,8 @@ class LandingViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         Registration.sharedInstance.clear()
+        
+        // Show UI component with fading effect
         UIView.animate(withDuration: 1) {
             self.registerBtn.alpha = 1
             self.loginBtn.alpha = 1
@@ -51,12 +58,15 @@ class LandingViewController: UIViewController {
             self.bubbleTwo.alpha = 1
             self.bubbleThree.alpha = 1
         }
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        // Customize Navigation bar and Status bar
         setupCustomNavStatusBar(setting: [.hideNavBar, .blackStatusBar])
     }
     
+    // First element in animation chaining
     func animateOne() {
         UIView.animate(withDuration: 1.5, animations: {
             self.bubbleOne?.transform = CGAffineTransform(scaleX: 2, y: 2)
@@ -72,6 +82,7 @@ class LandingViewController: UIViewController {
         }
     }
     
+    // Second element in animation chaining
     func animateTwo() {
         UIView.animate(withDuration: 1.5, animations: {
             self.bubbleTwo?.transform = CGAffineTransform(scaleX: 2, y: 2)
@@ -87,6 +98,7 @@ class LandingViewController: UIViewController {
         }
     }
     
+    // Third element in animation chaining
     func animateThree() {
         UIView.animate(withDuration: 1.5, animations: {
             self.bubbleThree?.transform = CGAffineTransform(scaleX: 2, y: 2)
@@ -101,8 +113,6 @@ class LandingViewController: UIViewController {
             }
         }
     }
-    
-    
     
 }
 

@@ -16,23 +16,24 @@ class MultipleResultsController: UITableViewController {
     var predictionData: [CustomVisionPrediction] = []
     
     override func viewDidLoad() {
-        print("parentdidload")
+        // Customize Navigation bar and Status bar
         setupCustomNavStatusBar(setting: [.blackStatusBar, .greyNavTitle])
         super.viewDidLoad()
+        
+        // Customize table border
         tableView.tableFooterView = UIView()
         tableView.layoutMargins = UIEdgeInsets.zero
         tableView.separatorInset = UIEdgeInsets.zero
         tableView.separatorColor = Colors.ghostwhite
-        headView.addBottomBorderWithColor(color: Colors.ghostwhite, width: 0.5)
         
+        // Add bottom border to head view
+        headView.addBottomBorderWithColor(color: Colors.ghostwhite, width: 0.5)
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        
         if let index = self.tableView.indexPathForSelectedRow{
             self.tableView.deselectRow(at: index, animated: true)
         }
-       
     }
     
     override func didReceiveMemoryWarning() {
@@ -52,6 +53,7 @@ class MultipleResultsController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+        
         cell.layoutMargins = UIEdgeInsets.zero
         cell.textLabel?.text = predictionData[indexPath.row].Tag
         cell.textLabel?.textColor = Colors.darkgrey
@@ -66,9 +68,6 @@ class MultipleResultsController: UITableViewController {
         return 80.0
     }
     
-  
-        
-    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
@@ -79,7 +78,6 @@ class MultipleResultsController: UITableViewController {
             {
                 let foodName = predictionData[tableView.indexPathForSelectedRow!.row].Tag
                 fdc.selectedFoodName = foodName
-               
             }
         }
     }

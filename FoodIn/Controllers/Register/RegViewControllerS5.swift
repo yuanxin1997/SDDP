@@ -23,10 +23,14 @@ class RegViewControllerS5: UIViewController, UITableViewDataSource, UITableViewD
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // Customize table border
         table.tableFooterView = UIView()
         table.layoutMargins = UIEdgeInsets.zero
         table.separatorInset = UIEdgeInsets.zero
         table.separatorColor = Colors.ghostwhite
+        
+        // Customize searchbar
         searchBar.isTranslucent = false
         searchBar.backgroundImage = UIImage()
         searchBar.alpha = 0
@@ -35,6 +39,8 @@ class RegViewControllerS5: UIViewController, UITableViewDataSource, UITableViewD
             textField.backgroundColor = Colors.ghostwhite
             textField.font = Fonts.Regular.of(size: 16)
         }
+        
+        // Show activity indicatore while retrieving data
         startAnimating(CGSize(width: 50, height: 50), type: .ballPulseSync, color: Colors.white)
         iService.getIllnessList (completion: { (result: [Illness]?) in
             DispatchQueue.main.async {
@@ -53,6 +59,7 @@ class RegViewControllerS5: UIViewController, UITableViewDataSource, UITableViewD
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        // Customize Navigation bar and Status bar
         setupCustomNavStatusBar(setting: [.showNavBar, .greyNavTitle]);
     }
 
@@ -102,6 +109,7 @@ class RegViewControllerS5: UIViewController, UITableViewDataSource, UITableViewD
     }
 
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        // Hide keyboard when return button is pressed
         searchBar.endEditing(true)
     }
     
@@ -114,6 +122,7 @@ class RegViewControllerS5: UIViewController, UITableViewDataSource, UITableViewD
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        // Hide keyboard when touches any where on the screen
         searchBar.endEditing(true)
     }
     

@@ -16,14 +16,15 @@ class ActivityIndicatorController: UIViewController {
     @IBOutlet weak var bubbleThree: UIImageView!
     
     let snapshot = Snapshot.sharedInstance
-    
     var cvs = CustomVisionService()
-    
     var finalPredictionResult = [CustomVisionPrediction]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         labelOne.alpha = 0.1
+        
+        // Start animation chaining
         animateOne()
         
         print("Calling Custom Vision Service...")
@@ -41,10 +42,11 @@ class ActivityIndicatorController: UIViewController {
                 }
             }
         })
-        // Do any additional setup after loading the view.
+
     }
 
     override func viewWillAppear(_ animated: Bool) {
+        // Customize Navigation bar and Status bar
         setupCustomNavStatusBar(setting: [.blackStatusBar])
 
     }
@@ -53,6 +55,7 @@ class ActivityIndicatorController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    // First element in animation chaining
     func animateOne() {
         UIView.animate(withDuration: 1, animations: {
             self.bubbleOne?.transform = CGAffineTransform(scaleX: 2, y: 2)
@@ -67,6 +70,7 @@ class ActivityIndicatorController: UIViewController {
         }
     }
     
+    // Second element in animation chaining
     func animateTwo() {
         UIView.animate(withDuration: 1.5, animations: {
             self.bubbleTwo?.transform = CGAffineTransform(scaleX: 2, y: 2)
@@ -81,6 +85,7 @@ class ActivityIndicatorController: UIViewController {
         }
     }
     
+    // Third element in animation chaining
     func animateThree() {
         UIView.animate(withDuration: 1.5, animations: {
             self.bubbleThree?.transform = CGAffineTransform(scaleX: 2, y: 2)
@@ -95,6 +100,7 @@ class ActivityIndicatorController: UIViewController {
         }
     }
     
+    // Fading animation for label
     func switchLabelAlpha() {
         if self.labelOne.alpha == 1 {
             self.labelOne.alpha = 0.1

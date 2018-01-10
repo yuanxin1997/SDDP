@@ -13,7 +13,7 @@ import KeychainSwift
 import NVActivityIndicatorView
 
 class RegViewControllerS6: UIViewController, UITextFieldDelegate, NVActivityIndicatorViewable {
-
+    
     // limits access to the source file it is declared in.
     fileprivate var returnHandler : IQKeyboardReturnKeyHandler!
     let registration = Registration.sharedInstance
@@ -148,5 +148,6 @@ class RegViewControllerS6: UIViewController, UITextFieldDelegate, NVActivityIndi
     }
     
 }
+
 
 

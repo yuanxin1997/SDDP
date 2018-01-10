@@ -26,7 +26,7 @@ class MineralViewController: UIViewController, IndicatorInfoProvider {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("mineral")
+
         sodiumBar.progress = 0
         potassiumBar.progress = 0
         calciumBar.progress = 0
@@ -37,10 +37,10 @@ class MineralViewController: UIViewController, IndicatorInfoProvider {
         calciumLabel.text = "0 mg"
         ironLabel.text = "0 mg"
   
-        
         fService.getFoodDetails(foodName: FoodDetailsController.parentFoodName!, completion: { (result: Food?) in
             DispatchQueue.main.async {
                 if let result = result {
+                    // Refresh UI
                     self.progressBarUpdate(mgOfSodium: result.sodium, mgOfPotassium: result.potassium, mgOfCalcium: result.calcium, mgOfIron: result.iron)
                 }
             }
