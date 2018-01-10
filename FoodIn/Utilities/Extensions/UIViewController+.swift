@@ -24,6 +24,7 @@ public enum navSettings {
 
 extension UIViewController {
     public func setupCustomNavStatusBar(setting: Set<navSettings>) {
+        
         // Default custom configuration
         navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
         navigationController?.navigationBar.shadowImage = UIImage()

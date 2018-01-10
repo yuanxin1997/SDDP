@@ -10,8 +10,7 @@ import UIKit
 
 class CustomTextField: UITextField {}
 
-extension UITextField
-{
+extension UITextField {
     
     // Bottom border
     func setBottomBorder(borderColor: UIColor) {
