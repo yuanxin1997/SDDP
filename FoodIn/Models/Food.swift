@@ -9,6 +9,7 @@
 import Foundation
 
 struct Food: Decodable {
+    let id: Int
     let name: String
     let calories: Double
     let carbohydrate: Double
