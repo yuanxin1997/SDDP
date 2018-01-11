@@ -163,10 +163,10 @@ class PersonService {
     }
     
     // [POST]
-    func createFoodLog(personId: Int, foodId: Int, timestamp: UInt64, completion: @escaping ([Indicator]?) -> Void) {
+    func createFoodLog(personId: Int, food: String, timestamp: UInt64, completion: @escaping (Int?) -> Void) {
         
         // Define your URL with the combination of Base URL (can be found in global constants) and its Endpoint
-        guard let url = URL(string: "\(APIurl.database)/person/logPersonFood/\(personId)/\(foodId)/\(timestamp) ") else { return }
+        guard let url = URL(string: "\(APIurl.database)/person/logPersonFood/\(personId)/\(food)/\(timestamp) ") else { return }
         
         // Create URL request
         var request = URLRequest(url: url)
@@ -176,9 +176,9 @@ class PersonService {
         URLSession.shared.dataTask(with: request) { (data, response, error) in
             guard let data = data, response != nil, error == nil else { return }
             do {
-                let indicator = try JSONDecoder().decode([Indicator].self, from: data)
-                print(indicator)
-                completion(indicator) // Return your result with completion handler
+                let result = try JSONDecoder().decode(Int.self, from: data)
+                print(result)
+                completion(result) // Return your result with completion handler
             } catch let jsonError {
                 print(jsonError)
                 completion(nil)
@@ -187,18 +187,18 @@ class PersonService {
     }
     
     // [GET]
-    func getFoodLog(personId: Int, timestamp: UInt64, completion: @escaping ([Indicator]?) -> Void) {
+    func getFoodLog(personId: Int, from: UInt64, to: UInt64, completion: @escaping ([Food]?) -> Void) {
         
         // Define your URL with the combination of Base URL (can be found in global constants) and its Endpoint
-        guard let url = URL(string: "\(APIurl.database)/person/getPersonFood/\(personId)/\(timestamp)") else { return }
+        guard let url = URL(string: "\(APIurl.database)/person/getPersonFood/\(personId)/\(from)/\(to)") else { return }
         
         // Execute your request
         URLSession.shared.dataTask(with: url) { (data, response, error) in
             guard let data = data, response != nil, error == nil else { return }
             do {
-                let indicator = try JSONDecoder().decode([Indicator].self, from: data)
-                print(indicator)
-                completion(indicator) // Return your result with completion handler
+                let food = try JSONDecoder().decode([Food].self, from: data)
+                print(food)
+                completion(food) // Return your result with completion handler
             } catch let jsonError {
                 print(jsonError)
                 completion(nil)
