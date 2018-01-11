@@ -76,10 +76,10 @@ class FoodDetailsController: ButtonBarPagerTabStripViewController {
             DispatchQueue.global().async {
                 if let result = result {
                     guard let status = result["message"] else {
-                        print("create food log response error \(result)")
+                        print("log food response error \(result)")
                         return
                     }
-                    print("create food log result \(status)")
+                    print("create log result \(status)")
                 }
             }
         })

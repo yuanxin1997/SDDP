@@ -185,16 +185,16 @@ class PersonService {
     }
     
     // [GET]
-    func getFoodLog(personId: Int, from: UInt64, to: UInt64, completion: @escaping ([Food]?) -> Void) {
+    func getFoodLog(personId: Int, from: UInt64, to: UInt64, completion: @escaping ([FoodLog]?) -> Void) {
         
         // Define your URL with the combination of Base URL (can be found in global constants) and its Endpoint
         guard let url = URL(string: "\(APIurl.database)/person/getPersonFood/\(personId)/\(from)/\(to)") else { return }
-        
+        print( "\(APIurl.database)/person/getPersonFood/\(personId)/\(from)/\(to)")
         // Execute your request
         URLSession.shared.dataTask(with: url) { (data, response, error) in
             guard let data = data, response != nil, error == nil else { return }
             do {
-                let food = try JSONDecoder().decode([Food].self, from: data)
+                let food = try JSONDecoder().decode([FoodLog].self, from: data)
                 print(food)
                 completion(food) // Return your result with completion handler
             } catch let jsonError {

@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="naL-kx-u3e">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="naL-kx-u3e">
     <device id="retina5_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -1061,6 +1061,48 @@
             </objects>
             <point key="canvasLocation" x="-1204.3478260869565" y="-10.597826086956523"/>
         </scene>
+        <!--Statistics View Controller-->
+        <scene sceneID="ZqN-Ll-pEF">
+            <objects>
+                <viewController id="xn8-vH-BxW" customClass="StatisticsViewController" customModule="FoodIn" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="70L-HR-btC">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YrE-pB-3dZ" customClass="FSCalendar">
+                                <rect key="frame" x="0.0" y="64" width="414" height="335"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="335" id="znh-f8-ZIO"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1rP-1Y-C7K" customClass="RadarChartView" customModule="Charts">
+                                <rect key="frame" x="0.0" y="399" width="414" height="337"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="YrE-pB-3dZ" firstAttribute="top" secondItem="qyG-hr-ZER" secondAttribute="top" id="67p-cP-tyi"/>
+                            <constraint firstItem="1rP-1Y-C7K" firstAttribute="top" secondItem="YrE-pB-3dZ" secondAttribute="bottom" id="GzM-CH-4xG"/>
+                            <constraint firstItem="YrE-pB-3dZ" firstAttribute="trailing" secondItem="qyG-hr-ZER" secondAttribute="trailing" id="NYx-Kc-11I"/>
+                            <constraint firstItem="1rP-1Y-C7K" firstAttribute="trailing" secondItem="qyG-hr-ZER" secondAttribute="trailing" id="U8G-a1-0K9"/>
+                            <constraint firstItem="1rP-1Y-C7K" firstAttribute="leading" secondItem="qyG-hr-ZER" secondAttribute="leading" id="cjb-PI-FUb"/>
+                            <constraint firstItem="1rP-1Y-C7K" firstAttribute="bottom" secondItem="qyG-hr-ZER" secondAttribute="bottom" id="jbT-Oq-u1O"/>
+                            <constraint firstItem="YrE-pB-3dZ" firstAttribute="leading" secondItem="qyG-hr-ZER" secondAttribute="leading" id="tD6-B6-3Ao"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="qyG-hr-ZER"/>
+                    </view>
+                    <connections>
+                        <outlet property="calendar" destination="YrE-pB-3dZ" id="XMu-D4-sp9"/>
+                        <outlet property="calendarHeightConstraint" destination="znh-f8-ZIO" id="z7Y-dv-Zsh"/>
+                        <outlet property="radarChart" destination="1rP-1Y-C7K" id="krC-yr-MHo"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ne5-8l-dva" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-359.4202898550725" y="-11.413043478260871"/>
+        </scene>
         <!--Home View Controller-->
         <scene sceneID="u6G-VH-nF3">
             <objects>
@@ -1099,6 +1141,9 @@
                                                     <constraint firstAttribute="width" constant="30" id="1q5-DG-RNV"/>
                                                 </constraints>
                                                 <state key="normal" image="Statistics"/>
+                                                <connections>
+                                                    <segue destination="xn8-vH-BxW" kind="show" id="3th-Oy-fp1"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                         <constraints>

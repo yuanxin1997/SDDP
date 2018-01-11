@@ -17,7 +17,8 @@ target 'FoodIn' do
   pod 'Navajo-Swift'
   pod 'NVActivityIndicatorView'
   pod 'KeychainSwift'
-
+  pod 'FSCalendar'
+  
   target 'FoodInTests' do
     inherit! :search_paths
   end
