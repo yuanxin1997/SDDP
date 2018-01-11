@@ -71,7 +71,7 @@ class FoodDetailsController: ButtonBarPagerTabStripViewController {
         guard let id = Int(KeychainSwift().get("id")!) else { return }
         guard let food = FoodDetailsController.selectedFood else { return }
         print("logging food \(food)")
-        let timestamp = UInt64(floor(Date().timeIntervalSince1970 * 1000))
+        let timestamp = UInt64(floor(Date().timeIntervalSince1970))
         pService.createFoodLog(personId: id, foodId: food.id, timestamp: timestamp,  completion: { (result: Dictionary<String, Int>?) in
             DispatchQueue.global().async {
                 if let result = result {
