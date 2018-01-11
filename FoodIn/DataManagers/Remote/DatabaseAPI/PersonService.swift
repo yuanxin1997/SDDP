@@ -162,6 +162,49 @@ class PersonService {
             }.resume()
     }
     
+    // [POST]
+    func createFoodLog(personId: Int, foodId: Int, timestamp: UInt64, completion: @escaping ([Indicator]?) -> Void) {
+        
+        // Define your URL with the combination of Base URL (can be found in global constants) and its Endpoint
+        guard let url = URL(string: "\(APIurl.database)/person/logPersonFood/\(personId)/\(foodId)/\(timestamp) ") else { return }
+        
+        // Create URL request
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        
+        // Execute your request
+        URLSession.shared.dataTask(with: request) { (data, response, error) in
+            guard let data = data, response != nil, error == nil else { return }
+            do {
+                let indicator = try JSONDecoder().decode([Indicator].self, from: data)
+                print(indicator)
+                completion(indicator) // Return your result with completion handler
+            } catch let jsonError {
+                print(jsonError)
+                completion(nil)
+            }
+            }.resume()
+    }
+    
+    // [GET]
+    func getFoodLog(personId: Int, timestamp: UInt64, completion: @escaping ([Indicator]?) -> Void) {
+        
+        // Define your URL with the combination of Base URL (can be found in global constants) and its Endpoint
+        guard let url = URL(string: "\(APIurl.database)/person/getPersonFood/\(personId)/\(timestamp)") else { return }
+        
+        // Execute your request
+        URLSession.shared.dataTask(with: url) { (data, response, error) in
+            guard let data = data, response != nil, error == nil else { return }
+            do {
+                let indicator = try JSONDecoder().decode([Indicator].self, from: data)
+                print(indicator)
+                completion(indicator) // Return your result with completion handler
+            } catch let jsonError {
+                print(jsonError)
+                completion(nil)
+            }
+            }.resume()
+    }
 }
 
 
