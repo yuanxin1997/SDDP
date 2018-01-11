@@ -8,19 +8,32 @@
 
 import UIKit
 import XLPagerTabStrip
+import KeychainSwift
 
 class FoodDetailsController: ButtonBarPagerTabStripViewController {
 
+    @IBOutlet weak var logBtn: UIButton!
     @IBOutlet weak var suggestionBtn: UIButton!
     @IBOutlet weak var foodImage: UIImageView!
     var selectedFoodImage: UIImage?
     var selectedFoodName: String?
+    var selectedFood: Food?
     
     static var parentFoodName: String?
     
     let snapshot = Snapshot.sharedInstance
-
+    var pService = PersonService()
+    var fService = FoodService()
+    
     override func viewDidLoad() {
+        fService.getFoodDetails(foodName: FoodDetailsController.parentFoodName!, completion: { (result: Food?) in
+            DispatchQueue.main.async {
+                if let result = result {
+                    print("retrieved food \(result)")
+                    self.selectedFood = result
+                }
+            }
+        })
         foodImage.image = snapshot.image
         
         // Customize Navigation bar and Status bar
@@ -51,6 +64,18 @@ class FoodDetailsController: ButtonBarPagerTabStripViewController {
         
         self.navigationItem.title = selectedFoodName
         
+    }
+    
+    @IBAction func logFood(_ sender: Any) {
+        guard let id = Int(KeychainSwift().get("id")!) else { return }
+        let timestamp = UInt64(floor(Date().timeIntervalSince1970 * 1000))
+        pService.createFoodLog(personId: id, food: selectedFoodName!, timestamp: timestamp,  completion: { (result: Int?) in
+            DispatchQueue.global().async {
+                if let result = result {
+                    print("create log result \(result)")
+                }
+            }
+        })
     }
     
     override func willMove(toParentViewController parent: UIViewController?) {

@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="naL-kx-u3e">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="naL-kx-u3e">
     <device id="retina5_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -715,6 +715,9 @@
                                         <state key="normal" title="Log">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
+                                        <connections>
+                                            <action selector="logFood:" destination="VtW-yd-fuS" eventType="touchUpInside" id="aps-YK-uaI"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <constraints>
@@ -738,6 +741,7 @@
                         <outlet property="buttonBarView" destination="OTG-ZB-b68" id="K9w-WQ-TXj"/>
                         <outlet property="containerView" destination="rMe-QH-660" id="bHV-g8-Fog"/>
                         <outlet property="foodImage" destination="A5w-a1-Zfh" id="OoL-Wc-DQb"/>
+                        <outlet property="logBtn" destination="fQV-qs-ZgK" id="orP-JJ-KHQ"/>
                         <outlet property="suggestionBtn" destination="k9I-gc-3jl" id="Nma-b7-KIw"/>
                     </connections>
                 </viewController>
