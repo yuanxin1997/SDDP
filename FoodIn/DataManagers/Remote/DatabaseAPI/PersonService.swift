@@ -163,12 +163,10 @@ class PersonService {
     }
     
     // [POST]
-    func createFoodLog(personId: Int, food: String, timestamp: UInt64, completion: @escaping (Int?) -> Void) {
+    func createFoodLog(personId: Int, foodId: Int, timestamp: UInt64, completion: @escaping (Dictionary<String, Int>?) -> Void) {
         
         // Define your URL with the combination of Base URL (can be found in global constants) and its Endpoint
-        guard let url = URL(string: "\(APIurl.database)/person/logPersonFood/\(personId)/\(food)/\(timestamp) ") else { return }
-        
-        // Create URL request
+        guard let url = URL(string: "\(APIurl.database)/person/logPersonFood/\(personId)/\(foodId)/\(timestamp)") else { return }
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
         
@@ -176,7 +174,7 @@ class PersonService {
         URLSession.shared.dataTask(with: request) { (data, response, error) in
             guard let data = data, response != nil, error == nil else { return }
             do {
-                let result = try JSONDecoder().decode(Int.self, from: data)
+                let result = try JSONDecoder().decode(Dictionary<String, Int>.self, from: data)
                 print(result)
                 completion(result) // Return your result with completion handler
             } catch let jsonError {

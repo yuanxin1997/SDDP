@@ -17,8 +17,8 @@ class FoodDetailsController: ButtonBarPagerTabStripViewController {
     @IBOutlet weak var foodImage: UIImageView!
     var selectedFoodImage: UIImage?
     var selectedFoodName: String?
-    var selectedFood: Food?
     
+    static var selectedFood: Food?
     static var parentFoodName: String?
     
     let snapshot = Snapshot.sharedInstance
@@ -26,11 +26,12 @@ class FoodDetailsController: ButtonBarPagerTabStripViewController {
     var fService = FoodService()
     
     override func viewDidLoad() {
-        fService.getFoodDetails(foodName: FoodDetailsController.parentFoodName!, completion: { (result: Food?) in
+        guard let selectedFoodName = selectedFoodName else { return }
+        fService.getFoodDetails(foodName: selectedFoodName, completion: { (result: Food?) in
             DispatchQueue.main.async {
                 if let result = result {
                     print("retrieved food \(result)")
-                    self.selectedFood = result
+                    FoodDetailsController.selectedFood = result
                 }
             }
         })
@@ -68,11 +69,17 @@ class FoodDetailsController: ButtonBarPagerTabStripViewController {
     
     @IBAction func logFood(_ sender: Any) {
         guard let id = Int(KeychainSwift().get("id")!) else { return }
+        guard let food = FoodDetailsController.selectedFood else { return }
+        print("logging food \(food)")
         let timestamp = UInt64(floor(Date().timeIntervalSince1970 * 1000))
-        pService.createFoodLog(personId: id, food: selectedFoodName!, timestamp: timestamp,  completion: { (result: Int?) in
+        pService.createFoodLog(personId: id, foodId: food.id, timestamp: timestamp,  completion: { (result: Dictionary<String, Int>?) in
             DispatchQueue.global().async {
                 if let result = result {
-                    print("create log result \(result)")
+                    guard let status = result["message"] else {
+                        print("create food log response error \(result)")
+                        return
+                    }
+                    print("create food log result \(status)")
                 }
             }
         })
