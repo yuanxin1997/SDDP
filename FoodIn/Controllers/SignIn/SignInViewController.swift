@@ -20,11 +20,39 @@ class SignInViewController: UIViewController, UITextFieldDelegate, NVActivityInd
     
     @IBOutlet weak var txtEmail: UITextField!
     @IBOutlet weak var txtPassword: UITextField!
+    
+    @IBOutlet weak var lblEmail: UILabel!
+    @IBOutlet weak var lblPassword: UILabel!
+    
     @IBOutlet weak var signInButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // Initialize
+        initForm()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        // Customize Navigation bar and Status bar
+        setupCustomNavStatusBar(setting: [.showNavBar, .greyNavTitle])
+    }
+    
+    override func viewWillLayoutSubviews() {
+        // Customize text field to show only bottom border
+        txtEmail.setFieldType(type: .clear)
+        txtEmail.textAlignment = .center
+        
+        txtPassword.setFieldType(type: .clear)
+        txtPassword.textAlignment = .center
+    }
+
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
+    
+    func initForm() {
         txtEmail.delegate = self
         
         // Set up keyboard type
@@ -46,25 +74,12 @@ class SignInViewController: UIViewController, UITextFieldDelegate, NVActivityInd
         // Setup return type
         returnHandler = IQKeyboardReturnKeyHandler(controller: self)
         returnHandler.lastTextFieldReturnKeyType = .done
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        // Customize Navigation bar and Status bar
-        setupCustomNavStatusBar(setting: [.showNavBar, .greyNavTitle])
-    }
-    
-    override func viewWillLayoutSubviews() {
-        // Customize text field to show only bottom border
-        txtEmail.setBottomBorder(borderColor: Colors.lightgrey)
-        txtEmail.textAlignment = .center
         
-        txtPassword.setBottomBorder(borderColor: Colors.lightgrey)
-        txtPassword.textAlignment = .center
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+        // Default labels
+        lblEmail.textColor = Colors.hotRed
+        lblPassword.textColor = Colors.hotRed
+        lblEmail.text = ""
+        lblPassword.text = ""
     }
     
     @objc func previousAction(_ sender : UITextField!) {
@@ -98,36 +113,78 @@ class SignInViewController: UIViewController, UITextFieldDelegate, NVActivityInd
         return string.canBeConverted(to: String.Encoding.ascii)
     }
     
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        lblEmail.text = ""
+        lblPassword.text = ""
+    }
 
     @IBAction func didPressDoneBtn(_ sender: Any) {
+        
+        // Check if field is not empty
+        if txtEmail.hasText && txtPassword.hasText {
+
+            // Reset field to default
+            txtEmail.setFieldType(type: .clear)
+            txtPassword.setFieldType(type: .clear)
+            
+            // Hash the password and login
+            login(email: txtEmail.text!, password: txtPassword.text!.md5())
+            
+        } else {
+            
+            if !txtEmail.hasText {
+                txtEmail.setFieldType(type: .error)
+            }
+            
+            if !txtPassword.hasText {
+                txtPassword.setFieldType(type: .error)
+            }
+            
+        }
+        
+    }
+    
+    func login(email: String, password: String) {
+        
         // Show activity indicator
         startAnimating(CGSize(width: 50, height: 50), type: .ballPulseSync, color: Colors.white)
         
-        // Hash the password
-        // Call the database API service
-        pService.login(email: txtEmail.text!, password: txtPassword.text!.md5(), completion: { (result: Int?) in
+        // Check login credentials with database
+        pService.login(email: email, password: password, completion: { (result: Int?) in
             DispatchQueue.global().async {
                 if let personId = result {
-                    // Store the person id in keychain
-                    KeychainSwift().set(String(personId), forKey: "id")
-                    
-                    // Persists the data received locally
-                    self.storePersonPersistently(personId: personId)
-                    self.dispatchGroup.wait()
-                    self.storeIllnessPersistently(personId: personId)
-                    self.dispatchGroup.wait()
-                    self.storeIndicatorPersistently(personId: personId)
-                    
-                    // Go to home page after persisting the data
-                    self.dispatchGroup.notify(queue: DispatchQueue.main) {
-                        // Enable 3D touch feature after sign in
-                        Touch3D().enableQuickAction()
-                        self.goToHomePage()
+                    if personId == 0 {
+                        DispatchQueue.main.async {
+                            self.stopAnimating()
+                            self.lblEmail.text = "Re-enter"
+                            self.txtEmail.setFieldType(type: .error)
+                            self.lblPassword.text = "Re-enter"
+                            self.txtPassword.setFieldType(type: .error)
+                        }
+                    } else {
+                        // Store the person id in keychain
+                        KeychainSwift().set(String(personId), forKey: "id")
+                        
+                        // Persists the data received locally
+                        self.storePersonPersistently(personId: personId)
+                        self.dispatchGroup.wait()
+                        self.storeIllnessPersistently(personId: personId)
+                        self.dispatchGroup.wait()
+                        self.storeIndicatorPersistently(personId: personId)
+                        
+                        // Go to home page after persisting the data
+                        self.dispatchGroup.notify(queue: DispatchQueue.main) {
+                            // Enable 3D touch feature after sign in
+                            Touch3D().enableQuickAction()
+                            self.goToHomePage()
+                        }
                     }
+                } else {
+                    self.stopAnimating()
+                    print("Empty or error")
                 }
             }
         })
-        
     }
     
     // Person data to be persist

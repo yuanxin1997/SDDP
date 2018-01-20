@@ -8,6 +8,7 @@
 
 import Foundation
 
+//  This service will now be deprecated for this project
 class CustomVisionService {
     var predictionKey = "0d32ece634bb43fcbc49814e96fe57fe"
     var contentType = "application/octet-stream"
@@ -63,6 +64,7 @@ class CustomVisionService {
                 }
             }
         }
+
         
         return proximityResultArr
     }

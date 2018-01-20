@@ -20,20 +20,14 @@ class RegViewControllerS2: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        
+        // Set default selection to male
+        highlight(gender: "male")
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        // Set default selection to male
-        highlight(gender: "male")
-        
         // Customize Navigation bar and Status bar
         setupCustomNavStatusBar(setting: [.showNavBar, .greyNavTitle]);
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        // Save input to registration singleton
-        registration.gender = selectedGender
-        print(registration.gender)
     }
 
     override func didReceiveMemoryWarning() {
@@ -89,4 +83,13 @@ class RegViewControllerS2: UIViewController {
         maleButton.layer.shadowOpacity = 0.1
     }
 
+    @IBAction func nextBtnDidTap(_ sender: Any) {
+        // Save input to registration singleton
+        registration.gender = selectedGender
+        print(registration.gender)
+        
+        // Proceed to next page
+        performSegue(withIdentifier: "showRegS3", sender: nil)
+    }
+    
 }

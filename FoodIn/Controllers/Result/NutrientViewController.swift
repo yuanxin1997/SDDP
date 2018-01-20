@@ -14,20 +14,11 @@ class NutrientViewController: UIViewController, IndicatorInfoProvider {
 
     @IBOutlet weak var pieChart: PieChartView!
     
-    var fService = FoodService()
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        fService.getFoodDetails(foodName: FoodDetailsController.parentFoodName!, completion: { (result: Food?) in
-            DispatchQueue.main.async {
-                if let result = result {
-                    // Refresh UI
-                    self.pieChartUpdate(calories: result.calories, carbs: result.carbohydrate, protein: result.protein, fats: result.fat)
-                }
-            }
-        })
-        
+        // Listen to notification
+        NotificationCenter.default.addObserver(self, selector: #selector(setupPieChart), name: Notification.Name(NotificationKey.foodData), object: nil)
     }
 
     override func didReceiveMemoryWarning() {
@@ -35,8 +26,11 @@ class NutrientViewController: UIViewController, IndicatorInfoProvider {
         // Dispose of any resources that can be recreated.
     }
     
-    func indicatorInfo(for pagerTabStripController: PagerTabStripViewController) -> IndicatorInfo {
-        return IndicatorInfo(title: "Nutrient")
+    // Perform action when notification is received
+    @objc func setupPieChart() {
+        if let foodDetails = FoodDetailsController.selectedFood{
+            self.pieChartUpdate(calories: foodDetails.calories, carbs: foodDetails.carbohydrate, protein: foodDetails.protein, fats: foodDetails.fat)
+        }
     }
     
     func pieChartUpdate (calories: Double, carbs: Double, protein: Double, fats: Double) {
@@ -47,12 +41,15 @@ class NutrientViewController: UIViewController, IndicatorInfoProvider {
         let caloriesInProtein = protein * 4
         let caloriesInFats = fats * 9
         
-        // Basic set up of plan chart
+        // Specify all entry
         let entry1 = PieChartDataEntry(value: caloriesInCarbs, label: "Carbs")
         let entry2 = PieChartDataEntry(value: caloriesInProtein, label: "Protein")
         let entry3 = PieChartDataEntry(value: caloriesInFats, label: "Fats")
         
+        // Put all entry into dataset
         let dataSet = PieChartDataSet(values: [entry1, entry2, entry3], label: "")
+        
+        // Customize pie chart
         dataSet.drawIconsEnabled = false
         dataSet.sliceSpace = 3
         dataSet.valueColors = [.white]
@@ -61,18 +58,20 @@ class NutrientViewController: UIViewController, IndicatorInfoProvider {
             + [UIColor(red: 129/255.0, green: 207/255.0, blue: 224/255.0, alpha: 1.0)]
             + [UIColor(red: 233/255.0, green: 212/255.0, blue: 96/255.0, alpha: 1.0)]
         
+        // Format text label inside the pie chart
         let pFormatter = NumberFormatter()
         pFormatter.numberStyle = .percent
         pFormatter.maximumFractionDigits = 1
         pFormatter.multiplier = 1
         pFormatter.percentSymbol = "%"
         
+        // Make data with dataset
         let data = PieChartData(dataSet: dataSet)
         pieChart.data = data
         data.setValueFormatter(DefaultValueFormatter(formatter: pFormatter))
         data.setValueFont(Fonts.Regular.of(size: 10))
         
-        // Pie Chart legend
+        // Customize pie chart legend
         let l = pieChart.legend
         l.horizontalAlignment = .center
         l.verticalAlignment = .top
@@ -82,6 +81,7 @@ class NutrientViewController: UIViewController, IndicatorInfoProvider {
         l.yOffset = 0
         l.font = Fonts.Regular.of(size: 12)
         
+        // Customize pie chart
         pieChart.animate(xAxisDuration: 1.5, easingOption: .easeOutBack)
         pieChart.usePercentValuesEnabled = true
         pieChart.drawEntryLabelsEnabled = false
@@ -91,15 +91,18 @@ class NutrientViewController: UIViewController, IndicatorInfoProvider {
         pieChart.drawCenterTextEnabled = true
         let attributedString = NSMutableAttributedString(string: "\(Int(calories))\nCalories")
         let paragraphStyle = NSMutableParagraphStyle()
-        paragraphStyle.alignment = .center // center the text
-
+        paragraphStyle.alignment = .center
         attributedString.addAttributes([NSAttributedStringKey.font: Fonts.Regular.of(size: 16), NSAttributedStringKey.foregroundColor : Colors.lightgrey, NSAttributedStringKey.paragraphStyle: paragraphStyle], range: NSRange(location: 0, length: attributedString.length))
         pieChart.centerAttributedText = attributedString;
         pieChart.holeRadiusPercent = 0.65
         pieChart.transparentCircleRadiusPercent = 0
         
-        // Refresh chart with new data
+        // Refresh pie chart with new data
         pieChart.notifyDataSetChanged()
+    }
+    
+    func indicatorInfo(for pagerTabStripController: PagerTabStripViewController) -> IndicatorInfo {
+        return IndicatorInfo(title: "Nutrient")
     }
 
 }

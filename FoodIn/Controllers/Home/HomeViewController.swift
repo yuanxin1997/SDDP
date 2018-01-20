@@ -26,10 +26,12 @@ class HomeViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        // Retrieve data locally and pass in the value
-        greetingLabel.text = "Hi, \(MyInfoService().getMyInfo()[0].name!)."
-
+//
+//        // Retrieve data locally and pass in the value
+//        if let greetingName = MyInfoService().getMyInfo()[0].name {
+//            greetingLabel.text = "Hi, \(MyInfoService().getMyInfo()[0].name!)."
+//        }
+    
         // Testing
         for element in MyInfoService().getMyInfo() {
             print("printing \(element.name) ")
@@ -43,6 +45,7 @@ class HomeViewController: UIViewController {
             print("printing \(element.name) ")
         }
         
+
 //                KeychainSwift().clear()
 //                MyInfoService().clearMyInfo()
 //                MyIllnessService().clearMyIllness()

@@ -13,18 +13,16 @@ class MultipleResultsController: UITableViewController {
     
     @IBOutlet weak var headView: UIView!
     
-    var predictionData: [CustomVisionPrediction] = []
+    var predictionData:[PredictionResult] = []
     
     override func viewDidLoad() {
-        // Customize Navigation bar and Status bar
-        setupCustomNavStatusBar(setting: [.blackStatusBar, .greyNavTitle])
         super.viewDidLoad()
         
+        // Customize Navigation bar and Status bar
+        setupCustomNavStatusBar(setting: [.blackStatusBar, .greyNavTitle])
+        
         // Customize table border
-        tableView.tableFooterView = UIView()
-        tableView.layoutMargins = UIEdgeInsets.zero
-        tableView.separatorInset = UIEdgeInsets.zero
-        tableView.separatorColor = Colors.ghostwhite
+        setupTableView()
         
         // Add bottom border to head view
         headView.addBottomBorderWithColor(color: Colors.ghostwhite, width: 0.5)
@@ -54,13 +52,14 @@ class MultipleResultsController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
         
+        // Configure cell
         cell.layoutMargins = UIEdgeInsets.zero
-        cell.textLabel?.text = predictionData[indexPath.row].Tag
+        cell.textLabel?.text = predictionData[indexPath.row].identifier
         cell.textLabel?.textColor = Colors.darkgrey
         let chevron = UIImage(named: "Chevron")
         cell.accessoryType = .disclosureIndicator
         cell.accessoryView = UIImageView(image: chevron!)
-
+        
         return cell
     }
     
@@ -68,7 +67,15 @@ class MultipleResultsController: UITableViewController {
         return 80.0
     }
     
+    func setupTableView() {
+        tableView.tableFooterView = UIView()
+        tableView.layoutMargins = UIEdgeInsets.zero
+        tableView.separatorInset = UIEdgeInsets.zero
+        tableView.separatorColor = Colors.ghostwhite
+    }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
         if segue.identifier == "showFoodDetailstTwo"
@@ -76,7 +83,7 @@ class MultipleResultsController: UITableViewController {
             let fdc = segue.destination as! FoodDetailsController
             if tableView.indexPathForSelectedRow != nil
             {
-                let foodName = predictionData[tableView.indexPathForSelectedRow!.row].Tag
+                let foodName = predictionData[tableView.indexPathForSelectedRow!.row].identifier
                 fdc.selectedFoodName = foodName
             }
         }

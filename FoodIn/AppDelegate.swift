@@ -28,6 +28,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             let nav:UINavigationController = UINavigationController(rootViewController: homePage)
             self.window?.rootViewController = nav
         }
+        
         return true
     }
 

@@ -19,27 +19,18 @@ class RegViewControllerS1: UIViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        txtName.delegate = self
-        
-        // Setup return type
-        returnHandler = IQKeyboardReturnKeyHandler(controller: self)
-        returnHandler.lastTextFieldReturnKeyType = .done
+        // Initialize
+        initForm()
     } 
 
     override func viewWillAppear(_ animated: Bool) {
         // Customize Navigation bar and Status bar
         setupCustomNavStatusBar(setting: [.showNavBar, .greyNavTitle]);
     }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        // Save input to registration singleton
-        registration.name = txtName.text
-        print(registration.name)
-    }
-    
+
     override func viewWillLayoutSubviews() {
         // Customize text field to show only bottom border
-        txtName.setBottomBorder(borderColor: Colors.lightgrey)
+        txtName.setFieldType(type: .clear)
         txtName.textAlignment = .center
     }
     
@@ -60,6 +51,34 @@ class RegViewControllerS1: UIViewController, UITextFieldDelegate {
         let allowedCharacters = CharacterSet.letters
         let characterSet = CharacterSet(charactersIn: string)
         return allowedCharacters.isSuperset(of: characterSet)
+    }
+    
+    func initForm(){
+        txtName.delegate = self
+        
+        // Setup return type
+        returnHandler = IQKeyboardReturnKeyHandler(controller: self)
+        returnHandler.lastTextFieldReturnKeyType = .done
+    }
+    
+    @IBAction func nextBtnDidTap(_ sender: Any) {
+        
+        // Check if field is not empty
+        if txtName.hasText {
+            
+            // Save input to registration singleton
+            registration.name = txtName.text
+            print(registration.name)
+            
+            // Reset field to default
+            txtName.setFieldType(type: .clear)
+            
+            // Proceed to next page
+            performSegue(withIdentifier: "showRegS2", sender: nil)
+            
+        } else {
+            txtName.setFieldType(type: .error)
+        }
     }
 
 }

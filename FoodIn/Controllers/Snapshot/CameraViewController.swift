@@ -8,12 +8,14 @@
 
 import UIKit
 import AVFoundation
+import Vision
 
 class CameraViewController: UIViewController, AVCapturePhotoCaptureDelegate {
 
     @IBOutlet weak var cameraButton: UIButton!
     @IBOutlet weak var dismissButton: UIButton!
     
+    @IBOutlet weak var previewView: UIView!
     let snapshot = Snapshot.sharedInstance
     let inspectionMode = InspectionMode.sharedInstance
     

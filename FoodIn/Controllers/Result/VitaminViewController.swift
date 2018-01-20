@@ -19,28 +19,42 @@ class VitaminViewController: UIViewController, IndicatorInfoProvider, UICircular
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Set start value and max value
-        ringVitaminA.maxValue = 100
-        ringVitaminC.maxValue = 100
-        ringVitaminA.value = 0
-        ringVitaminC.value = 0
+        
+        // Initialize
+        initCircularProgressBar()
+        
+        // Setup with data
+        setupCircularProgressBar()
+    }
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
+    
+    func initCircularProgressBar(){
         
         // Set the delegate
         ringVitaminA.delegate = self
         ringVitaminC.delegate = self
         
-        fService.getFoodDetails(foodName: FoodDetailsController.parentFoodName!, completion: { (result: Food?) in
-            DispatchQueue.main.async {
-                if let result = result {
-                    // Refresh 
-                    self.circularProgressBarUpdate(mcgOfvitaminA: result.vitaminA, mcgOfvitaminC: result.vitaminC)
-                }
+        // Set start value and max value
+        ringVitaminA.maxValue = 100
+        ringVitaminC.maxValue = 100
+        ringVitaminA.value = 0
+        ringVitaminC.value = 0
+    }
+    
+    func setupCircularProgressBar(){
+        DispatchQueue.main.async {
+            if let foodDetail = FoodDetailsController.selectedFood {
+                self.circularProgressBarUpdate(mcgOfvitaminA: foodDetail.vitaminA, mcgOfvitaminC: foodDetail.vitaminC)
             }
-        })
+        }
     }
     
     func circularProgressBarUpdate(mcgOfvitaminA: Double, mcgOfvitaminC: Double){
+        
         // vitaminA value received from database is in (mcg)
         // IU of vitamin A -> IU =  3.33 * mcg
         // 5000 IU of vitamin A = 100% daily value
@@ -51,6 +65,7 @@ class VitaminViewController: UIViewController, IndicatorInfoProvider, UICircular
         // 60 mg of vitamin C = 100% daily value
         let dvOfVitaminC = CGFloat((mcgOfvitaminC/60).roundTo(places: 2))*100
 
+        // Ring animation
         ringVitaminA.animationStyle = kCAMediaTimingFunctionLinear
         ringVitaminA.setProgress(value: dvOfVitaminA, animationDuration: 1)
 
@@ -64,11 +79,6 @@ class VitaminViewController: UIViewController, IndicatorInfoProvider, UICircular
         } else if ring === ringVitaminC {
             print("From delegate: Ring vitaminC finished")
         }
-    }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
 
     func indicatorInfo(for pagerTabStripController: PagerTabStripViewController) -> IndicatorInfo {

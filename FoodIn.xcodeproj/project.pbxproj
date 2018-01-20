@@ -31,6 +31,8 @@
 		6E2E40A41FE6B47500405C8B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6E2E40A21FE6B47500405C8B /* LaunchScreen.storyboard */; };
 		6E2E40AF1FE6B47500405C8B /* FoodInTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E2E40AE1FE6B47500405C8B /* FoodInTests.swift */; };
 		6E2E40BA1FE6B47500405C8B /* FoodInUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E2E40B91FE6B47500405C8B /* FoodInUITests.swift */; };
+		6E32356E2007A9570091F0E4 /* NotificationKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E32356D2007A9570091F0E4 /* NotificationKey.swift */; };
+		6E323570200844D90091F0E4 /* SafeDecodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E32356F200844D90091F0E4 /* SafeDecodable.swift */; };
 		6E3951032003AED600C165C4 /* IllnessTag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E3951022003AED600C165C4 /* IllnessTag.swift */; };
 		6E3951052003DDE700C165C4 /* Touch3D.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E3951042003DDE700C165C4 /* Touch3D.swift */; };
 		6E39510720044C8000C165C4 /* InspectionMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E39510620044C8000C165C4 /* InspectionMode.swift */; };
@@ -51,14 +53,19 @@
 		6E6F5562200082E500B8F517 /* Illness.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E6F5561200082E500B8F517 /* Illness.swift */; };
 		6E6F556620008A4600B8F517 /* IllnessCheckbox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E6F556520008A4600B8F517 /* IllnessCheckbox.swift */; };
 		6E75696E2000508A00471D7E /* Registration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E75696D2000508A00471D7E /* Registration.swift */; };
+		6E9071C92010AF7E0053CEFE /* ImageClassificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E9071C82010AF7E0053CEFE /* ImageClassificationService.swift */; };
+		6E9071CB2010CC040053CEFE /* PredictionResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E9071CA2010CC040053CEFE /* PredictionResult.swift */; };
+		6E9071D12010E42A0053CEFE /* UIImage+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E9071D02010E42A0053CEFE /* UIImage+.swift */; };
 		6EA676DA1FFFCC6E009354C4 /* PersistenceService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EA676D91FFFCC6E009354C4 /* PersistenceService.swift */; };
 		6EA6773F2000485B009354C4 /* PersonCoreData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 6EA6773D2000485B009354C4 /* PersonCoreData.xcdatamodeld */; };
+		6EA6B997201365D500877217 /* String+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EA6B996201365D500877217 /* String+.swift */; };
 		6EB52BBA1FFDF22500FC1AF4 /* RegViewControllerS1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EB52BB91FFDF22400FC1AF4 /* RegViewControllerS1.swift */; };
 		6EB52BBC1FFDF23300FC1AF4 /* RegViewControllerS2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EB52BBB1FFDF23300FC1AF4 /* RegViewControllerS2.swift */; };
 		6EB52BBE1FFDF24800FC1AF4 /* RegViewControllerS3.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EB52BBD1FFDF24800FC1AF4 /* RegViewControllerS3.swift */; };
 		6EB52BC01FFDF28400FC1AF4 /* RegViewControllerS4.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EB52BBF1FFDF28400FC1AF4 /* RegViewControllerS4.swift */; };
 		6EB52BC21FFDF29300FC1AF4 /* RegViewControllerS5.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EB52BC11FFDF29300FC1AF4 /* RegViewControllerS5.swift */; };
 		6EB52BC41FFDF2A100FC1AF4 /* RegViewControllerS6.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EB52BC31FFDF2A100FC1AF4 /* RegViewControllerS6.swift */; };
+		6EBD82CE200F84FA006E9DAF /* FoodIn.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 6EBD82CD200F84FA006E9DAF /* FoodIn.mlmodel */; };
 		6ECE2D421FEE0152001B33F8 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ECE2D411FEE0152001B33F8 /* Colors.swift */; };
 		6ECE2D461FEE0217001B33F8 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ECE2D451FEE0217001B33F8 /* HomeViewController.swift */; };
 		6EEC2E411FFE1071003E89EC /* UITextField+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EEC2E401FFE1071003E89EC /* UITextField+.swift */; };
@@ -119,6 +126,8 @@
 		6E2E40B51FE6B47500405C8B /* FoodInUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FoodInUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		6E2E40B91FE6B47500405C8B /* FoodInUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodInUITests.swift; sourceTree = "<group>"; };
 		6E2E40BB1FE6B47500405C8B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		6E32356D2007A9570091F0E4 /* NotificationKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationKey.swift; sourceTree = "<group>"; };
+		6E32356F200844D90091F0E4 /* SafeDecodable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafeDecodable.swift; sourceTree = "<group>"; };
 		6E3951022003AED600C165C4 /* IllnessTag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IllnessTag.swift; sourceTree = "<group>"; };
 		6E3951042003DDE700C165C4 /* Touch3D.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Touch3D.swift; sourceTree = "<group>"; };
 		6E39510620044C8000C165C4 /* InspectionMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InspectionMode.swift; sourceTree = "<group>"; };
@@ -139,14 +148,19 @@
 		6E6F5561200082E500B8F517 /* Illness.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Illness.swift; sourceTree = "<group>"; };
 		6E6F556520008A4600B8F517 /* IllnessCheckbox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IllnessCheckbox.swift; sourceTree = "<group>"; };
 		6E75696D2000508A00471D7E /* Registration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Registration.swift; sourceTree = "<group>"; };
+		6E9071C82010AF7E0053CEFE /* ImageClassificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageClassificationService.swift; sourceTree = "<group>"; };
+		6E9071CA2010CC040053CEFE /* PredictionResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PredictionResult.swift; sourceTree = "<group>"; };
+		6E9071D02010E42A0053CEFE /* UIImage+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+.swift"; sourceTree = "<group>"; };
 		6EA676D91FFFCC6E009354C4 /* PersistenceService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceService.swift; sourceTree = "<group>"; };
 		6EA6773E2000485B009354C4 /* PersonCoreData.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = PersonCoreData.xcdatamodel; sourceTree = "<group>"; };
+		6EA6B996201365D500877217 /* String+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+.swift"; sourceTree = "<group>"; };
 		6EB52BB91FFDF22400FC1AF4 /* RegViewControllerS1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegViewControllerS1.swift; sourceTree = "<group>"; };
 		6EB52BBB1FFDF23300FC1AF4 /* RegViewControllerS2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegViewControllerS2.swift; sourceTree = "<group>"; };
 		6EB52BBD1FFDF24800FC1AF4 /* RegViewControllerS3.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegViewControllerS3.swift; sourceTree = "<group>"; };
 		6EB52BBF1FFDF28400FC1AF4 /* RegViewControllerS4.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegViewControllerS4.swift; sourceTree = "<group>"; };
 		6EB52BC11FFDF29300FC1AF4 /* RegViewControllerS5.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegViewControllerS5.swift; sourceTree = "<group>"; };
 		6EB52BC31FFDF2A100FC1AF4 /* RegViewControllerS6.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegViewControllerS6.swift; sourceTree = "<group>"; };
+		6EBD82CD200F84FA006E9DAF /* FoodIn.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = FoodIn.mlmodel; sourceTree = "<group>"; };
 		6ECE2D411FEE0152001B33F8 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		6ECE2D451FEE0217001B33F8 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		6EEC2E401FFE1071003E89EC /* UITextField+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+.swift"; sourceTree = "<group>"; };
@@ -258,6 +272,14 @@
 			path = FoodInUITests;
 			sourceTree = "<group>";
 		};
+		6E323571200844E60091F0E4 /* Adds on */ = {
+			isa = PBXGroup;
+			children = (
+				6E32356F200844D90091F0E4 /* SafeDecodable.swift */,
+			);
+			path = "Adds on";
+			sourceTree = "<group>";
+		};
 		6E3951082004E82C00C165C4 /* Local */ = {
 			isa = PBXGroup;
 			children = (
@@ -272,6 +294,7 @@
 				6ECE2D411FEE0152001B33F8 /* Colors.swift */,
 				6E39510B2004EECB00C165C4 /* Fonts.swift */,
 				6E3951192005A29100C165C4 /* APIurl.swift */,
+				6E32356D2007A9570091F0E4 /* NotificationKey.swift */,
 			);
 			path = Constants;
 			sourceTree = "<group>";
@@ -283,6 +306,8 @@
 				6EFAF04D1FF154BA009E93F2 /* UIView+.swift */,
 				6EEC2E401FFE1071003E89EC /* UITextField+.swift */,
 				6E555D5F1FF73C9900141FEC /* Double+.swift */,
+				6E9071D02010E42A0053CEFE /* UIImage+.swift */,
+				6EA6B996201365D500877217 /* String+.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -335,6 +360,7 @@
 		6E39511320057E4300C165C4 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				6E9071C32010ACCB0053CEFE /* MachineLearning */,
 				6E3951092004EB5A00C165C4 /* Constants */,
 				6E39510D20050E1D00C165C4 /* Extensions */,
 				6E39510F2005773300C165C4 /* Others */,
@@ -356,6 +382,7 @@
 			children = (
 				6EEDEB371FEB303E008A4658 /* CameraViewController.swift */,
 				6EEDEB391FEB40D6008A4658 /* ImageViewController.swift */,
+				6E16DFF11FF213DA00301322 /* ActivityIndicatorController.swift */,
 			);
 			path = Snapshot;
 			sourceTree = "<group>";
@@ -371,7 +398,6 @@
 		6E39511720058AD000C165C4 /* Result */ = {
 			isa = PBXGroup;
 			children = (
-				6E16DFF11FF213DA00301322 /* ActivityIndicatorController.swift */,
 				6E66E2B31FEF9B3E0021B649 /* MultipleResultsController.swift */,
 				6E16DFF31FF2390600301322 /* FoodDetailsController.swift */,
 				6E4199501FF3901700463542 /* VitaminViewController.swift */,
@@ -397,6 +423,40 @@
 				6E39510620044C8000C165C4 /* InspectionMode.swift */,
 			);
 			path = Singleton;
+			sourceTree = "<group>";
+		};
+		6E9071C32010ACCB0053CEFE /* MachineLearning */ = {
+			isa = PBXGroup;
+			children = (
+				6E9071CC2010CC0E0053CEFE /* CoreML */,
+			);
+			path = MachineLearning;
+			sourceTree = "<group>";
+		};
+		6E9071CC2010CC0E0053CEFE /* CoreML */ = {
+			isa = PBXGroup;
+			children = (
+				6EBD82CD200F84FA006E9DAF /* FoodIn.mlmodel */,
+				6E9071CF2010CC340053CEFE /* Model */,
+				6E9071CD2010CC270053CEFE /* Service */,
+			);
+			path = CoreML;
+			sourceTree = "<group>";
+		};
+		6E9071CD2010CC270053CEFE /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				6E9071C82010AF7E0053CEFE /* ImageClassificationService.swift */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
+		6E9071CF2010CC340053CEFE /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				6E9071CA2010CC040053CEFE /* PredictionResult.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		6EA676CB1FFFC126009354C4 /* CoreData */ = {
@@ -463,6 +523,7 @@
 		6ECE2D471FEE02CC001B33F8 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				6E323571200844E60091F0E4 /* Adds on */,
 				6E75696C2000506D00471D7E /* Singleton */,
 				6E20C7A61FE6BED0000C704A /* Message.swift */,
 				6E20C7A81FE6D3CD000C704A /* Person.swift */,
@@ -677,6 +738,7 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-FoodIn/Pods-FoodIn-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/ApiAI/ApiAI.framework",
 				"${BUILT_PRODUCTS_DIR}/Charts/Charts.framework",
 				"${BUILT_PRODUCTS_DIR}/CheckboxButton/CheckboxButton.framework",
 				"${BUILT_PRODUCTS_DIR}/CryptoSwift/CryptoSwift.framework",
@@ -691,6 +753,7 @@
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ApiAI.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Charts.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CheckboxButton.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CryptoSwift.framework",
@@ -827,7 +890,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				6E20C7A91FE6D3CD000C704A /* Person.swift in Sources */,
+				6EBD82CE200F84FA006E9DAF /* FoodIn.mlmodel in Sources */,
 				6ECE2D421FEE0152001B33F8 /* Colors.swift in Sources */,
+				6E32356E2007A9570091F0E4 /* NotificationKey.swift in Sources */,
 				6EB52BBE1FFDF24800FC1AF4 /* RegViewControllerS3.swift in Sources */,
 				6E4199531FF3902A00463542 /* NutrientViewController.swift in Sources */,
 				6E66E2B21FEF3DEB0021B649 /* Pulse.swift in Sources */,
@@ -857,19 +922,23 @@
 				6E2C3C6F20021191009B0D13 /* MyInfo+CoreDataProperties.swift in Sources */,
 				6ECE2D461FEE0217001B33F8 /* HomeViewController.swift in Sources */,
 				6E2C3C6D20021191009B0D13 /* MyIllness+CoreDataProperties.swift in Sources */,
+				6E323570200844D90091F0E4 /* SafeDecodable.swift in Sources */,
 				6EEC2E411FFE1071003E89EC /* UITextField+.swift in Sources */,
 				6E555D601FF73C9900141FEC /* Double+.swift in Sources */,
 				6E3951032003AED600C165C4 /* IllnessTag.swift in Sources */,
 				6EFAF04E1FF154BA009E93F2 /* UIView+.swift in Sources */,
 				6E555D5A1FF6A12100141FEC /* FoodService.swift in Sources */,
+				6E9071CB2010CC040053CEFE /* PredictionResult.swift in Sources */,
 				6EEDEB361FEA6D95008A4658 /* CustomVisionService.swift in Sources */,
 				6E2C3C6120020EB6009B0D13 /* MyInfoService.swift in Sources */,
 				6EEDEB3C1FEB8DDA008A4658 /* CustomVisionResult.swift in Sources */,
 				6E6F5562200082E500B8F517 /* Illness.swift in Sources */,
 				6E4199551FF3903500463542 /* MineralViewController.swift in Sources */,
 				6E11142E1FF94E9D00F657AB /* UIViewController+.swift in Sources */,
+				6EA6B997201365D500877217 /* String+.swift in Sources */,
 				6E66E2B41FEF9B3E0021B649 /* MultipleResultsController.swift in Sources */,
 				6E2E409A1FE6B47500405C8B /* AppDelegate.swift in Sources */,
+				6E9071C92010AF7E0053CEFE /* ImageClassificationService.swift in Sources */,
 				6EEC2E441FFE3BEC003E89EC /* SignInViewController.swift in Sources */,
 				6E2C3C7020021191009B0D13 /* MyIndicator+CoreDataClass.swift in Sources */,
 				6EB52BC01FFDF28400FC1AF4 /* RegViewControllerS4.swift in Sources */,
@@ -878,6 +947,7 @@
 				6E2C3C572001EC13009B0D13 /* ProfileViewController.swift in Sources */,
 				6E16DFF21FF213DA00301322 /* ActivityIndicatorController.swift in Sources */,
 				6E2C3C7120021191009B0D13 /* MyIndicator+CoreDataProperties.swift in Sources */,
+				6E9071D12010E42A0053CEFE /* UIImage+.swift in Sources */,
 				6E2C3C6E20021191009B0D13 /* MyInfo+CoreDataClass.swift in Sources */,
 				6EEDEB381FEB303E008A4658 /* CameraViewController.swift in Sources */,
 			);
@@ -1046,6 +1116,7 @@
 			baseConfigurationReference = F18FE0E0AC53A19696367CF5 /* Pods-FoodIn.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = L4GPPSD6LF;
 				INFOPLIST_FILE = FoodIn/Info.plist;
@@ -1053,6 +1124,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.yuanxin.FoodIn;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -1063,6 +1135,7 @@
 			baseConfigurationReference = 97CBE3A7B80EE0019484C551 /* Pods-FoodIn.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = L4GPPSD6LF;
 				INFOPLIST_FILE = FoodIn/Info.plist;
@@ -1070,6 +1143,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.yuanxin.FoodIn;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

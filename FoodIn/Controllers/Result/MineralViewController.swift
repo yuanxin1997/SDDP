@@ -27,6 +27,20 @@ class MineralViewController: UIViewController, IndicatorInfoProvider {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        // Initialize
+        initProgressBar()
+        
+        // Setup with data
+        setupProgressBar()
+        
+    }
+
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
+    
+    func initProgressBar() {
         sodiumBar.progress = 0
         potassiumBar.progress = 0
         calciumBar.progress = 0
@@ -36,22 +50,14 @@ class MineralViewController: UIViewController, IndicatorInfoProvider {
         potassiumLabel.text = "0 mg"
         calciumLabel.text = "0 mg"
         ironLabel.text = "0 mg"
-  
-        fService.getFoodDetails(foodName: FoodDetailsController.parentFoodName!, completion: { (result: Food?) in
-            DispatchQueue.main.async {
-                if let result = result {
-                    // Refresh UI
-                    self.progressBarUpdate(mgOfSodium: result.sodium, mgOfPotassium: result.potassium, mgOfCalcium: result.calcium, mgOfIron: result.iron)
-                }
-            }
-        })
-
-        // Do any additional setup after loading the view.
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    
+    func setupProgressBar() {
+        DispatchQueue.main.async {
+            if let foodDetails = FoodDetailsController.selectedFood {
+                self.progressBarUpdate(mgOfSodium: foodDetails.sodium, mgOfPotassium: foodDetails.potassium, mgOfCalcium: foodDetails.calcium, mgOfIron: foodDetails.iron)
+            }
+        }
     }
     
     func progressBarUpdate(mgOfSodium: Double, mgOfPotassium: Double, mgOfCalcium: Double, mgOfIron: Double){
@@ -65,6 +71,13 @@ class MineralViewController: UIViewController, IndicatorInfoProvider {
         let calciumPoint = CGFloat(mgOfCalcium/1000)
         let ironPoint = CGFloat(mgOfIron/18)
         
+        // Bar animation
+        sodiumBar.animateTo(progress: sodiumPoint)
+        potassiumBar.animateTo(progress: potassiumPoint)
+        calciumBar.animateTo(progress: calciumPoint)
+        ironBar.animateTo(progress: ironPoint)
+        
+        // Label animation
         sodiumLabel.countFrom(0, to: CGFloat(mgOfSodium), withDuration: 1)
         potassiumLabel.countFrom(0, to: CGFloat(mgOfPotassium), withDuration: 1)
         calciumLabel.countFrom(0, to: CGFloat(mgOfCalcium), withDuration: 1)
@@ -118,11 +131,6 @@ class MineralViewController: UIViewController, IndicatorInfoProvider {
             return prefixAttr
         }
         
-        
-        sodiumBar.animateTo(progress: sodiumPoint)
-        potassiumBar.animateTo(progress: potassiumPoint)
-        calciumBar.animateTo(progress: calciumPoint)
-        ironBar.animateTo(progress: ironPoint)
     }
     
     func indicatorInfo(for pagerTabStripController: PagerTabStripViewController) -> IndicatorInfo {

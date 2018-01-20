@@ -20,24 +20,22 @@ class RegViewControllerS3: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
     }
-
-    override func viewWillAppear(_ animated: Bool) {
-        // Customize Navigation bar and Status bar
-        setupCustomNavStatusBar(setting: [.showNavBar, .greyNavTitle])
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
     }
     
-    override func viewWillDisappear(_ animated: Bool) {
+    @IBAction func nextBtnDidTap(_ sender: Any) {
         // Save input to registration singleton
         let formatter = DateFormatter()
         formatter.dateFormat = "dd/MM/yyyy"
         selectedDateOfBirth = formatter.string(from: datePicker.date)
         registration.dob = selectedDateOfBirth
         print(registration.dob)
+        
+        // Proceed to next page
+        performSegue(withIdentifier: "showRegS4", sender: nil)
     }
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
 }

@@ -27,7 +27,7 @@ class PersonService {
                 print(jsonError)
                 completion(nil)
             }
-            }.resume()
+        }.resume()
     }
     
     // [GET]
@@ -47,7 +47,7 @@ class PersonService {
                 print(jsonError)
                 completion(nil)
             }
-            }.resume()
+        }.resume()
     }
     
     // [POST]
@@ -76,7 +76,7 @@ class PersonService {
                 print(jsonError)
                 completion(nil)
             }
-            }.resume()
+        }.resume()
     }
     
     // [POST]
@@ -99,7 +99,7 @@ class PersonService {
             } catch let jsonError {
                 print(jsonError)
             }
-            }.resume()
+        }.resume()
     }
     
     // [GET]
@@ -119,7 +119,7 @@ class PersonService {
                 print(jsonError)
                 completion(nil)
             }
-            }.resume()
+        }.resume()
     }
     
     // [GET]
@@ -139,7 +139,7 @@ class PersonService {
                 print(jsonError)
                 completion(nil)
             }
-            }.resume()
+        }.resume()
     }
     
     // [GET]
@@ -159,14 +159,14 @@ class PersonService {
                 print(jsonError)
                 completion(nil)
             }
-            }.resume()
+        }.resume()
     }
     
     // [POST]
-    func createFoodLog(personId: Int, food: String, timestamp: UInt64, completion: @escaping (Int?) -> Void) {
+    func createFoodLog(personId: Int, foodId: Int, timestamp: UInt64, completion: @escaping (Int?) -> Void) {
         
         // Define your URL with the combination of Base URL (can be found in global constants) and its Endpoint
-        guard let url = URL(string: "\(APIurl.database)/person/logPersonFood/\(personId)/\(food)/\(timestamp) ") else { return }
+        guard let url = URL(string: "\(APIurl.database)/person/logPersonFood/\(personId)/\(foodId)/\(timestamp) ") else { return }
         
         // Create URL request
         var request = URLRequest(url: url)
@@ -176,14 +176,14 @@ class PersonService {
         URLSession.shared.dataTask(with: request) { (data, response, error) in
             guard let data = data, response != nil, error == nil else { return }
             do {
-                let result = try JSONDecoder().decode(Int.self, from: data)
-                print(result)
-                completion(result) // Return your result with completion handler
+                let msgObj = try JSONDecoder().decode(Message.self, from: data)
+                print(msgObj.message)
+                completion(msgObj.message) // Return your result with completion handler
             } catch let jsonError {
                 print(jsonError)
                 completion(nil)
             }
-            }.resume()
+        }.resume()
     }
     
     // [GET]
@@ -203,7 +203,7 @@ class PersonService {
                 print(jsonError)
                 completion(nil)
             }
-            }.resume()
+        }.resume()
     }
 }
 

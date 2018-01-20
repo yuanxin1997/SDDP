@@ -12,7 +12,7 @@ import KeychainSwift
 class ProfileViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     var personInfo: MyInfo?
-    var personIllness = [MyIllness]()
+    var personIllness:[MyIllness] = []
     let myInfoService = MyInfoService()
 
     @IBOutlet weak var table: UITableView!
@@ -27,25 +27,12 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // Customize table border
-        table.tableFooterView = UIView()
-        table.layoutMargins = UIEdgeInsets.zero
-        table.separatorInset = UIEdgeInsets.zero
-        table.separatorColor = Colors.ghostwhite
-        
-        // Retrieve data locally
-        personInfo = MyInfoService().getMyInfo()[0]
-        personIllness = MyIllnessService().getMyIllness()
-        
-        // Pass in values
-        nameLabel.text = personInfo!.name
-        emailLabel.text = personInfo!.email
-        ageLabel.text = String(calcAge(birthday: personInfo!.dob!))
-        weightLabel.text = String(personInfo!.weight)
-        heightLabel.text = String(personInfo!.height)
-        
+        // Display title
         self.navigationItem.title = "Profile"
         
+        // Initialize
+        initProfile()
+        initTable()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -54,7 +41,7 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
     }
     
     override func viewDidLayoutSubviews() {
-        // Customize profile view
+        // Customize the profile view with gradient color
         setGradientBackground(colorOne:Colors.pink , colorTwo: Colors.red)
     }
     
@@ -70,6 +57,7 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! IllnessTag
        
+        // Configure cell
         cell.illnessIndexLabel.text = "illness #\(indexPath.row + 1)"
         cell.illnessNameLabel.text = personIllness[indexPath.row].name!
         cell.selectionStyle = UITableViewCellSelectionStyle.none
@@ -91,11 +79,30 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
         // Enable 3D touch feature after sign in
         Touch3D().disableQuickAction()
         
-        // Go to landing page
+        // Change rootview to HomePage
         goToLandingPage()
     }
     
-    // Change rootview to HomePage
+    func initProfile() {
+        // Retrieve data locally
+        personInfo = MyInfoService().getMyInfo()[0]
+        personIllness = MyIllnessService().getMyIllness()
+        
+        // Pass in values
+        nameLabel.text = personInfo!.name
+        emailLabel.text = personInfo!.email
+        ageLabel.text = String(calcAge(birthday: personInfo!.dob!)) // Calculate age using data of birth
+        weightLabel.text = String(personInfo!.weight)
+        heightLabel.text = String(personInfo!.height)
+    }
+    
+    func initTable() {
+        table.tableFooterView = UIView()
+        table.layoutMargins = UIEdgeInsets.zero
+        table.separatorInset = UIEdgeInsets.zero
+        table.separatorColor = Colors.ghostwhite
+    }
+    
     func goToLandingPage(){
         let landingPage = self.storyboard?.instantiateViewController(withIdentifier: "landingPage") as! LandingViewController
         let nav:UINavigationController = UINavigationController(rootViewController: landingPage);
@@ -103,7 +110,6 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
         appDelegate?.window??.rootViewController = nav
     }
     
-    // Customize the profile view with gradient color
     func setGradientBackground(colorOne: UIColor, colorTwo: UIColor) {
         let gradientLayer = CAGradientLayer()
         gradientLayer.frame = profileView.bounds
@@ -114,7 +120,6 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
         profileView.layer.insertSublayer(gradientLayer, at: 0)
     }
     
-    // Calculate age using data of birth
     func calcAge(birthday: String) -> Int {
         let dateFormater = DateFormatter()
         dateFormater.dateFormat = "dd/MM/yyyy"

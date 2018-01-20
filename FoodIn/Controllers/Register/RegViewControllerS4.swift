@@ -20,6 +20,31 @@ class RegViewControllerS4: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // Initialize
+        initForm()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        // Customize Navigation bar and Status bar
+        setupCustomNavStatusBar(setting: [.showNavBar, .greyNavTitle])
+    }
+    
+    override func viewWillLayoutSubviews() {
+        // Customize text field to show only bottom border
+        txtWeight.setFieldType(type: .clear)
+        txtWeight.textAlignment = .center
+        
+        txtHeight.setFieldType(type: .clear)
+        txtHeight.textAlignment = .center
+    }
+
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
+    
+    func initForm() {
+        
         // Set up keyboard type
         txtWeight.keyboardType = .decimalPad
         txtHeight.keyboardType = .decimalPad
@@ -36,33 +61,6 @@ class RegViewControllerS4: UIViewController {
         // Setup return type
         returnHandler = IQKeyboardReturnKeyHandler(controller: self)
         returnHandler.lastTextFieldReturnKeyType = .done
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        // Customize Navigation bar and Status bar
-        setupCustomNavStatusBar(setting: [.showNavBar, .greyNavTitle])
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        // Save input to registration singleton
-        registration.weight = Double(txtWeight.text!)
-        registration.height = Double(txtHeight.text!)
-        print(registration.weight)
-        print(registration.height)
-    }
-    
-    override func viewWillLayoutSubviews() {
-        // Customize text field to show only bottom border
-        txtWeight.setBottomBorder(borderColor: Colors.lightgrey)
-        txtWeight.textAlignment = .center
-        
-        txtHeight.setBottomBorder(borderColor: Colors.lightgrey)
-        txtHeight.textAlignment = .center
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     @objc func previousAction(_ sender : UITextField!) {
@@ -90,5 +88,37 @@ class RegViewControllerS4: UIViewController {
         // Hide keyboard when touches any where on the screen
         view.endEditing(true)
     }
-
+    
+    @IBAction func nextBtnDidTap(_ sender: Any) {
+        
+        // Check if field is not empty
+        if txtWeight.hasText && txtHeight.hasText {
+            
+            // Save input to registration singleton
+            registration.weight = Double(txtWeight.text!)
+            registration.height = Double(txtHeight.text!)
+            print(registration.weight)
+            print(registration.height)
+            
+            // Reset field to default
+            txtWeight.setFieldType(type: .clear)
+            txtHeight.setFieldType(type: .clear)
+            
+            // Proceed to next page
+            performSegue(withIdentifier: "showRegS5", sender: nil)
+            
+        } else {
+            
+            if !txtWeight.hasText {
+                txtWeight.setFieldType(type: .error)
+            }
+            
+            if !txtHeight.hasText {
+                txtHeight.setFieldType(type: .error)
+            }
+            
+        }
+        
+    }
+    
 }

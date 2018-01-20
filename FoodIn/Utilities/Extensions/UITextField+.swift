@@ -7,10 +7,26 @@
 //
 
 import UIKit
+import AudioToolbox
 
-class CustomTextField: UITextField {}
+public enum txtfieldType {
+    case clear
+    case error
+}
 
 extension UITextField {
+    
+    public func setFieldType(type: txtfieldType){
+        switch type {
+        case .clear:
+            setBottomBorder(borderColor: Colors.lightgrey)
+        case .error:
+            setBottomBorder(borderColor: Colors.hotRed)
+            self.shake()
+        default:
+            setBottomBorder(borderColor: Colors.lightgrey)
+        }
+    }
     
     // Bottom border
     func setBottomBorder(borderColor: UIColor) {
@@ -22,6 +38,18 @@ extension UITextField {
         border.borderWidth = width
         self.layer.addSublayer(border)
         self.layer.masksToBounds = true
+    }
+    
+    // Shake text field and vibrate phone
+    func shake () {
+        let animation = CABasicAnimation(keyPath: "position")
+        animation.duration = 0.05
+        animation.repeatCount = 5
+        animation.autoreverses = true
+        animation.fromValue = NSValue(cgPoint: CGPoint(x: self.center.x - 6, y: self.center.y + 2))
+        animation.toValue = NSValue(cgPoint: CGPoint(x: self.center.x + 6, y: self.center.y - 2))
+        self.layer.add(animation, forKey: "position")
+        AudioServicesPlayAlertSound(kSystemSoundID_Vibrate)
     }
     
 }

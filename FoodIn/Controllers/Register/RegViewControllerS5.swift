@@ -12,50 +12,27 @@ import NVActivityIndicatorView
 class RegViewControllerS5: UIViewController, UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate, NVActivityIndicatorViewable {
     
     var iService = IllnessService()
-    var illnessList = [Illness]()
-    var filteredIllnessList = [Illness]() //update table
-    var selectedIllnessArr = [Illness]()
+    var illnessList:[Illness] = []
+    var filteredIllnessList:[Illness] = []
+    var selectedIllnessArr:[Illness] = []
     let registration = Registration.sharedInstance
     
 
     @IBOutlet weak var table: UITableView!
     @IBOutlet weak var searchBar: UISearchBar!
+    @IBOutlet weak var nextBtn: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // Customize table border
-        table.tableFooterView = UIView()
-        table.layoutMargins = UIEdgeInsets.zero
-        table.separatorInset = UIEdgeInsets.zero
-        table.separatorColor = Colors.ghostwhite
+        // Initialize
+        initTable()
+        initSearchBar()
+        initNextBtn()
         
-        // Customize searchbar
-        searchBar.isTranslucent = false
-        searchBar.backgroundImage = UIImage()
-        searchBar.alpha = 0
-        if let textField = searchBar.value(forKey: "searchField") as? UITextField {
-            textField.textColor = Colors.darkgrey
-            textField.backgroundColor = Colors.ghostwhite
-            textField.font = Fonts.Regular.of(size: 16)
-        }
+        // Get list of illness from database
+        getListOfIllness()
         
-        // Show activity indicatore while retrieving data
-        startAnimating(CGSize(width: 50, height: 50), type: .ballPulseSync, color: Colors.white)
-        iService.getIllnessList (completion: { (result: [Illness]?) in
-            DispatchQueue.main.async {
-                if let result = result {
-                    self.stopAnimating()
-                    self.illnessList = result
-                    self.filteredIllnessList = self.illnessList
-                    print(self.illnessList)
-                    self.table.reloadData()
-                    self.searchBar.alpha = 1
-                }
-            }
-        })
-        
-        // Do any additional setup after loading the view.
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -92,8 +69,54 @@ class RegViewControllerS5: UIViewController, UITableViewDataSource, UITableViewD
         return 80
     }
     
+    func initTable() {
+        table.tableFooterView = UIView()
+        table.layoutMargins = UIEdgeInsets.zero
+        table.separatorInset = UIEdgeInsets.zero
+        table.separatorColor = Colors.ghostwhite
+    }
     
-    public func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+    func initSearchBar() {
+        searchBar.isTranslucent = false
+        searchBar.backgroundImage = UIImage()
+        searchBar.alpha = 0
+        if let textField = searchBar.value(forKey: "searchField") as? UITextField {
+            textField.textColor = Colors.darkgrey
+            textField.backgroundColor = Colors.ghostwhite
+            textField.font = Fonts.Regular.of(size: 16)
+        }
+    }
+    
+    func initNextBtn(){
+        // Disable next button
+        nextBtn.isEnabled = false
+        nextBtn.alpha = 0
+    }
+    
+    func getListOfIllness() {
+        // Show activity indicator
+        startAnimating(CGSize(width: 50, height: 50), type: .ballPulseSync, color: Colors.white)
+        
+        // Get list of illness from database
+        iService.getIllnessList (completion: { (result: [Illness]?) in
+            DispatchQueue.main.async {
+                if let result = result {
+                    self.stopAnimating()
+                    self.illnessList = result
+                    self.filteredIllnessList = self.illnessList
+                    print(self.illnessList)
+                    self.table.reloadData()
+                    self.searchBar.alpha = 1
+                    self.nextBtn.alpha = 0.5
+                } else {
+                    self.stopAnimating()
+                    print("Empty or error")
+                }
+            }
+        })
+    }
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         // When there is no text, filteredIllnessList is the same as the original data
         // When user has entered text into the search box
         // Use the filter method to iterate over all items in the data array
@@ -137,8 +160,19 @@ class RegViewControllerS5: UIViewController, UITableViewDataSource, UITableViewD
                 selectedIllnessArr = selectedIllnessArr.filter{$0.id != cell.illnessId}
             }
             registration.illness = selectedIllnessArr
+            if !(registration.illness ?? []).isEmpty {
+                nextBtn.isEnabled = true
+                nextBtn.alpha = 1
+            } else {
+                nextBtn.isEnabled = false
+                nextBtn.alpha = 0.5
+            }
             print(registration.illness)
         }
     }
 
+    @IBAction func nextBtnDidTap(_ sender: Any) {
+        // Proceed to next page
+        performSegue(withIdentifier: "showRegS6", sender: nil)
+    }
 }

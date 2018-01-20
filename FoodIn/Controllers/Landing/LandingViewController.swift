@@ -24,19 +24,11 @@ class LandingViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // Modify corner radius of the button
-        registerBtn.layer.cornerRadius = registerBtn.frame.size.height/2
-        registerBtn.layer.masksToBounds = true
+        // Customize landing page
+        initLandingPage()
         
-        // hide all UI component
-        registerBtn.alpha = 0
-        loginBtn.alpha = 0
-        bubbleOne.alpha = 0
-        bubbleTwo.alpha = 0
-        bubbleThree.alpha = 0
-        labelOne.alpha = 0
-        labelTwo.alpha = 0
-        labelThree.alpha = 0
+        // Customize button
+        setupRegisterButton()
         
         // Start animation chaining
         animateOne()
@@ -48,6 +40,7 @@ class LandingViewController: UIViewController {
     }
     
     override func viewDidAppear(_ animated: Bool) {
+        
         Registration.sharedInstance.clear()
         
         // Show UI component with fading effect
@@ -64,6 +57,23 @@ class LandingViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         // Customize Navigation bar and Status bar
         setupCustomNavStatusBar(setting: [.hideNavBar, .blackStatusBar])
+    }
+    
+    func initLandingPage() {
+        // hide all UI component
+        registerBtn.alpha = 0
+        loginBtn.alpha = 0
+        bubbleOne.alpha = 0
+        bubbleTwo.alpha = 0
+        bubbleThree.alpha = 0
+        labelOne.alpha = 0
+        labelTwo.alpha = 0
+        labelThree.alpha = 0
+    }
+    
+    func setupRegisterButton() {
+        registerBtn.layer.cornerRadius = registerBtn.frame.size.height/2
+        registerBtn.layer.masksToBounds = true
     }
     
     // First element in animation chaining
