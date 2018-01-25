@@ -16,6 +16,8 @@ class HomeViewController: UIViewController {
     @IBOutlet weak var top: UIImageView!
     @IBOutlet weak var right: UIImageView!
     
+    @IBOutlet weak var askBtn: UIButton!
+    
     @IBOutlet weak var greetingLabel: UILabel!
     let inspectionMode = InspectionMode.sharedInstance
     
@@ -26,12 +28,16 @@ class HomeViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupAskBtn()
 //
 //        // Retrieve data locally and pass in the value
-//        if let greetingName = MyInfoService().getMyInfo()[0].name {
-//            greetingLabel.text = "Hi, \(MyInfoService().getMyInfo()[0].name!)."
-//        }
-    
+        if let greetingName = MyInfoService().getMyInfo()[0].name {
+            greetingLabel.text = "Hi, \(MyInfoService().getMyInfo()[0].name!)."
+        }
+        let myInfo = MyInfoService().getMyInfo()[0]
+        let myIndicator = MyIndicatorService().getMyIndicator()
+        var myRS = RecommendationStandard(info: myInfo).with(indicator: myIndicator)
+        print(myRS.carbohydrate)
         // Testing
         for element in MyInfoService().getMyInfo() {
             print("printing \(element.name) ")
@@ -80,6 +86,10 @@ class HomeViewController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    func setupAskBtn() {
+        askBtn.layer.cornerRadius = askBtn.frame.size.height/5
     }
     
     // Add floating effect to the camera icon

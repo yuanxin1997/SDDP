@@ -61,15 +61,17 @@ class MineralViewController: UIViewController, IndicatorInfoProvider {
     }
     
     func progressBarUpdate(mgOfSodium: Double, mgOfPotassium: Double, mgOfCalcium: Double, mgOfIron: Double){
-        // FDA Daily Nutritional Recommendation (based on 2000 calories per day)
-        // sodium -> 2400mg
-        // postassium -> 3000mg
-        // calcium -> 1000mg
-        // iron -> 18mg
-        let sodiumPoint = CGFloat(mgOfSodium/2400)
-        let potassiumPoint = CGFloat(mgOfPotassium/3000)
-        let calciumPoint = CGFloat(mgOfCalcium/1000)
-        let ironPoint = CGFloat(mgOfIron/18)
+       
+        // Get recommendation standard
+        let myInfo = MyInfoService().getMyInfo()[0]
+        let myIndicator = MyIndicatorService().getMyIndicator()
+        var myRS = RecommendationStandard(info: myInfo).with(indicator: myIndicator)
+        
+        // End point of progress bar
+        let sodiumPoint = CGFloat(mgOfSodium/myRS.sodium!)
+        let potassiumPoint = CGFloat(mgOfPotassium/myRS.potassium!)
+        let calciumPoint = CGFloat(mgOfCalcium/myRS.calcium!)
+        let ironPoint = CGFloat(mgOfIron/myRS.iron!)
         
         // Bar animation
         sodiumBar.animateTo(progress: sodiumPoint)

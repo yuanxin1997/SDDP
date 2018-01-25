@@ -37,6 +37,7 @@ PODS:
   - NVActivityIndicatorView (4.1.1):
     - NVActivityIndicatorView/Presenter (= 4.1.1)
   - NVActivityIndicatorView/Presenter (4.1.1)
+  - SwiftySound (0.7.0)
   - UICircularProgressRing (1.7.5)
   - XLPagerTabStrip (8.0.0)
 
@@ -51,6 +52,7 @@ DEPENDENCIES:
   - KeychainSwift
   - Navajo-Swift
   - NVActivityIndicatorView
+  - SwiftySound
   - UICircularProgressRing
   - XLPagerTabStrip
 
@@ -65,9 +67,10 @@ SPEC CHECKSUMS:
   KeychainSwift: f9f7910449a0c0fd2cabc889121530dd2c477c33
   Navajo-Swift: 0f48998c95b0e8b17756e85dae018adbb2000735
   NVActivityIndicatorView: 60109b9bf46efc2e71ab81453196ccdfdfeea870
+  SwiftySound: bca0bb721690fb65249f4776cb0875abd98e9941
   UICircularProgressRing: b35e45dc82aac8009d038ef4d2e19718675df2bd
   XLPagerTabStrip: d1ab378af0923320ec0b5eab11d7b2f803d31261
 
-PODFILE CHECKSUM: 3eea20fad50559601dba86869ea865bf044c55f4
+PODFILE CHECKSUM: d786caca38c30f8704799331cff2f73c9a50ad47
 
 COCOAPODS: 1.3.1

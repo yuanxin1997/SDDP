@@ -15,7 +15,6 @@ class CameraViewController: UIViewController, AVCapturePhotoCaptureDelegate {
     @IBOutlet weak var cameraButton: UIButton!
     @IBOutlet weak var dismissButton: UIButton!
     
-    @IBOutlet weak var previewView: UIView!
     let snapshot = Snapshot.sharedInstance
     let inspectionMode = InspectionMode.sharedInstance
     
@@ -228,7 +227,7 @@ class CameraViewController: UIViewController, AVCapturePhotoCaptureDelegate {
         photoOutput.capturePhoto(with: photoSettings, delegate: self)
     }
     
-    @IBAction private func dismissCamera(_ sender: UIButton) {
+    @IBAction private func dismissBtnDidTap(_ sender: UIButton) {
         dismiss(animated: true, completion: nil)
     }
     

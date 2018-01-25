@@ -9,6 +9,7 @@
 import UIKit
 import IQKeyboardManagerSwift
 import KeychainSwift
+import ApiAI
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -18,6 +19,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        
+        let configuration = AIDefaultConfiguration()
+        configuration.clientAccessToken = "44b8b1f7959740e39a6416df0f29afd9"
+        
+        let apiai = ApiAI.shared()
+        apiai?.configuration = configuration
+        
         IQKeyboardManager.sharedManager().enable = true
         Thread.sleep(forTimeInterval: 1.0)
         

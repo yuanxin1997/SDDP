@@ -18,7 +18,7 @@ class ImageViewController: UIViewController {
         imageView.image = image
     }
     
-    @IBAction func close() {
+    @IBAction func closeBtnDidTap() {
         self.dismiss(animated: false, completion: nil)
     }
     
