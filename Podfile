@@ -18,6 +18,7 @@ target 'FoodIn' do
   pod 'NVActivityIndicatorView'
   pod 'KeychainSwift'
   pod 'FSCalendar'
+  pod 'SwiftCamScanner'
   
   target 'FoodInTests' do
     inherit! :search_paths

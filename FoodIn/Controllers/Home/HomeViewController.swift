@@ -108,13 +108,13 @@ class HomeViewController: UIViewController {
         case .ended:
             if gPoint.frame.intersects(top.frame)
             {
-                touchedView(view: gPoint, inspectMode: "Food Label")
+                touchedView(view: gPoint, inspectMode: "Food Menu")
                 print("touched")
                 
             }
             else if gPoint.frame.intersects(left.frame)
             {
-                touchedView(view: gPoint, inspectMode: "Food Menu")
+                touchedView(view: gPoint, inspectMode: "Food Label")
                 print("touched")
             }
             else if gPoint.frame.intersects(right.frame)
@@ -153,6 +153,7 @@ class HomeViewController: UIViewController {
     func touchedView(view: UIView, inspectMode: String) {
         UIView.animate(withDuration: 0.5, animations: {
             self.inspectionMode.mode = inspectMode
+            print("setting inspect \(self.inspectionMode.mode)")
             view.frame.origin = self.centerOrigin
         }) { (true) in
             self.performSegue(withIdentifier: "showCamera", sender: self)

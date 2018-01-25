@@ -792,6 +792,11 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="tgO-Ja-rVO">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                             </imageView>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Qrj-0P-Kdr" customClass="CropView" customModule="SwiftCamScanner">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PcN-tB-8Cd">
                                 <rect key="frame" x="177" y="644" width="60" height="60"/>
                                 <constraints>
@@ -829,13 +834,14 @@
                         <viewLayoutGuide key="safeArea" id="6ox-My-8R2"/>
                     </view>
                     <connections>
+                        <outlet property="cropView" destination="Qrj-0P-Kdr" id="bYT-2N-rLW"/>
                         <outlet property="imageView" destination="tgO-Ja-rVO" id="FgX-gT-w9O"/>
                         <segue destination="XvW-Cd-N9g" kind="show" identifier="showActivityIndicator" id="9ws-37-jvf"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ziq-qr-7Ct" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="884" y="764"/>
+            <point key="canvasLocation" x="882.60869565217399" y="763.85869565217399"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="lUE-Go-qad">
@@ -1076,19 +1082,29 @@
                                     <constraint firstAttribute="height" constant="335" id="znh-f8-ZIO"/>
                                 </constraints>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1rP-1Y-C7K" customClass="RadarChartView" customModule="Charts">
-                                <rect key="frame" x="0.0" y="399" width="414" height="337"/>
+                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1rP-1Y-C7K" customClass="RadarChartView" customModule="Charts">
+                                <rect key="frame" x="84" y="399" width="256" height="337"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6YB-vH-R6I">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="68"/>
+                                <color key="backgroundColor" red="0.94117647058823528" green="0.094117647058823528" blue="0.61568627450980395" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="68" id="XkS-zr-lsE"/>
+                                </constraints>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="6YB-vH-R6I" firstAttribute="leading" secondItem="qyG-hr-ZER" secondAttribute="leading" id="2Ui-ib-oOR"/>
                             <constraint firstItem="YrE-pB-3dZ" firstAttribute="top" secondItem="qyG-hr-ZER" secondAttribute="top" id="67p-cP-tyi"/>
+                            <constraint firstItem="6YB-vH-R6I" firstAttribute="top" secondItem="70L-HR-btC" secondAttribute="top" id="6Z3-2r-uy8"/>
                             <constraint firstItem="1rP-1Y-C7K" firstAttribute="top" secondItem="YrE-pB-3dZ" secondAttribute="bottom" id="GzM-CH-4xG"/>
                             <constraint firstItem="YrE-pB-3dZ" firstAttribute="trailing" secondItem="qyG-hr-ZER" secondAttribute="trailing" id="NYx-Kc-11I"/>
                             <constraint firstItem="1rP-1Y-C7K" firstAttribute="trailing" secondItem="qyG-hr-ZER" secondAttribute="trailing" id="U8G-a1-0K9"/>
                             <constraint firstItem="1rP-1Y-C7K" firstAttribute="leading" secondItem="qyG-hr-ZER" secondAttribute="leading" id="cjb-PI-FUb"/>
                             <constraint firstItem="1rP-1Y-C7K" firstAttribute="bottom" secondItem="qyG-hr-ZER" secondAttribute="bottom" id="jbT-Oq-u1O"/>
+                            <constraint firstItem="6YB-vH-R6I" firstAttribute="trailing" secondItem="qyG-hr-ZER" secondAttribute="trailing" id="s9B-5k-jh4"/>
                             <constraint firstItem="YrE-pB-3dZ" firstAttribute="leading" secondItem="qyG-hr-ZER" secondAttribute="leading" id="tD6-B6-3Ao"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="qyG-hr-ZER"/>
@@ -1101,7 +1117,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ne5-8l-dva" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-359.4202898550725" y="-11.413043478260871"/>
+            <point key="canvasLocation" x="-1204.3478260869565" y="1694.8369565217392"/>
         </scene>
         <!--Home View Controller-->
         <scene sceneID="u6G-VH-nF3">

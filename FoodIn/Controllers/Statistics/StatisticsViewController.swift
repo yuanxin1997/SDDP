@@ -34,11 +34,10 @@ class StatisticsViewController: UIViewController, UIGestureRecognizerDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // Customize Navigation bar and Status bar
-        setupCustomNavStatusBar(setting: [.whiteStatusBar, .whiteNavTitle, .whiteNavTint])
-        
         self.navigationItem.title = "Food Log"
         
+        // Customize Navigation bar and Status bar
+        setupCustomNavStatusBar(setting: [.showNavBar, .whiteNavTitle, .pinkNavTintBar])
         // Handle swiping to expand calendar
         self.view.addGestureRecognizer(self.scopeGesture)
         //self.radarChart.panGestureRecognizer.require(toFail: self.scopeGesture)
@@ -66,14 +65,23 @@ class StatisticsViewController: UIViewController, UIGestureRecognizerDelegate {
         radarChart.innerWebColor = .lightGray
         radarChart.webAlpha = 0.7
         
+        let xAxis = radarChart.xAxis
+        xAxis.labelFont = Fonts.Regular.of(size: 12)
+        xAxis.xOffset = 0
+        xAxis.yOffset = 0
+        xAxis.valueFormatter = self
+        xAxis.labelTextColor = Colors.lightgrey
+        
+        let yAxis = radarChart.yAxis
+        yAxis.drawLabelsEnabled = false
+        
         let l = radarChart.legend
         l.horizontalAlignment = .center
-        l.verticalAlignment = .top
+        l.verticalAlignment = .bottom
         l.orientation = .horizontal
-        l.yOffset = 180
         l.font = Fonts.Regular.of(size: 12)
         
-        radarChart.animate(xAxisDuration: 1.5, easingOption: .easeOutBack)
+        radarChart.animate(xAxisDuration: 1.4, yAxisDuration: 1.4, easingOption: .easeOutBack)
         radarChart.legend.textColor = Colors.lightgrey
         
         // Refresh chart with new data
@@ -227,7 +235,6 @@ extension StatisticsViewController: FSCalendarDataSource, FSCalendarDelegate {
     
     func calendar(_ calendar: FSCalendar, boundingRectWillChange bounds: CGRect, animated: Bool) {
         self.calendarHeightConstraint.constant = bounds.height
-        radarChart.legend.yOffset = bounds.height / 4
         self.view.layoutIfNeeded()
     }
     
@@ -263,16 +270,18 @@ extension StatisticsViewController: FSCalendarDataSource, FSCalendarDelegate {
         
         self.selectedDates = calendar.selectedDates
         
-        // Sot by ascending
-        let selectedDates = self.selectedDates.sorted(by: { $0 < $1})
-        guard let first = selectedDates.first else { return }
-        guard let last = selectedDates.last else { return }
-        guard let endDay = last.endOfDay else { return }
-        let to = UInt64(floor(endDay.timeIntervalSince1970))
-        let from = UInt64(floor(first.startOfDay.timeIntervalSince1970))
-        fetchData(from: from, to: to)
-        
-        // Reload chart data
+        if (self.selectedDates.count == 0) {
+            fetchData(from: 0, to: 0)
+        } else {
+            // Sot by ascending
+            let selectedDates = self.selectedDates.sorted(by: { $0 < $1})
+            guard let first = selectedDates.first else { return }
+            guard let last = selectedDates.last else { return }
+            guard let endDay = last.endOfDay else { return }
+            let to = UInt64(floor(endDay.timeIntervalSince1970))
+            let from = UInt64(floor(first.startOfDay.timeIntervalSince1970))
+            fetchData(from: from, to: to)
+        }
     }
     
     private func configure(cell: FSCalendarCell, for date: Date, at position: FSCalendarMonthPosition) {
@@ -317,5 +326,28 @@ extension StatisticsViewController: FSCalendarDataSource, FSCalendarDelegate {
             //diyCell.circleImageView.isHidden = true
             diyCell.selectionLayer.isHidden = true
         }
+    }
+}
+
+extension StatisticsViewController: IAxisValueFormatter {
+    func stringForValue(_ value: Double, axis: AxisBase?) -> String {
+        var labels = [
+            "Cal",
+            "Carbo",
+            "Fat",
+            "Protein",
+            "Vita-A",
+            "Vita-C",
+            "Sodium",
+            "Potas",
+            "Calcium",
+            "Iron"
+        ]
+        var index = Int(value)
+        var label = String(value)
+        if Int(value) < labels.count {
+            label = labels[index]
+        }
+        return label
     }
 }
