@@ -128,9 +128,9 @@ class FoodDetailsController: ButtonBarPagerTabStripViewController, NVActivityInd
         popTip.shouldDismissOnTapOutside = true
         popTip.shouldDismissOnSwipeOutside = true
         popTip.edgeMargin = 5
-        popTip.offset = 2
+        popTip.offset = 5
         popTip.bubbleOffset = 0
-        popTip.actionAnimation = .bounce(2)
+        popTip.actionAnimation = .pulse(1.1)
         popTip.edgeInsets = UIEdgeInsetsMake(0, 10, 0, 10)
     }
     
