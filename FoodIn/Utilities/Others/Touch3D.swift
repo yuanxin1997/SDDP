@@ -13,15 +13,16 @@ class Touch3D {
     
     func enableQuickAction() {
         // Set your quick action icon
-        let icon = UIApplicationShortcutIcon(type: .capturePhoto)
+        let cameraIcon = UIApplicationShortcutIcon(type: .capturePhoto)
         
         // Create your quick action items
-        let item1 = UIApplicationShortcutItem(type: "com.yuanxin.FoodIn.snapFoodLabel", localizedTitle: "Snap Food Label", localizedSubtitle: nil, icon: icon, userInfo: nil)
-        let item2 = UIApplicationShortcutItem(type: "com.yuanxin.FoodIn.snapFoodMenu", localizedTitle: "Snap Food Menu", localizedSubtitle: nil, icon: icon, userInfo: nil)
-        let item3 = UIApplicationShortcutItem(type: "com.yuanxin.FoodIn.snapFoodItem", localizedTitle: "Snap Food Item", localizedSubtitle: nil, icon: icon, userInfo: nil)
+        let item1 = UIApplicationShortcutItem(type: "com.yuanxin.FoodIn.snapFoodLabel", localizedTitle: "Snap Food Label", localizedSubtitle: nil, icon: cameraIcon, userInfo: nil)
+        let item2 = UIApplicationShortcutItem(type: "com.yuanxin.FoodIn.snapFoodMenu", localizedTitle: "Snap Food Menu", localizedSubtitle: nil, icon: cameraIcon, userInfo: nil)
+        let item3 = UIApplicationShortcutItem(type: "com.yuanxin.FoodIn.snapFoodItem", localizedTitle: "Snap Food Item", localizedSubtitle: nil, icon: cameraIcon, userInfo: nil)
+        let item4 = UIApplicationShortcutItem(type: "com.yuanxin.FoodIn.snapFoodItem", localizedTitle: "Snap Food Item", localizedSubtitle: nil, icon: icon, userInfo: nil)
         
         // Add all them to the array
-        UIApplication.shared.shortcutItems = [item1, item2, item3]
+        UIApplication.shared.shortcutItems = [item1, item2, item3, item4]
     }
     
     func disableQuickAction() {
