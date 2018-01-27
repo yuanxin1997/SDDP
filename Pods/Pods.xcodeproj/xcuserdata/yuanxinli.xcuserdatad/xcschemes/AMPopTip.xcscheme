@@ -14,10 +14,10 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = 'DE6D3197A483A4D771EBA79EA6409DC2'
-               BlueprintName = 'SwiftySound'
+               BlueprintIdentifier = 'A406E78BB0A2D11548A4B5AB13C56142'
+               BlueprintName = 'AMPopTip'
                ReferencedContainer = 'container:Pods.xcodeproj'
-               BuildableName = 'SwiftySound.framework'>
+               BuildableName = 'AMPopTip.framework'>
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>

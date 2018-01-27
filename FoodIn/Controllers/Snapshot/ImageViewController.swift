@@ -12,6 +12,7 @@ class ImageViewController: UIViewController {
     @IBOutlet weak var imageView: UIImageView!
     
     var image: UIImage?
+    let inspectionMode = InspectionMode.sharedInstance
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,7 +34,16 @@ class ImageViewController: UIViewController {
     }
     
     @IBAction func done(sender: UIButton) {
-        performSegue(withIdentifier: "showActivityIndicator", sender: sender)
+        print(inspectionMode.mode)
+
+        if inspectionMode.mode! == "Food Menu" {
+            performSegue(withIdentifier: "showMenuActivityIndicator", sender: sender)
+        } else if inspectionMode.mode! == "Food Label" {
+            performSegue(withIdentifier: "showActivityIndicator", sender: sender)
+        } else if inspectionMode.mode! == "Food Item" {
+            performSegue(withIdentifier: "showActivityIndicator", sender: sender)
+        }
+        
     }
 }
 

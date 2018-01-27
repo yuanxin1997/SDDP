@@ -9,7 +9,7 @@
 import UIKit
 import Vision
 
-class ActivityIndicatorController: UIViewController {
+class ImageActivityIndicatorController: UIViewController {
 
     @IBOutlet weak var labelOne: UILabel!
     @IBOutlet weak var bubbleOne: UIImageView!
@@ -132,7 +132,7 @@ class ActivityIndicatorController: UIViewController {
             DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(5)) {
                 if let result = result {
                     self.finalPredictionResult = result
-                    self.performSegue(withIdentifier: "showMultipleResults", sender: nil)
+                    self.performSegue(withIdentifier: "showImageResults", sender: nil)
                     print(result)
                 }
             }
@@ -142,9 +142,9 @@ class ActivityIndicatorController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
-        if segue.identifier == "showMultipleResults" {
+        if segue.identifier == "showImageResults" {
             let destinationNavigationController = segue.destination as! UINavigationController
-            let mrc = destinationNavigationController.topViewController as! MultipleResultsController
+            let mrc = destinationNavigationController.topViewController as! ImageResultViewController
             mrc.predictionData = self.finalPredictionResult
         }
     }

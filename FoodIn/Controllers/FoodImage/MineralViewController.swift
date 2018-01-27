@@ -12,7 +12,7 @@ import GTProgressBar
 import EFCountingLabel
 
 class MineralViewController: UIViewController, IndicatorInfoProvider {
-
+    
     @IBOutlet weak var sodiumBar: GTProgressBar!
     @IBOutlet weak var potassiumBar: GTProgressBar!
     @IBOutlet weak var calciumBar: GTProgressBar!
@@ -26,7 +26,7 @@ class MineralViewController: UIViewController, IndicatorInfoProvider {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // Initialize
         initProgressBar()
         
@@ -34,7 +34,7 @@ class MineralViewController: UIViewController, IndicatorInfoProvider {
         setupProgressBar()
         
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -61,7 +61,7 @@ class MineralViewController: UIViewController, IndicatorInfoProvider {
     }
     
     func progressBarUpdate(mgOfSodium: Double, mgOfPotassium: Double, mgOfCalcium: Double, mgOfIron: Double){
-       
+        
         // Get recommendation standard
         let myInfo = MyInfoService().getMyInfo()[0]
         let myIndicator = MyIndicatorService().getMyIndicator()
@@ -138,5 +138,6 @@ class MineralViewController: UIViewController, IndicatorInfoProvider {
     func indicatorInfo(for pagerTabStripController: PagerTabStripViewController) -> IndicatorInfo {
         return IndicatorInfo(title: "Mineral")
     }
-
+    
 }
+

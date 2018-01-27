@@ -31,6 +31,8 @@ class CameraViewController: UIViewController, AVCapturePhotoCaptureDelegate {
     var videoDeviceInput: AVCaptureDeviceInput!
     var setupResult: SessionSetupResult = .success
     
+    @IBAction func unwindToCamera(segue:UIStoryboardSegue) { }
+    
     enum SessionSetupResult {
         case success
         case notAuthorized

@@ -13,5 +13,6 @@ struct APIurl {
     // Global API URL
     static let database       = "https://foodin-api.herokuapp.com"
     static let customVision   = "https://southcentralus.api.cognitive.microsoft.com/customvision/v1.1/Prediction/bfe776d6-191e-485d-83a7-bebf1e42f0d1/image"
-    
+    static let googleVision   = "https://vision.googleapis.com/v1/images:annotate"
+
 }

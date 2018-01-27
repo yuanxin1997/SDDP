@@ -11,16 +11,20 @@ import AudioToolbox
 import AVFoundation
 import ApiAI
 
-class SpeechViewController: UIViewController, AVAudioPlayerDelegate, SpeechServiceDelegate, UITableViewDataSource, UITableViewDelegate {
+class SpeechViewController: UIViewController, AVAudioPlayerDelegate, SpeechServiceDelegate, UITableViewDataSource, UITableViewDelegate, AVSpeechSynthesizerDelegate {
     
     @IBOutlet weak var table: UITableView!
     @IBOutlet weak var microphone: UIImageView!
     @IBOutlet weak var hintLabel: UILabel!
     
     var timer = Timer()
+    var callBackSpeech = false
     var player: AVAudioPlayer?
     var isHolding = false
     var messageArray: [String] = ["What food do you want me to inspect ?"]
+    var speechQueueArray: [String] = []
+    let speechSynthesizer = AVSpeechSynthesizer()
+    var fService = FoodService()
     
     let nlpService = NLPService()
     
@@ -34,6 +38,7 @@ class SpeechViewController: UIViewController, AVAudioPlayerDelegate, SpeechServi
         super.viewDidLoad()
         speechService.checkAuthorization()
         initTable()
+        speechSynthesizer.delegate = self
         // Do any additional setup after loading the view.
     }
     
@@ -97,10 +102,7 @@ class SpeechViewController: UIViewController, AVAudioPlayerDelegate, SpeechServi
                 })
                 
                 // Start listening
-                if messageArray.count > 1 {
-                    messageArray.removeLast()
-                }
-                messageArray[0] = "I'm listening..."
+                messageArray = ["I'm listening..."]
                 let cell = getTopLabelCell()
                 cell.lblMessage.textAlignment = .left
                 table.reloadData()
@@ -209,21 +211,44 @@ class SpeechViewController: UIViewController, AVAudioPlayerDelegate, SpeechServi
     }
     
     func speechService(_ speechService: SpeechRecognitionService, didRecogniseText text: String) {
-        nlpService.sendMessage(text: text, completion: { (result: String?) in
+        nlpService.sendMessage(text: text, completion: { (response: AIResponse?) in
             DispatchQueue.main.async {
-                if let result = result {
-                    self.messageArray.append(result)
-                    self.table.reloadData()
-                    let cell = self.getBottomLabelCell()
-                    cell.alpha = 0
-                    UIView.animate(withDuration: 1) {
-                        let cell = self.getBottomLabelCell()
-                        cell.alpha = 1
-                        cell.lblMessage.textColor = Colors.lightgrey
+                if let response = response {
+                    if let textResponse = response.result.fulfillment.speech {
+                        self.messageArray.append(textResponse)
+                        self.speechQueueArray.append(textResponse)
                     }
+                    
+                    if response.result.action == "Inspect" {
+                        if let parameters = (response.result.parameters as? [String: AIResponseParameter]) {
+                            if let value = parameters["food"]?.stringValue {
+                                self.inspectFood(name: value)
+                                self.callBackSpeech = true
+                            }
+                        }
+                    }
+                    
+                    self.executeSpeechFromQueue()
                 }
             }
         })
+    }
+    
+    func speechSynthesizer(_ synthesizer: AVSpeechSynthesizer, didFinish utterance: AVSpeechUtterance) {
+        if callBackSpeech == true {
+            callBackSpeech = false
+            self.executeSpeechFromQueue()
+        }
+    }
+    
+    func speechAndText(text: String) {
+        let speechUtterance = AVSpeechUtterance(string: text)
+        speechUtterance.voice = AVSpeechSynthesisVoice(language: "en-GB")
+        speechUtterance.pitchMultiplier = 0.85
+        speechUtterance.rate = 0.45
+        speechSynthesizer.speak(speechUtterance)
+        UIView.animate(withDuration: 1.0, delay: 0.0, options: .curveEaseInOut, animations: {
+        }, completion: nil)
     }
     
     func getTopLabelCell() -> MessageCell {
@@ -233,9 +258,46 @@ class SpeechViewController: UIViewController, AVAudioPlayerDelegate, SpeechServi
     }
     
     func getBottomLabelCell() -> MessageCell {
-        let indexPath = IndexPath(row: 0, section: 1)
+        let indexPath = IndexPath(row: 0, section: messageArray.count-1)
         let cell = self.table.cellForRow(at: indexPath) as! MessageCell
         return cell
+    }
+    
+    func inspectFood(name: String){
+        fService.getFoodDetails(foodName: name, completion: { (result: Food?) in
+            DispatchQueue.main.async {
+                if let result = result {
+                    print("retrieved food \(result)")
+                    FoodDetailsController.selectedFood = result
+                    if result.sodium < 1500 {
+                        self.messageArray.append("You are safe to eat \(name), as the sodium level will not hit your limit")
+                        self.speechQueueArray.append("You are safe to eat \(name), as the sodium level will not hit your limit")
+                    } else {
+                        self.messageArray.append("You should avoid eating \(name), as the sodium level will hit your limit")
+                        self.speechQueueArray.append("You should avoid eating \(name), as the sodium level will hit your limit")
+                    }
+                } else {
+                    print("Empty or error")
+                }
+            }
+        })
+    }
+    
+    func executeSpeechFromQueue() {
+        print(speechQueueArray.count)
+        if speechQueueArray.count > 0 {
+            self.speechAndText(text: speechQueueArray.removeFirst())
+            print(speechQueueArray.count)
+            
+            self.table.reloadData()
+            let cell = self.getBottomLabelCell()
+            cell.alpha = 0
+            UIView.animate(withDuration: 1) {
+                let cell = self.getBottomLabelCell()
+                cell.alpha = 1
+                cell.lblMessage.textColor = Colors.lightgrey
+            }
+        }
     }
     
 }

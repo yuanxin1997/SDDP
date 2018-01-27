@@ -121,13 +121,13 @@ class HomeViewController: UIViewController {
         case .ended:
             if gPoint.frame.intersects(top.frame)
             {
-                touchedView(view: gPoint, inspectMode: "Food Label")
+                touchedView(view: gPoint, inspectMode: "Food Menu")
                 print("touched")
                 
             }
             else if gPoint.frame.intersects(left.frame)
             {
-                touchedView(view: gPoint, inspectMode: "Food Menu")
+                touchedView(view: gPoint, inspectMode: "Food Label")
                 print("touched")
             }
             else if gPoint.frame.intersects(right.frame)

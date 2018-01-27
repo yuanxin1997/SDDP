@@ -11,7 +11,7 @@ import XLPagerTabStrip
 import Charts
 
 class NutrientViewController: UIViewController, IndicatorInfoProvider {
-
+    
     @IBOutlet weak var pieChart: PieChartView!
     
     override func viewDidLoad() {
@@ -20,7 +20,7 @@ class NutrientViewController: UIViewController, IndicatorInfoProvider {
         // Listen to notification
         NotificationCenter.default.addObserver(self, selector: #selector(setupPieChart), name: Notification.Name(NotificationKey.foodData), object: nil)
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -104,5 +104,6 @@ class NutrientViewController: UIViewController, IndicatorInfoProvider {
     func indicatorInfo(for pagerTabStripController: PagerTabStripViewController) -> IndicatorInfo {
         return IndicatorInfo(title: "Nutrient")
     }
-
+    
 }
+
