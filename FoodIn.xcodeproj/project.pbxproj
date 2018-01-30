@@ -40,6 +40,7 @@
 		6E39510720044C8000C165C4 /* InspectionMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E39510620044C8000C165C4 /* InspectionMode.swift */; };
 		6E39510C2004EECB00C165C4 /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E39510B2004EECB00C165C4 /* Fonts.swift */; };
 		6E39511A2005A29100C165C4 /* APIurl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E3951192005A29100C165C4 /* APIurl.swift */; };
+		6E3B6EFF2020042500A2851D /* Date+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E3B6EFE2020042500A2851D /* Date+.swift */; };
 		6E4199511FF3901700463542 /* VitaminViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E4199501FF3901700463542 /* VitaminViewController.swift */; };
 		6E4199531FF3902A00463542 /* NutrientViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E4199521FF3902A00463542 /* NutrientViewController.swift */; };
 		6E4199551FF3903500463542 /* MineralViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E4199541FF3903500463542 /* MineralViewController.swift */; };
@@ -88,6 +89,7 @@
 		6EEDEB381FEB303E008A4658 /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EEDEB371FEB303E008A4658 /* CameraViewController.swift */; };
 		6EEDEB3A1FEB40D6008A4658 /* ImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EEDEB391FEB40D6008A4658 /* ImageViewController.swift */; };
 		6EEDEB3C1FEB8DDA008A4658 /* CustomVisionResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EEDEB3B1FEB8DDA008A4658 /* CustomVisionResult.swift */; };
+		6EEFC364201EEA2400FD96DD /* UserDefaults+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EEFC363201EEA2400FD96DD /* UserDefaults+.swift */; };
 		6EFAF04E1FF154BA009E93F2 /* UIView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EFAF04D1FF154BA009E93F2 /* UIView+.swift */; };
 		D031027D7C720051661E985B /* Pods_FoodInTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 085315057047735A09DAE59C /* Pods_FoodInTests.framework */; };
 /* End PBXBuildFile section */
@@ -149,6 +151,7 @@
 		6E39510620044C8000C165C4 /* InspectionMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InspectionMode.swift; sourceTree = "<group>"; };
 		6E39510B2004EECB00C165C4 /* Fonts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fonts.swift; sourceTree = "<group>"; };
 		6E3951192005A29100C165C4 /* APIurl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIurl.swift; sourceTree = "<group>"; };
+		6E3B6EFE2020042500A2851D /* Date+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+.swift"; sourceTree = "<group>"; };
 		6E4199501FF3901700463542 /* VitaminViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VitaminViewController.swift; sourceTree = "<group>"; };
 		6E4199521FF3902A00463542 /* NutrientViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NutrientViewController.swift; sourceTree = "<group>"; };
 		6E4199541FF3903500463542 /* MineralViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MineralViewController.swift; sourceTree = "<group>"; };
@@ -197,6 +200,7 @@
 		6EEDEB371FEB303E008A4658 /* CameraViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
 		6EEDEB391FEB40D6008A4658 /* ImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageViewController.swift; sourceTree = "<group>"; };
 		6EEDEB3B1FEB8DDA008A4658 /* CustomVisionResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomVisionResult.swift; sourceTree = "<group>"; };
+		6EEFC363201EEA2400FD96DD /* UserDefaults+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+.swift"; sourceTree = "<group>"; };
 		6EFAF04D1FF154BA009E93F2 /* UIView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+.swift"; sourceTree = "<group>"; };
 		8DE6276EEC363FA3C9C6980F /* Pods_FoodInUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FoodInUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		97CBE3A7B80EE0019484C551 /* Pods-FoodIn.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FoodIn.release.xcconfig"; path = "Pods/Target Support Files/Pods-FoodIn/Pods-FoodIn.release.xcconfig"; sourceTree = "<group>"; };
@@ -347,6 +351,8 @@
 				6E555D5F1FF73C9900141FEC /* Double+.swift */,
 				6E9071D02010E42A0053CEFE /* UIImage+.swift */,
 				6EA6B996201365D500877217 /* String+.swift */,
+				6EEFC363201EEA2400FD96DD /* UserDefaults+.swift */,
+				6E3B6EFE2020042500A2851D /* Date+.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -995,6 +1001,7 @@
 			files = (
 				6E20C7A91FE6D3CD000C704A /* Person.swift in Sources */,
 				6EBD82CE200F84FA006E9DAF /* FoodIn.mlmodel in Sources */,
+				6EEFC364201EEA2400FD96DD /* UserDefaults+.swift in Sources */,
 				6ECE2D421FEE0152001B33F8 /* Colors.swift in Sources */,
 				6E32356E2007A9570091F0E4 /* NotificationKey.swift in Sources */,
 				6EB1F6DB2019CB6A0018A573 /* ExractedTextArray.swift in Sources */,
@@ -1049,6 +1056,7 @@
 				6E6F5562200082E500B8F517 /* Illness.swift in Sources */,
 				6E4199551FF3903500463542 /* MineralViewController.swift in Sources */,
 				6E11142E1FF94E9D00F657AB /* UIViewController+.swift in Sources */,
+				6E3B6EFF2020042500A2851D /* Date+.swift in Sources */,
 				6EA6B997201365D500877217 /* String+.swift in Sources */,
 				6E2E409A1FE6B47500405C8B /* AppDelegate.swift in Sources */,
 				6E9071C92010AF7E0053CEFE /* ImageClassificationService.swift in Sources */,

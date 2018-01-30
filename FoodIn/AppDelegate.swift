@@ -20,15 +20,27 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         
+        // Configure the client access token
         let configuration = AIDefaultConfiguration()
-        configuration.clientAccessToken = "44b8b1f7959740e39a6416df0f29afd9"
+        configuration.clientAccessToken = "e09d039919a14f88a340e36cbca6d46c"
         
+        // Allow configuration of dialog flow
         let apiai = ApiAI.shared()
         apiai?.configuration = configuration
         
+        // Allow this keyboard manager library
         IQKeyboardManager.sharedManager().enable = true
+        
+        // Fade In
         Thread.sleep(forTimeInterval: 1.0)
         
+        // Set the user default if there is not exists
+        let defaults = UserDefaults.standard
+        if !defaults.contains(key: "VoiceUITheme") {
+            defaults.set("Light", forKey: "VoiceUITheme")
+        }
+        
+        //  Get person ID from keychain
         if let personId = KeychainSwift().get("id") {
             // Take user to a home page
             let mainStoryboard:UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
@@ -65,21 +77,26 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ application: UIApplication, performActionFor shortcutItem: UIApplicationShortcutItem, completionHandler: @escaping (Bool) -> Void) {
         
-        if shortcutItem.type == "com.yuanxin.FoodIn.snapFoodLabel" {
-            inspectionMode.mode = "Food Label"
-        } else if shortcutItem.type == "com.yuanxin.FoodIn.snapFoodMenu" {
-            inspectionMode.mode = "Food Menu"
-        } else if shortcutItem.type == "com.yuanxin.FoodIn.snapFoodItem" {
-            inspectionMode.mode = "Food Item"
-        }
-        
         // Get root navigation viewcontroller and its first controller
         let rootNavigationViewController = window!.rootViewController as? UINavigationController
         let rootViewController = rootNavigationViewController?.viewControllers.first as UIViewController?
         
-        // Pop to root view controller so that approperiete segue can be performed
-        rootNavigationViewController?.popToRootViewController(animated: false)
-        rootViewController?.performSegue(withIdentifier: "showCamera", sender: nil)
+        if shortcutItem.type == "com.yuanxin.FoodIn.askFoodInspector" {
+            // Pop to root view controller so that approperiete segue can be performed
+            rootNavigationViewController?.popToRootViewController(animated: false)
+            rootViewController?.performSegue(withIdentifier: "showSpeech", sender: nil)
+        } else {
+            if shortcutItem.type == "com.yuanxin.FoodIn.snapFoodLabel" {
+                inspectionMode.mode = "Food Label"
+            } else if shortcutItem.type == "com.yuanxin.FoodIn.snapFoodMenu" {
+                inspectionMode.mode = "Food Menu"
+            } else if shortcutItem.type == "com.yuanxin.FoodIn.snapFoodItem" {
+                inspectionMode.mode = "Food Item"
+            }
+            // Pop to root view controller so that approperiete segue can be performed
+            rootNavigationViewController?.popToRootViewController(animated: false)
+            rootViewController?.performSegue(withIdentifier: "showCamera", sender: nil)
+        }
         
         completionHandler(true)
     }

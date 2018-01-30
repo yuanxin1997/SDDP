@@ -29,6 +29,4 @@ class NLPService {
         ApiAI.shared().enqueue(request)
     }
     
-    
-    
 }

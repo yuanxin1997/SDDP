@@ -11,7 +11,6 @@ import XLPagerTabStrip
 
 class avoidListViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, IndicatorInfoProvider {
     
-    
     var avoidFoodNameArray:[Food] = []
     var filteredFoodNameArray:[Food] = []
     let extractedTextArray = ExtractedTextArray.sharedInstance

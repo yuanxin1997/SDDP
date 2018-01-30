@@ -10,6 +10,7 @@ import UIKit
 import AudioToolbox
 import AVFoundation
 import ApiAI
+import KeychainSwift
 
 class SpeechViewController: UIViewController, AVAudioPlayerDelegate, SpeechServiceDelegate, UITableViewDataSource, UITableViewDelegate, AVSpeechSynthesizerDelegate {
     
@@ -21,11 +22,12 @@ class SpeechViewController: UIViewController, AVAudioPlayerDelegate, SpeechServi
     var callBackSpeech = false
     var player: AVAudioPlayer?
     var isHolding = false
-    var messageArray: [String] = ["What food do you want me to inspect ?"]
-    var speechQueueArray: [String] = []
+    var messageQueue: [String] = ["What food do you want me to inspect ?"]
+    var textToSpeechQueue: [String] = []
+    var arrayOfNutritionalOverLimit:[String] = []
     let speechSynthesizer = AVSpeechSynthesizer()
-    var fService = FoodService()
-    
+    let fService = FoodService()
+    let pService = PersonService()
     let nlpService = NLPService()
     
     private lazy var speechService: SpeechRecognitionService = {
@@ -36,14 +38,28 @@ class SpeechViewController: UIViewController, AVAudioPlayerDelegate, SpeechServi
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // refresh the UI of speech view controller
+        updateVoiceUITheme()
+        
+        // Check for authorization
         speechService.checkAuthorization()
+        
+        // Customize table
         initTable()
+        
+        // Set delegate
         speechSynthesizer.delegate = self
-        // Do any additional setup after loading the view.
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        // Customize Navigation and Status bar
         setupCustomNavStatusBar(setting: [.hideStatusBar])
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        // Customize Navigation and Status bar
+        setupCustomNavStatusBar(setting: [.showStatusBar])
     }
     
     override func didReceiveMemoryWarning() {
@@ -52,11 +68,15 @@ class SpeechViewController: UIViewController, AVAudioPlayerDelegate, SpeechServi
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return messageArray.count
+        return messageQueue.count
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        
+        // init
         let headerView = UIView()
+        
+        // clear the background of section header view
         headerView.backgroundColor = UIColor.clear
         return headerView
     }
@@ -68,16 +88,46 @@ class SpeechViewController: UIViewController, AVAudioPlayerDelegate, SpeechServi
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! MessageCell
         
-        
-        cell.lblMessage.text = messageArray[indexPath.section]
+        // Configure cell
+        cell.lblMessage.text = messageQueue[indexPath.section]
         cell.lblMessage.font = Fonts.Regular.of(size: 28)
         cell.lblMessage.textColor = Colors.darkgrey
+        
+        // Switch UI theme based on user default
+        cell.backgroundColor = UserDefaults.standard.string(forKey: "VoiceUITheme") == "Light" ? Colors.white : Colors.darkgrey
+        
+        // Auto resize the cell based on text size
         cell.lblMessage.sizeToFit()
         cell.lblMessage.numberOfLines = 0
+        
+        // Check if the this is the last row
+        if indexPath.section == (messageQueue.count - 1){
+            
+            // Switch cell color based on user default
+            cell.lblMessage.textColor = UserDefaults.standard.string(forKey: "VoiceUITheme") == "Light" ? Colors.darkgrey : Colors.white
+            
+            // Hide the cell
+            cell.alpha = 0
+            
+            // Check if this is the only first and last row
+            if messageQueue.count > 1{
+                
+                // Show the cell with fading effect
+                UIView.animate(withDuration: 1) {
+                    cell.alpha = 1
+                }
+            }
+        } else {
+            // Switch cell color based on user default
+            cell.lblMessage.textColor = UserDefaults.standard.string(forKey: "VoiceUITheme") == "Light" ? Colors.lightgrey : Colors.lightgrey
+        }
+        
         return cell
     }
     
     func initTable() {
+        
+        // Remove extra empty cell
         table.tableFooterView = UIView()
     }
     
@@ -102,7 +152,8 @@ class SpeechViewController: UIViewController, AVAudioPlayerDelegate, SpeechServi
                 })
                 
                 // Start listening
-                messageArray = ["I'm listening..."]
+                messageQueue = ["I'm listening..."]
+                arrayOfNutritionalOverLimit = []
                 let cell = getTopLabelCell()
                 cell.lblMessage.textAlignment = .left
                 table.reloadData()
@@ -131,8 +182,8 @@ class SpeechViewController: UIViewController, AVAudioPlayerDelegate, SpeechServi
                 })
                 
                 // Stop listening
-                if messageArray[0] == "I'm listening..." {
-                    messageArray[0] = "What food do you want me to inspect ?"
+                if messageQueue[0] == "I'm listening..." {
+                    messageQueue[0] = "What food do you want me to inspect ?"
                     table.reloadData()
                 }
                 
@@ -147,10 +198,14 @@ class SpeechViewController: UIViewController, AVAudioPlayerDelegate, SpeechServi
     }
     
     func stopTimer() {
+        
+        // Stop the timer
         timer.invalidate()
     }
     
     func startTimer() {
+        
+        // Start pulsing animaiton
         self.addPulse()
         timer = Timer.scheduledTimer(withTimeInterval: 0.5, repeats: true) { timer in
             self.addPulse()
@@ -187,68 +242,245 @@ class SpeechViewController: UIViewController, AVAudioPlayerDelegate, SpeechServi
     }
     
     func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool) {
-            if isHolding {
-                do {
-                    try self.speechService.startRecording()
-                    print("start")
-                } catch {
-                    print("Could not begin recording")
-                }
-            } else {
-                print("stop")
+        if isHolding {
+            do {
+                try self.speechService.startRecording()
+                print("start")
+            } catch {
+                print("Could not begin recording")
             }
-
+        } else {
+            print("stop")
+        }
     }
     
     func speechService(_ speechService: SpeechRecognitionService, onRecogniseText text: String) {
         DispatchQueue.main.async {
             print(text)
-            self.messageArray[0] = text
+            
+            // Update the first cell when there is changes
+            self.messageQueue[0] = text
+            
+            // Customise the first cell
             let cell = self.getTopLabelCell()
+            
+            // Config the cell's text alignment to right
             cell.lblMessage.textAlignment = .right
+            
+            // Refresh the UI after configuration
             self.table.reloadData()
         }
     }
     
     func speechService(_ speechService: SpeechRecognitionService, didRecogniseText text: String) {
+        
+        // Send the text to dialogflow to understand the text
         nlpService.sendMessage(text: text, completion: { (response: AIResponse?) in
             DispatchQueue.main.async {
                 if let response = response {
-                    if let textResponse = response.result.fulfillment.speech {
-                        self.messageArray.append(textResponse)
-                        self.speechQueueArray.append(textResponse)
-                    }
                     
-                    if response.result.action == "Inspect" {
-                        if let parameters = (response.result.parameters as? [String: AIResponseParameter]) {
-                            if let value = parameters["food"]?.stringValue {
-                                self.inspectFood(name: value)
-                                self.callBackSpeech = true
-                            }
-                        }
-                    }
-                    
-                    self.executeSpeechFromQueue()
+                    // Pass to handler to handle the logic
+                    self.handleResponse(response: response)
                 }
             }
         })
     }
     
     func speechSynthesizer(_ synthesizer: AVSpeechSynthesizer, didFinish utterance: AVSpeechUtterance) {
+        
+        // Execute the queue again if there is a another task adding to the queue
         if callBackSpeech == true {
             callBackSpeech = false
-            self.executeSpeechFromQueue()
+            executeTextToSpeechQueue()
         }
     }
     
-    func speechAndText(text: String) {
+    func speak(text: String) {
+        
+        // Config the voice
         let speechUtterance = AVSpeechUtterance(string: text)
         speechUtterance.voice = AVSpeechSynthesisVoice(language: "en-GB")
         speechUtterance.pitchMultiplier = 0.85
         speechUtterance.rate = 0.45
         speechSynthesizer.speak(speechUtterance)
-        UIView.animate(withDuration: 1.0, delay: 0.0, options: .curveEaseInOut, animations: {
-        }, completion: nil)
+    }
+    
+    func handleResponse(response: AIResponse) {
+        
+        // Get text response
+        guard let textResponse = response.result.fulfillment.speech else { return }
+        
+        // Get parameters
+        guard let parameters = (response.result.parameters as? [String: AIResponseParameter]) else { return }
+        
+        // Get intent
+        guard let intent = response.result.action else { return }
+        
+        // Match intent to task
+        matchIntent(intent: intent, parameters: parameters, textResponse: textResponse)
+    }
+    
+    func matchIntent(intent: String, parameters: [String: AIResponseParameter], textResponse: String) {
+        
+        // Match intent to task
+        if intent != "input.unknown" {
+            switch intent {
+            case "inspect.food":
+                inspectFoodAction(intent: intent, parameters: parameters, textResponse: textResponse)
+            case "log.food":
+                logFoodAction(intent: intent, parameters: parameters, textResponse: textResponse)
+            case "switch.theme":
+                switchThemeAction(intent: intent, parameters: parameters, textResponse: textResponse)
+            default:
+                
+                // If no task is match add default response to queue
+                addToQueue(content: textResponse)
+                
+                // Run the queue
+                executeTextToSpeechQueue()
+            }
+        } else {
+            
+            // If no task is match add default response to queue
+            addToQueue(content: textResponse)
+            
+            // Run the queue
+            executeTextToSpeechQueue()
+        }
+    }
+    
+    func inspectFoodAction(intent: String, parameters: [String: AIResponseParameter], textResponse: String) {
+        
+        // Get the value from parameters
+        guard let value = parameters["food"]?.stringValue else { return }
+        
+        // Check if value is empty
+        if value == "" {
+            
+            // Add response to queue
+            addToQueue(content: "Sorry, I didn't get that.")
+        } else {
+            
+            // Add response to queue
+            addToQueue(content: textResponse)
+            
+            // Get the selected food details from web service
+            fService.getFoodDetails(foodName: value, completion: { (result: Food?) in
+                DispatchQueue.main.async {
+                    if let result = result {
+                        
+                        /// Call internal methods to handle
+                        self.inspectFood(food: result, value: value)
+                    } else {
+                        print("Empty or error")
+                    }
+                }
+            })
+        }
+        
+        // Run the queue
+        executeTextToSpeechQueue()
+    }
+    
+    func logFoodAction(intent: String, parameters: [String: AIResponseParameter], textResponse: String) {
+        
+        // Get the value from parameters
+        guard let value = parameters["food"]?.stringValue else { return }
+        
+        // Check if value is empty
+        if value == "" {
+            addToQueue(content: "Sorry, I didn't get that.")
+        } else {
+            
+            // Run the queue
+            addToQueue(content: textResponse)
+            
+            // Get person ID from keychain
+            guard let id = Int(KeychainSwift().get("id")!) else { return }
+            
+            // Get current date
+            let now = UInt64(floor(Date().timeIntervalSince1970))
+            
+            // Send new log to web service
+            pService.createFoodLogByFoodName(personId: id, foodName: value, timestamp: now,  completion: { (result: Int?) in
+                DispatchQueue.main.async {
+                    if let result = result {
+                        
+                        // Response according when successful or unsuccessful
+                        var finalText = ""
+                        if result == 1 {
+                            finalText = "\(value) has been successfully logged"
+                        } else {
+                            finalText = "My apology, I've failed to log \(value)"
+                        }
+                        
+                        // Add response to queue
+                        self.addToQueue(content: finalText)
+                        
+                        // Identify a callback to be return
+                        self.callBackSpeech = true
+                    } else {
+                        print("Empty or error")
+                    }
+                }
+            })
+        }
+        
+        // Run the queue
+        executeTextToSpeechQueue()
+    }
+    
+    func switchThemeAction(intent: String, parameters: [String: AIResponseParameter], textResponse: String) {
+        
+        // Get value from parameters
+        guard let value = parameters["theme"]?.stringValue else { return }
+        
+        // Check if value is empty
+        if value == "" {
+            addToQueue(content: "Sorry, I didn't get that.")
+        } else {
+            
+            // Update the user default
+            UserDefaults.standard.set(value, forKey: "VoiceUITheme")
+            
+            // Add response to queue
+            addToQueue(content: textResponse)
+        }
+        
+        // Run the queue
+        executeTextToSpeechQueue()
+        
+        // Refresh the UI of speech view controller
+        updateVoiceUITheme()
+    }
+    
+    func addToQueue(content: String) {
+        
+        // Add to message queue
+        messageQueue.append(content)
+        
+        // Add to text to speech queue
+        textToSpeechQueue.append(content)
+    }
+    
+    func executeTextToSpeechQueue() {
+        
+        // Check that the queue is not empty
+        if textToSpeechQueue.count > 0 {
+            
+            // Remove task from queue after executing
+            speak(text: textToSpeechQueue.removeFirst())
+            
+            // Update the UI
+            table.reloadData()
+        }
+    }
+    
+    func updateVoiceUITheme() {
+        
+        // Switch the background color based on user default
+        self.view.backgroundColor = UserDefaults.standard.string(forKey: "VoiceUITheme") == "Light" ? Colors.white : Colors.darkgrey
+        table.backgroundColor = UserDefaults.standard.string(forKey: "VoiceUITheme") == "Light" ? Colors.white : Colors.darkgrey
     }
     
     func getTopLabelCell() -> MessageCell {
@@ -257,48 +489,74 @@ class SpeechViewController: UIViewController, AVAudioPlayerDelegate, SpeechServi
         return cell
     }
     
-    func getBottomLabelCell() -> MessageCell {
-        let indexPath = IndexPath(row: 0, section: messageArray.count-1)
-        let cell = self.table.cellForRow(at: indexPath) as! MessageCell
-        return cell
-    }
-    
-    func inspectFood(name: String){
-        fService.getFoodDetails(foodName: name, completion: { (result: Food?) in
+    func inspectFood(food: Food, value: String) {
+        
+        // Get the person ID from keychain
+        guard let id = Int(KeychainSwift().get("id")!) else { return }
+        
+        // Get start date
+        let to = UInt64(floor(Date().timeIntervalSince1970))
+        
+        // Get end date
+        let from = UInt64(floor(Date().startOfDay.timeIntervalSince1970))
+        
+        // Get food log from web service
+        pService.getFoodLog(personId: id, from: from, to: to, completion: { (result: [Food]?) in
             DispatchQueue.main.async {
                 if let result = result {
-                    print("retrieved food \(result)")
-                    FoodDetailsController.selectedFood = result
-                    if result.sodium < 1500 {
-                        self.messageArray.append("You are safe to eat \(name), as the sodium level will not hit your limit")
-                        self.speechQueueArray.append("You are safe to eat \(name), as the sodium level will not hit your limit")
-                    } else {
-                        self.messageArray.append("You should avoid eating \(name), as the sodium level will hit your limit")
-                        self.speechQueueArray.append("You should avoid eating \(name), as the sodium level will hit your limit")
+                    
+                    // Get person illness indicator
+                    let myIndicator = MyIndicatorService().getMyIndicator()
+                    
+                    // Using mirror to get the properties of array
+                    let foodMirror = Mirror(reflecting: food)
+                    for (name, value) in foodMirror.children {
+                        for i in myIndicator {
+                            if name == i.name {
+                                let valueToMatch = value as! Double
+                                
+                                // Calculate the total value from today's food log
+                                if self.getTotalValueFromLog(foods: result, indicatorName: i.name!, currentNutritionValue: valueToMatch) > i.maxValue {
+                                    
+                                    // Push nutritional that has hit the person limit to array
+                                    self.arrayOfNutritionalOverLimit.append(name!)
+                                }
+                            }
+                        }
                     }
-                } else {
-                    print("Empty or error")
+                    var finalText = ""
+                    if self.arrayOfNutritionalOverLimit.count > 0 {
+                        let text = self.arrayOfNutritionalOverLimit.reduce("", { $0 == "" ? $1 : $0 + ", " + $1 })
+                        finalText = "You should avoid eating \(value), as the \(text) level has hit your limit"
+                    } else {
+                        finalText = "You are safe to eat \(value), as all the nutrition level is below your limit"
+                    }
+                    
+                    // Add response to queue
+                    self.addToQueue(content: finalText)
+                    
+                    // Identifiy that there's a call back speech
+                    self.callBackSpeech = true
                 }
             }
         })
     }
     
-    func executeSpeechFromQueue() {
-        print(speechQueueArray.count)
-        if speechQueueArray.count > 0 {
-            self.speechAndText(text: speechQueueArray.removeFirst())
-            print(speechQueueArray.count)
-            
-            self.table.reloadData()
-            let cell = self.getBottomLabelCell()
-            cell.alpha = 0
-            UIView.animate(withDuration: 1) {
-                let cell = self.getBottomLabelCell()
-                cell.alpha = 1
-                cell.lblMessage.textColor = Colors.lightgrey
+    func getTotalValueFromLog(foods: [Food], indicatorName: String, currentNutritionValue: Double) -> Double {
+        var totalValue = currentNutritionValue
+        for food in foods {
+            let foodMirror = Mirror(reflecting: food)
+            for (name, value) in foodMirror.children {
+                if name == indicatorName {
+                    let valueToSum = value as! Double
+                    print(valueToSum)
+                    totalValue += valueToSum
+                    print(totalValue)
+                }
             }
         }
+        return totalValue
     }
-    
+
 }
 

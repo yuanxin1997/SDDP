@@ -166,7 +166,7 @@ class PersonService {
     func createFoodLog(personId: Int, foodId: Int, timestamp: UInt64, completion: @escaping (Int?) -> Void) {
         
         // Define your URL with the combination of Base URL (can be found in global constants) and its Endpoint
-        guard let url = URL(string: "\(APIurl.database)/person/logPersonFood/\(personId)/\(foodId)/\(timestamp) ") else { return }
+        guard let url = URL(string: "\(APIurl.database)/person/logPersonFood/\(personId)/\(foodId)/\(timestamp)") else { return }
         
         // Create URL request
         var request = URLRequest(url: url)
@@ -184,6 +184,33 @@ class PersonService {
                 completion(nil)
             }
         }.resume()
+    }
+    
+    // [POST]
+    func createFoodLogByFoodName(personId: Int, foodName: String, timestamp: UInt64, completion: @escaping (Int?) -> Void) {
+        
+        // To allow spacing between characters in a return string
+        let encodedString = foodName.addingPercentEncoding(withAllowedCharacters: NSCharacterSet.urlFragmentAllowed)!
+        
+        // Define your URL with the combination of Base URL (can be found in global constants) and its Endpoint
+        guard let url = URL(string: "\(APIurl.database)/person/logPersonFoodByFoodName/\(personId)/\(encodedString)/\(timestamp)") else { return }
+        
+        // Create URL request
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        
+        // Execute your request
+        URLSession.shared.dataTask(with: request) { (data, response, error) in
+            guard let data = data, response != nil, error == nil else { return }
+            do {
+                let msgObj = try JSONDecoder().decode(Message.self, from: data)
+                print(msgObj.message)
+                completion(msgObj.message) // Return your result with completion handler
+            } catch let jsonError {
+                print(jsonError)
+                completion(nil)
+            }
+            }.resume()
     }
     
     // [GET]
@@ -205,6 +232,7 @@ class PersonService {
             }
         }.resume()
     }
+    
 }
 
 

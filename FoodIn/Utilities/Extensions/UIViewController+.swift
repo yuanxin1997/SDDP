@@ -77,6 +77,7 @@ extension UIViewController {
         case [.showNavBar, .whiteNavTitle]:
             navigationController?.setNavigationBarHidden(false, animated: false)
             navigationController?.navigationBar.tintColor = Colors.white
+//            navigationController?.navigationBar.setBackgroundImage(UIImage(color: Colors.pink), for: .default)
             navigationController?.navigationBar.titleTextAttributes = [ NSAttributedStringKey.foregroundColor: Colors.white, NSAttributedStringKey.font: Fonts.Regular.of(size: 20)]
         default:
             UIApplication.shared.isStatusBarHidden = false

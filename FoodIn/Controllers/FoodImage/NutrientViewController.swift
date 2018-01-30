@@ -28,7 +28,7 @@ class NutrientViewController: UIViewController, IndicatorInfoProvider {
     
     // Perform action when notification is received
     @objc func setupPieChart() {
-        if let foodDetails = FoodDetailsController.selectedFood{
+        if let foodDetails = FoodDetailsController.selectedFood {
             self.pieChartUpdate(calories: foodDetails.calories, carbs: foodDetails.carbohydrate, protein: foodDetails.protein, fats: foodDetails.fat)
         }
     }

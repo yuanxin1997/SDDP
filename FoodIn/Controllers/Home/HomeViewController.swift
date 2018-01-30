@@ -24,13 +24,16 @@ class HomeViewController: UIViewController {
     var centerOrigin: CGPoint!
     var timer = Timer()
     
+    let pService = PersonService()
+    let fService = FoodService()
+    
     @IBAction func unwindToHome(segue:UIStoryboardSegue) { }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupAskBtn()
-//
-//        // Retrieve data locally and pass in the value
+
+        // Retrieve data locally and pass in the value
         if let greetingName = MyInfoService().getMyInfo()[0].name {
             greetingLabel.text = "Hi, \(MyInfoService().getMyInfo()[0].name!)."
         }
@@ -50,7 +53,6 @@ class HomeViewController: UIViewController {
         for element in MyIndicatorService().getMyIndicator() {
             print("printing \(element.name) ")
         }
-        
 
 //                KeychainSwift().clear()
 //                MyInfoService().clearMyInfo()

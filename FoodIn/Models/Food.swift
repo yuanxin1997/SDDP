@@ -21,6 +21,7 @@ struct Food: Decodable {
     let potassium: Double
     let calcium: Double
     let iron: Double
+//    let timestamp: Int64?
 }
 
 /*
@@ -30,4 +31,5 @@ struct Food: Decodable {
  - Decodable
  - Codable (Both)
  */
+
 
