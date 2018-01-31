@@ -27,6 +27,8 @@ class HomeViewController: UIViewController {
     let pService = PersonService()
     let fService = FoodService()
     
+    var arcOpacityIsReduced = false
+    
     @IBAction func unwindToHome(segue:UIStoryboardSegue) { }
     
     override func viewDidLoad() {
@@ -150,10 +152,29 @@ class HomeViewController: UIViewController {
     // Allow camera icon to follow your gesture movement
     func moveViewWithPan(view: UIView, sender: UIPanGestureRecognizer) {
         let translation = sender.translation(in: view)
-        guard center.frame.intersects(top.frame) || center.frame.intersects(left.frame) || center.frame.intersects(right.frame) else {
+        
+        if center.frame.intersects(top.frame) {
+            if !arcOpacityIsReduced {
+                reductArcOpacityExcept(name: "top")
+                print("moving1")
+            }
+            return
+        } else if center.frame.intersects(left.frame){
+            if !arcOpacityIsReduced {
+                reductArcOpacityExcept(name: "left")
+                print("moving2")
+            }
+            return
+        } else if center.frame.intersects(right.frame){
+            if !arcOpacityIsReduced {
+                reductArcOpacityExcept(name: "right")
+                print("moving3")
+            }
+            return
+        } else {
             view.center = CGPoint(x: view.center.x + translation.x, y: view.center.y + translation.y)
             sender.setTranslation(CGPoint.zero, in: view)
-            return
+            print("moving")
         }
     }
     
@@ -169,9 +190,40 @@ class HomeViewController: UIViewController {
         UIView.animate(withDuration: 0.5, animations: {
             self.inspectionMode.mode = inspectMode
             view.frame.origin = self.centerOrigin
+            self.recoverOpacity()
         }) { (true) in
             self.performSegue(withIdentifier: "showCamera", sender: self)
         }
+    }
+    
+    // Reduce the opacity of arcs that are not touched
+    func reductArcOpacityExcept(name: String){
+        
+        // Set opacity is reduced to true
+        arcOpacityIsReduced = true
+        
+        // Reduce opacity of UI component with fading effect
+        UIView.animate(withDuration: 0.1) {
+            if name == "top" {
+                self.left.alpha = 0.4
+                self.right.alpha = 0.4
+            }
+            if name == "left" {
+                self.top.alpha = 0.4
+                self.right.alpha = 0.4
+            }
+            if name == "right" {
+                self.top.alpha = 0.4
+                self.left.alpha = 0.4
+            }
+        }
+    }
+    
+    func recoverOpacity() {
+        arcOpacityIsReduced = false
+        top.alpha = 1
+        left.alpha = 1
+        right.alpha = 1
     }
     
 }
