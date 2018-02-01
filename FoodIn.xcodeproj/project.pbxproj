@@ -100,6 +100,12 @@
 		844373702023A2AE009854AC /* ExtractedSafeArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8443736F2023A2AE009854AC /* ExtractedSafeArray.swift */; };
 		844373732023A2CB009854AC /* ResultSafeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844373712023A2CB009854AC /* ResultSafeViewController.swift */; };
 		844373742023A2CB009854AC /* ResultAvoidViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844373722023A2CB009854AC /* ResultAvoidViewController.swift */; };
+		844373782023ADDB009854AC /* LabelActivityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844373772023ADDB009854AC /* LabelActivityViewController.swift */; };
+		8443737A2023C127009854AC /* LabelMineralViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844373792023C127009854AC /* LabelMineralViewController.swift */; };
+		8443737C2023C133009854AC /* LabelNutrientViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8443737B2023C133009854AC /* LabelNutrientViewController.swift */; };
+		8443737E2023C14A009854AC /* LabelVitaminViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8443737D2023C14A009854AC /* LabelVitaminViewController.swift */; };
+		844373802023C193009854AC /* LabelDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8443737F2023C193009854AC /* LabelDetailsViewController.swift */; };
+		844373822023C266009854AC /* LabelResults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844373812023C266009854AC /* LabelResults.swift */; };
 		D031027D7C720051661E985B /* Pods_FoodInTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 085315057047735A09DAE59C /* Pods_FoodInTests.framework */; };
 /* End PBXBuildFile section */
 
@@ -220,6 +226,12 @@
 		8443736F2023A2AE009854AC /* ExtractedSafeArray.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExtractedSafeArray.swift; sourceTree = "<group>"; };
 		844373712023A2CB009854AC /* ResultSafeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResultSafeViewController.swift; sourceTree = "<group>"; };
 		844373722023A2CB009854AC /* ResultAvoidViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResultAvoidViewController.swift; sourceTree = "<group>"; };
+		844373772023ADDB009854AC /* LabelActivityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelActivityViewController.swift; sourceTree = "<group>"; };
+		844373792023C127009854AC /* LabelMineralViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelMineralViewController.swift; sourceTree = "<group>"; };
+		8443737B2023C133009854AC /* LabelNutrientViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelNutrientViewController.swift; sourceTree = "<group>"; };
+		8443737D2023C14A009854AC /* LabelVitaminViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelVitaminViewController.swift; sourceTree = "<group>"; };
+		8443737F2023C193009854AC /* LabelDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelDetailsViewController.swift; sourceTree = "<group>"; };
+		844373812023C266009854AC /* LabelResults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelResults.swift; sourceTree = "<group>"; };
 		8DE6276EEC363FA3C9C6980F /* Pods_FoodInUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FoodInUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		97CBE3A7B80EE0019484C551 /* Pods-FoodIn.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FoodIn.release.xcconfig"; path = "Pods/Target Support Files/Pods-FoodIn/Pods-FoodIn.release.xcconfig"; sourceTree = "<group>"; };
 		9B637B7FD9ED3DD270924BF4 /* Pods-FoodInTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FoodInTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-FoodInTests/Pods-FoodInTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -534,6 +546,7 @@
 				8443736F2023A2AE009854AC /* ExtractedSafeArray.swift */,
 				6E39510620044C8000C165C4 /* InspectionMode.swift */,
 				6EB1F6DA2019CB6A0018A573 /* ExractedTextArray.swift */,
+				844373812023C266009854AC /* LabelResults.swift */,
 			);
 			path = Singleton;
 			sourceTree = "<group>";
@@ -661,6 +674,7 @@
 		6ECE2D3F1FEE00A6001B33F8 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				844373762023AD1A009854AC /* FoodLabel */,
 				1EE930012022C34A0011FFC0 /* Statistics */,
 				6E39511820058B5200C165C4 /* Landing */,
 				6EEC2E421FFE3BCD003E89EC /* SignIn */,
@@ -704,6 +718,18 @@
 				6EEC2E431FFE3BEC003E89EC /* SignInViewController.swift */,
 			);
 			path = SignIn;
+			sourceTree = "<group>";
+		};
+		844373762023AD1A009854AC /* FoodLabel */ = {
+			isa = PBXGroup;
+			children = (
+				844373772023ADDB009854AC /* LabelActivityViewController.swift */,
+				844373792023C127009854AC /* LabelMineralViewController.swift */,
+				8443737B2023C133009854AC /* LabelNutrientViewController.swift */,
+				8443737D2023C14A009854AC /* LabelVitaminViewController.swift */,
+				8443737F2023C193009854AC /* LabelDetailsViewController.swift */,
+			);
+			path = FoodLabel;
 			sourceTree = "<group>";
 		};
 		86318C5388DAB9D11C228818 /* Frameworks */ = {
@@ -1065,6 +1091,7 @@
 				6EB1F6DB2019CB6A0018A573 /* ExractedTextArray.swift in Sources */,
 				6EB52BBE1FFDF24800FC1AF4 /* RegViewControllerS3.swift in Sources */,
 				6E4199531FF3902A00463542 /* NutrientViewController.swift in Sources */,
+				844373802023C193009854AC /* LabelDetailsViewController.swift in Sources */,
 				6EB1F6E12019D0C70018A573 /* MenuActivityIndicatorController.swift in Sources */,
 				6E66E2B21FEF3DEB0021B649 /* Pulse.swift in Sources */,
 				6EB52BBA1FFDF22500FC1AF4 /* RegViewControllerS1.swift in Sources */,
@@ -1073,6 +1100,7 @@
 				6E2C3C6C20021191009B0D13 /* MyIllness+CoreDataClass.swift in Sources */,
 				6E39510720044C8000C165C4 /* InspectionMode.swift in Sources */,
 				6EB52BC41FFDF2A100FC1AF4 /* RegViewControllerS6.swift in Sources */,
+				8443737E2023C14A009854AC /* LabelVitaminViewController.swift in Sources */,
 				6EB1F6EA2019E0A60018A573 /* VisionService.swift in Sources */,
 				6EB52BBC1FFDF23300FC1AF4 /* RegViewControllerS2.swift in Sources */,
 				844373702023A2AE009854AC /* ExtractedSafeArray.swift in Sources */,
@@ -1118,13 +1146,16 @@
 				1EE930002022C3400011FFC0 /* FoodLogDate.swift in Sources */,
 				6E2C3C6120020EB6009B0D13 /* MyInfoService.swift in Sources */,
 				6EEDEB3C1FEB8DDA008A4658 /* CustomVisionResult.swift in Sources */,
+				844373822023C266009854AC /* LabelResults.swift in Sources */,
 				6E6F5562200082E500B8F517 /* Illness.swift in Sources */,
+				8443737A2023C127009854AC /* LabelMineralViewController.swift in Sources */,
 				6E4199551FF3903500463542 /* MineralViewController.swift in Sources */,
 				6E11142E1FF94E9D00F657AB /* UIViewController+.swift in Sources */,
 				1EE930052022C3E60011FFC0 /* FoodLog.swift in Sources */,
 				6E3B6EFF2020042500A2851D /* Date+.swift in Sources */,
 				6EA6B997201365D500877217 /* String+.swift in Sources */,
 				6E2E409A1FE6B47500405C8B /* AppDelegate.swift in Sources */,
+				844373782023ADDB009854AC /* LabelActivityViewController.swift in Sources */,
 				6E9071C92010AF7E0053CEFE /* ImageClassificationService.swift in Sources */,
 				6EEC2E441FFE3BEC003E89EC /* SignInViewController.swift in Sources */,
 				6E2C3C7020021191009B0D13 /* MyIndicator+CoreDataClass.swift in Sources */,
@@ -1133,6 +1164,7 @@
 				6E7C92452016005D00566DE6 /* MessageCell.swift in Sources */,
 				6E2262D620140BE900BF252D /* SpeechViewController.swift in Sources */,
 				6E75696E2000508A00471D7E /* Registration.swift in Sources */,
+				8443737C2023C133009854AC /* LabelNutrientViewController.swift in Sources */,
 				6E2C3C572001EC13009B0D13 /* ProfileViewController.swift in Sources */,
 				6E16DFF21FF213DA00301322 /* ImageActivityIndicatorController.swift in Sources */,
 				6E2C3C7120021191009B0D13 /* MyIndicator+CoreDataProperties.swift in Sources */,

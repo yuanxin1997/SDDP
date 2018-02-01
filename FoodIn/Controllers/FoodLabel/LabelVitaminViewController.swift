@@ -10,7 +10,7 @@ import UIKit
 import XLPagerTabStrip
 import UICircularProgressRing
 
-class VitaminViewController: UIViewController, IndicatorInfoProvider, UICircularProgressRingDelegate {
+class LabelVitaminViewController: UIViewController, IndicatorInfoProvider, UICircularProgressRingDelegate {
     
     @IBOutlet weak var ringVitaminA: UICircularProgressRingView!
     @IBOutlet weak var ringVitaminC: UICircularProgressRingView!
@@ -47,8 +47,8 @@ class VitaminViewController: UIViewController, IndicatorInfoProvider, UICircular
     
     func setupCircularProgressBar(){
         DispatchQueue.main.async {
-            if let foodDetail = FoodDetailsController.selectedFood {
-                self.circularProgressBarUpdate(mcgOfvitaminA: foodDetail.vitaminA, mcgOfvitaminC: foodDetail.vitaminC)
+            if let data = LabelResults.sharedInstance.data {
+                self.circularProgressBarUpdate(mcgOfvitaminA: data["vitamin a"]!, mcgOfvitaminC: data["vitamin c"]!)
             }
         }
     }
@@ -86,4 +86,5 @@ class VitaminViewController: UIViewController, IndicatorInfoProvider, UICircular
     }
     
 }
+
 

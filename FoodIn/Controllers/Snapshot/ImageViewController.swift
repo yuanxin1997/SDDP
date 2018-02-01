@@ -7,9 +7,11 @@
 //
 
 import UIKit
+import SwiftCamScanner
 
 class ImageViewController: UIViewController {
     @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet weak var cropView: CropView!
     
     var image: UIImage?
     let inspectionMode = InspectionMode.sharedInstance
@@ -17,6 +19,16 @@ class ImageViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         imageView.image = image
+        
+        if inspectionMode.mode! == "Food Label" {
+            if let image = image {
+                cropView.setUpImage(image: image)
+                cropView.isHidden = false
+            }
+        } else {
+            cropView.isHidden = true
+        }
+        
     }
     
     @IBAction func closeBtnDidTap() {
@@ -39,7 +51,10 @@ class ImageViewController: UIViewController {
         if inspectionMode.mode! == "Food Menu" {
             performSegue(withIdentifier: "showMenuActivityIndicator", sender: sender)
         } else if inspectionMode.mode! == "Food Label" {
-            performSegue(withIdentifier: "showActivityIndicator", sender: sender)
+            cropView.cropAndTransform(completionHandler: {(croppedImage) -> Void in
+                Snapshot.sharedInstance.image = croppedImage
+                self.performSegue(withIdentifier: "showLabelActivityIndicator", sender: sender)
+            })
         } else if inspectionMode.mode! == "Food Item" {
             performSegue(withIdentifier: "showActivityIndicator", sender: sender)
         }
