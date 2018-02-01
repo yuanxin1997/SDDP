@@ -186,7 +186,7 @@ class FoodDetailsController: ButtonBarPagerTabStripViewController, NVActivityInd
         let from = UInt64(floor(Date().startOfDay.timeIntervalSince1970))
         
         // Get food log from web service
-        pService.getFoodLog(personId: id, from: from, to: to, completion: { (result: [Food]?) in
+        pService.getFoodLog(personId: id, from: from, to: to, completion: { (result: [FoodLog]?) in
             DispatchQueue.main.async {
                 if let result = result {
                     
@@ -220,7 +220,7 @@ class FoodDetailsController: ButtonBarPagerTabStripViewController, NVActivityInd
         })
     }
     
-    func getTotalValueFromLog(foods: [Food], indicatorName: String, currentNutritionValue: Double) -> Double {
+    func getTotalValueFromLog(foods: [FoodLog], indicatorName: String, currentNutritionValue: Double) -> Double {
         var totalValue = currentNutritionValue
         for food in foods {
             let foodMirror = Mirror(reflecting: food)
