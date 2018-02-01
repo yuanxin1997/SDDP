@@ -175,47 +175,29 @@ class FoodDetailsController: ButtonBarPagerTabStripViewController, NVActivityInd
     }
     
     func inspectFood(food: Food) {
-        
-        // Get person ID from keychain
         guard let id = Int(KeychainSwift().get("id")!) else { return }
-        
-        // Get start date
         let to = UInt64(floor(Date().timeIntervalSince1970))
-        
-        // Get end date
         let from = UInt64(floor(Date().startOfDay.timeIntervalSince1970))
-        
-        // Get food log from web service
         pService.getFoodLog(personId: id, from: from, to: to, completion: { (result: [FoodLog]?) in
             DispatchQueue.main.async {
                 if let result = result {
-                    
-                    // Get person illness indicator
                     let myIndicator = MyIndicatorService().getMyIndicator()
-                    
-                    // Using mirror to get the properties of array
                     let foodMirror = Mirror(reflecting: food)
                     for (name, value) in foodMirror.children {
                         for i in myIndicator {
                             if name == i.name {
                                 let valueToMatch = value as! Double
-                                
-                                // Calculate the total value from food log
                                 if self.getTotalValueFromLog(foods: result, indicatorName: i.name!, currentNutritionValue: valueToMatch) > i.maxValue {
-                                    
-                                    // Push the nutrition that has hit the limit to the array
                                     self.arrayOfNutritionalOverLimit.append(name!)
                                 }
+                                print(self.getTotalValueFromLog(foods: result, indicatorName: i.name!, currentNutritionValue: valueToMatch))
                             }
                         }
                     }
-                    
-                    // Show suggestion button
                     self.determineSafeOrAvoid()
-                    
-                    // Show explanation with tool tip
                     self.showToolTip()
                 }
+                print(result)
             }
         })
     }

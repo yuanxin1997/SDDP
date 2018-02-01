@@ -96,6 +96,10 @@
 		6EEDEB3C1FEB8DDA008A4658 /* CustomVisionResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EEDEB3B1FEB8DDA008A4658 /* CustomVisionResult.swift */; };
 		6EEFC364201EEA2400FD96DD /* UserDefaults+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EEFC363201EEA2400FD96DD /* UserDefaults+.swift */; };
 		6EFAF04E1FF154BA009E93F2 /* UIView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EFAF04D1FF154BA009E93F2 /* UIView+.swift */; };
+		8443736E2023A2A1009854AC /* ExtractedAvoidArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8443736D2023A2A1009854AC /* ExtractedAvoidArray.swift */; };
+		844373702023A2AE009854AC /* ExtractedSafeArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8443736F2023A2AE009854AC /* ExtractedSafeArray.swift */; };
+		844373732023A2CB009854AC /* ResultSafeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844373712023A2CB009854AC /* ResultSafeViewController.swift */; };
+		844373742023A2CB009854AC /* ResultAvoidViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844373722023A2CB009854AC /* ResultAvoidViewController.swift */; };
 		D031027D7C720051661E985B /* Pods_FoodInTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 085315057047735A09DAE59C /* Pods_FoodInTests.framework */; };
 /* End PBXBuildFile section */
 
@@ -212,6 +216,10 @@
 		6EEDEB3B1FEB8DDA008A4658 /* CustomVisionResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomVisionResult.swift; sourceTree = "<group>"; };
 		6EEFC363201EEA2400FD96DD /* UserDefaults+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+.swift"; sourceTree = "<group>"; };
 		6EFAF04D1FF154BA009E93F2 /* UIView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+.swift"; sourceTree = "<group>"; };
+		8443736D2023A2A1009854AC /* ExtractedAvoidArray.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExtractedAvoidArray.swift; sourceTree = "<group>"; };
+		8443736F2023A2AE009854AC /* ExtractedSafeArray.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExtractedSafeArray.swift; sourceTree = "<group>"; };
+		844373712023A2CB009854AC /* ResultSafeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResultSafeViewController.swift; sourceTree = "<group>"; };
+		844373722023A2CB009854AC /* ResultAvoidViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResultAvoidViewController.swift; sourceTree = "<group>"; };
 		8DE6276EEC363FA3C9C6980F /* Pods_FoodInUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FoodInUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		97CBE3A7B80EE0019484C551 /* Pods-FoodIn.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FoodIn.release.xcconfig"; path = "Pods/Target Support Files/Pods-FoodIn/Pods-FoodIn.release.xcconfig"; sourceTree = "<group>"; };
 		9B637B7FD9ED3DD270924BF4 /* Pods-FoodInTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FoodInTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-FoodInTests/Pods-FoodInTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -521,7 +529,9 @@
 			isa = PBXGroup;
 			children = (
 				6E4ADFE91FF30DDF005F6482 /* Snapshot.swift */,
+				8443736D2023A2A1009854AC /* ExtractedAvoidArray.swift */,
 				6E75696D2000508A00471D7E /* Registration.swift */,
+				8443736F2023A2AE009854AC /* ExtractedSafeArray.swift */,
 				6E39510620044C8000C165C4 /* InspectionMode.swift */,
 				6EB1F6DA2019CB6A0018A573 /* ExractedTextArray.swift */,
 			);
@@ -619,6 +629,8 @@
 			children = (
 				6EB1F6E02019D0C70018A573 /* MenuActivityIndicatorController.swift */,
 				6EB1F6E22019D56F0018A573 /* menuDetailsViewController.swift */,
+				844373722023A2CB009854AC /* ResultAvoidViewController.swift */,
+				844373712023A2CB009854AC /* ResultSafeViewController.swift */,
 				6EB1F6E42019D74C0018A573 /* safeListViewController.swift */,
 				6EB1F6E62019D7570018A573 /* avoidListViewController.swift */,
 			);
@@ -1063,14 +1075,17 @@
 				6EB52BC41FFDF2A100FC1AF4 /* RegViewControllerS6.swift in Sources */,
 				6EB1F6EA2019E0A60018A573 /* VisionService.swift in Sources */,
 				6EB52BBC1FFDF23300FC1AF4 /* RegViewControllerS2.swift in Sources */,
+				844373702023A2AE009854AC /* ExtractedSafeArray.swift in Sources */,
 				6E39511A2005A29100C165C4 /* APIurl.swift in Sources */,
 				6EEDEB3A1FEB40D6008A4658 /* ImageViewController.swift in Sources */,
 				6E16DFF41FF2390600301322 /* FoodDetailsController.swift in Sources */,
+				844373732023A2CB009854AC /* ResultSafeViewController.swift in Sources */,
 				6E64321E1FF90B9C008A04FE /* LandingViewController.swift in Sources */,
 				6EA6773F2000485B009354C4 /* PersonCoreData.xcdatamodeld in Sources */,
 				6E6F55602000826400B8F517 /* IllnessService.swift in Sources */,
 				6E3951052003DDE700C165C4 /* Touch3D.swift in Sources */,
 				6E2C3C73200243AB009B0D13 /* Indicator.swift in Sources */,
+				8443736E2023A2A1009854AC /* ExtractedAvoidArray.swift in Sources */,
 				6EB1F6E52019D74C0018A573 /* safeListViewController.swift in Sources */,
 				6EB1F6E72019D7570018A573 /* avoidListViewController.swift in Sources */,
 				6EA676DA1FFFCC6E009354C4 /* PersistenceService.swift in Sources */,
@@ -1099,6 +1114,7 @@
 				1EE930032022C3540011FFC0 /* StatisticsViewController.swift in Sources */,
 				6E9071CB2010CC040053CEFE /* PredictionResult.swift in Sources */,
 				6EEDEB361FEA6D95008A4658 /* CustomVisionService.swift in Sources */,
+				844373742023A2CB009854AC /* ResultAvoidViewController.swift in Sources */,
 				1EE930002022C3400011FFC0 /* FoodLogDate.swift in Sources */,
 				6E2C3C6120020EB6009B0D13 /* MyInfoService.swift in Sources */,
 				6EEDEB3C1FEB8DDA008A4658 /* CustomVisionResult.swift in Sources */,

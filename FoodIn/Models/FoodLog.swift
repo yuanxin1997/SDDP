@@ -23,4 +23,5 @@ struct FoodLog: Decodable {
     var potassium: Double
     var calcium: Double
     var iron: Double
+    var timestamp: Int64?
 }
