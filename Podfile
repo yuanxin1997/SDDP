@@ -16,6 +16,8 @@ target 'FoodIn' do
   pod 'CryptoSwift'
   pod 'Navajo-Swift'
   pod 'NVActivityIndicatorView'
+  pod 'FSCalendar'
+  pod 'SwiftCamScanner' 
   pod 'KeychainSwift'
   pod 'ApiAI'
   pod 'SwiftySound'
