@@ -1136,6 +1136,9 @@
                                                     <constraint firstAttribute="width" constant="30" id="1q5-DG-RNV"/>
                                                 </constraints>
                                                 <state key="normal" image="Statistics"/>
+                                                <connections>
+                                                    <segue destination="aRU-dD-kIg" kind="show" id="sdt-a3-7YF"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                         <constraints>
@@ -1306,7 +1309,7 @@
                     </connections>
                 </pongPressGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="-1210.144927536232" y="1563.5869565217392"/>
+            <point key="canvasLocation" x="-1928" y="1517"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="eSF-2u-Ile">
@@ -2386,6 +2389,58 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8Q9-lj-UAQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3370" y="766"/>
+        </scene>
+        <!--Statistics View Controller-->
+        <scene sceneID="evT-3G-usU">
+            <objects>
+                <viewController id="aRU-dD-kIg" customClass="StatisticsViewController" customModule="FoodIn" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="ii0-rg-cf1">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DPw-ll-hHY" customClass="FSCalendar">
+                                <rect key="frame" x="0.0" y="64" width="414" height="335"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="335" id="ddt-6c-XOu"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8cA-1l-ru1" customClass="RadarChartView" customModule="Charts">
+                                <rect key="frame" x="84" y="399" width="256" height="337"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mE0-Ck-mJ3">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="68"/>
+                                <color key="backgroundColor" red="0.94117647059999998" green="0.094117647060000004" blue="0.61568627450000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="68" id="xDi-WM-QWH"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="mE0-Ck-mJ3" firstAttribute="top" secondItem="ii0-rg-cf1" secondAttribute="top" id="0Lm-as-C4R"/>
+                            <constraint firstItem="mE0-Ck-mJ3" firstAttribute="trailing" secondItem="8Wf-XI-2UH" secondAttribute="trailing" id="0Nb-N0-iTI"/>
+                            <constraint firstItem="mE0-Ck-mJ3" firstAttribute="leading" secondItem="8Wf-XI-2UH" secondAttribute="leading" id="F3d-Lc-gDS"/>
+                            <constraint firstItem="8cA-1l-ru1" firstAttribute="top" secondItem="DPw-ll-hHY" secondAttribute="bottom" id="HYf-Sd-eiz"/>
+                            <constraint firstItem="DPw-ll-hHY" firstAttribute="trailing" secondItem="8Wf-XI-2UH" secondAttribute="trailing" id="dVw-OD-Bs7"/>
+                            <constraint firstItem="8cA-1l-ru1" firstAttribute="trailing" secondItem="8Wf-XI-2UH" secondAttribute="trailing" id="irg-Op-UTx"/>
+                            <constraint firstItem="DPw-ll-hHY" firstAttribute="leading" secondItem="8Wf-XI-2UH" secondAttribute="leading" id="nnC-Ju-5wm"/>
+                            <constraint firstItem="8cA-1l-ru1" firstAttribute="leading" secondItem="8Wf-XI-2UH" secondAttribute="leading" id="uOk-mD-hXW"/>
+                            <constraint firstItem="DPw-ll-hHY" firstAttribute="top" secondItem="8Wf-XI-2UH" secondAttribute="top" id="xpg-7K-BUE"/>
+                            <constraint firstItem="8cA-1l-ru1" firstAttribute="bottom" secondItem="8Wf-XI-2UH" secondAttribute="bottom" id="zvd-bb-ZUt"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="8Wf-XI-2UH"/>
+                    </view>
+                    <connections>
+                        <outlet property="calendar" destination="DPw-ll-hHY" id="7M8-kJ-nOH"/>
+                        <outlet property="calendarHeightConstraint" destination="ddt-6c-XOu" id="cPi-ku-Dha"/>
+                        <outlet property="radarChart" destination="8cA-1l-ru1" id="KqZ-Bo-9bL"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ry6-e8-KqD" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-452" y="1516"/>
         </scene>
     </scenes>
     <resources>
