@@ -12,6 +12,7 @@ struct NotificationKey {
     
     // Global NOTIFICATION KEY
     static let foodData  = "Food data retrieved"
+    static let foodLogs = "Food log data retrieved"
     static let labelData = "Label data retrieved"
     
 }

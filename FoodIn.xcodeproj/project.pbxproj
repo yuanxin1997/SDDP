@@ -13,6 +13,7 @@
 		1EE930002022C3400011FFC0 /* FoodLogDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EE92FFF2022C3400011FFC0 /* FoodLogDate.swift */; };
 		1EE930032022C3540011FFC0 /* StatisticsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EE930022022C3540011FFC0 /* StatisticsViewController.swift */; };
 		1EE930052022C3E60011FFC0 /* FoodLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EE930042022C3E60011FFC0 /* FoodLog.swift */; };
+		1EE930092022CC090011FFC0 /* SingleDayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EE930082022CC090011FFC0 /* SingleDayViewController.swift */; };
 		320270B6AD059333954A5E77 /* Pods_FoodInUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DE6276EEC363FA3C9C6980F /* Pods_FoodInUITests.framework */; };
 		6E11142E1FF94E9D00F657AB /* UIViewController+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E11142D1FF94E9D00F657AB /* UIViewController+.swift */; };
 		6E16DFF21FF213DA00301322 /* ImageActivityIndicatorController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E16DFF11FF213DA00301322 /* ImageActivityIndicatorController.swift */; };
@@ -106,6 +107,7 @@
 		8443737E2023C14A009854AC /* LabelVitaminViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8443737D2023C14A009854AC /* LabelVitaminViewController.swift */; };
 		844373802023C193009854AC /* LabelDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8443737F2023C193009854AC /* LabelDetailsViewController.swift */; };
 		844373822023C266009854AC /* LabelResults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844373812023C266009854AC /* LabelResults.swift */; };
+		844C71752023D35D002A1709 /* DailyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844C71742023D35C002A1709 /* DailyViewController.swift */; };
 		D031027D7C720051661E985B /* Pods_FoodInTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 085315057047735A09DAE59C /* Pods_FoodInTests.framework */; };
 /* End PBXBuildFile section */
 
@@ -133,6 +135,7 @@
 		1EE92FFF2022C3400011FFC0 /* FoodLogDate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FoodLogDate.swift; sourceTree = "<group>"; };
 		1EE930022022C3540011FFC0 /* StatisticsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatisticsViewController.swift; sourceTree = "<group>"; };
 		1EE930042022C3E60011FFC0 /* FoodLog.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FoodLog.swift; sourceTree = "<group>"; };
+		1EE930082022CC090011FFC0 /* SingleDayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleDayViewController.swift; sourceTree = "<group>"; };
 		6C5D2AA64CF473EA53B9A117 /* Pods-FoodInUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FoodInUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FoodInUITests/Pods-FoodInUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		6E11142D1FF94E9D00F657AB /* UIViewController+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+.swift"; sourceTree = "<group>"; };
 		6E16DFF11FF213DA00301322 /* ImageActivityIndicatorController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageActivityIndicatorController.swift; sourceTree = "<group>"; };
@@ -232,6 +235,7 @@
 		8443737D2023C14A009854AC /* LabelVitaminViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelVitaminViewController.swift; sourceTree = "<group>"; };
 		8443737F2023C193009854AC /* LabelDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelDetailsViewController.swift; sourceTree = "<group>"; };
 		844373812023C266009854AC /* LabelResults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelResults.swift; sourceTree = "<group>"; };
+		844C71742023D35C002A1709 /* DailyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DailyViewController.swift; sourceTree = "<group>"; };
 		8DE6276EEC363FA3C9C6980F /* Pods_FoodInUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FoodInUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		97CBE3A7B80EE0019484C551 /* Pods-FoodIn.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FoodIn.release.xcconfig"; path = "Pods/Target Support Files/Pods-FoodIn/Pods-FoodIn.release.xcconfig"; sourceTree = "<group>"; };
 		9B637B7FD9ED3DD270924BF4 /* Pods-FoodInTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FoodInTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-FoodInTests/Pods-FoodInTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -289,7 +293,9 @@
 		1EE930012022C34A0011FFC0 /* Statistics */ = {
 			isa = PBXGroup;
 			children = (
+				844C71742023D35C002A1709 /* DailyViewController.swift */,
 				1EE930022022C3540011FFC0 /* StatisticsViewController.swift */,
+				1EE930082022CC090011FFC0 /* SingleDayViewController.swift */,
 			);
 			path = Statistics;
 			sourceTree = "<group>";
@@ -1127,6 +1133,7 @@
 				6E555D5C1FF6B32D00141FEC /* Food.swift in Sources */,
 				6E39510C2004EECB00C165C4 /* Fonts.swift in Sources */,
 				6E2C3C6520020ED5009B0D13 /* MyIndicatorService.swift in Sources */,
+				1EE930092022CC090011FFC0 /* SingleDayViewController.swift in Sources */,
 				6EB1F6EC2019E0F60018A573 /* APIkey.swift in Sources */,
 				6E2C3C6F20021191009B0D13 /* MyInfo+CoreDataProperties.swift in Sources */,
 				6ECE2D461FEE0217001B33F8 /* HomeViewController.swift in Sources */,
@@ -1138,6 +1145,7 @@
 				6E7C92472016F38400566DE6 /* RecommendationStandard.swift in Sources */,
 				6E7C9240201589FB00566DE6 /* NLPService.swift in Sources */,
 				6EFAF04E1FF154BA009E93F2 /* UIView+.swift in Sources */,
+				844C71752023D35D002A1709 /* DailyViewController.swift in Sources */,
 				6E555D5A1FF6A12100141FEC /* FoodService.swift in Sources */,
 				1EE930032022C3540011FFC0 /* StatisticsViewController.swift in Sources */,
 				6E9071CB2010CC040053CEFE /* PredictionResult.swift in Sources */,

@@ -12,12 +12,13 @@ import Charts
 import KeychainSwift
 
 class StatisticsViewController: UIViewController, UIGestureRecognizerDelegate {
+    @IBOutlet weak var container: UIView!
     
     @IBOutlet weak var calendarHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var calendar: FSCalendar!
     @IBOutlet weak var radarChart: RadarChartView!
     
-    var foodLogs: [FoodLog]?
+    static var foodLogs: [FoodLog]?
     var pService = PersonService()
     var selectedDates: [Date] = []
     
@@ -30,6 +31,54 @@ class StatisticsViewController: UIViewController, UIGestureRecognizerDelegate {
         panGesture.maximumNumberOfTouches = 2
         return panGesture
     }()
+    
+    private lazy var DailyViewController: UIViewController = {
+        // Load Storyboard
+        let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
+        
+        // Instantiate View Controller
+        var viewController = storyboard.instantiateViewController(withIdentifier: "DailyViewController") as! UIViewController
+        
+        // Add View Controller as Child View Controller
+        self.add(asChildViewController: viewController)
+        
+        return viewController
+    }()
+    
+    private lazy var WeeklyViewController: UIViewController = {
+        // Load Storyboard
+        let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
+        
+        // Instantiate View Controller
+        var viewController = storyboard.instantiateViewController(withIdentifier: "WeeklyViewController") as! UIViewController
+        
+        // Add View Controller as Child View Controller
+        self.add(asChildViewController: viewController)
+        
+        return viewController
+    }()
+    
+    private func add(asChildViewController viewController: UIViewController) {
+        // Add Child View Controller
+        addChildViewController(viewController)
+        
+        // Add Child View as Subview
+        container.addSubview(viewController.view)
+        
+        // Notify Child View Controller
+        viewController.didMove(toParentViewController: self)
+    }
+    
+    private func remove(asChildViewController viewController: UIViewController) {
+        // Notify Child View Controller
+        viewController.willMove(toParentViewController: nil)
+        
+        // Remove Child View From Superview
+        viewController.view.removeFromSuperview()
+        
+        // Notify Child View Controller
+        viewController.removeFromParentViewController()
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -54,7 +103,7 @@ class StatisticsViewController: UIViewController, UIGestureRecognizerDelegate {
         fetchData(from: from, to: to)
         
         // Setup radar chart
-        setupRadarChart()
+//        setupRadarChart()
     }
     
     func setupRadarChart() {
@@ -115,8 +164,10 @@ class StatisticsViewController: UIViewController, UIGestureRecognizerDelegate {
         pService.getFoodLog(personId: id, from: from, to: to, completion: { (result: [FoodLog]?) in
             DispatchQueue.main.async {
                 if let result = result {
-                    self.foodLogs = result
-                    self.updateRadarChart()
+                    StatisticsViewController.foodLogs = result
+                    NotificationCenter.default.post(name: Notification.Name(NotificationKey.foodLogs), object: nil)
+                    self.updateGraphs()
+//                    self.updateRadarChart()
                 }
             }
         })
@@ -182,7 +233,7 @@ class StatisticsViewController: UIViewController, UIGestureRecognizerDelegate {
     }
     
     func updateRadarChart() {
-        guard let foodLogs = self.foodLogs else { return }
+        guard let foodLogs = StatisticsViewController.foodLogs else { return }
         let logs = sumNutrition(foodLogs)
         let rec = getRecommended()
         let data = RadarChartData(dataSets: [
@@ -271,7 +322,8 @@ extension StatisticsViewController: FSCalendarDataSource, FSCalendarDelegate {
         self.selectedDates = calendar.selectedDates
         
         if (self.selectedDates.count == 0) {
-            fetchData(from: 0, to: 0)
+//            fetchData(from: 0, to: 0)
+            StatisticsViewController.foodLogs = []
         } else {
             // Sot by ascending
             let selectedDates = self.selectedDates.sorted(by: { $0 < $1})
@@ -281,6 +333,16 @@ extension StatisticsViewController: FSCalendarDataSource, FSCalendarDelegate {
             let to = UInt64(floor(endDay.timeIntervalSince1970))
             let from = UInt64(floor(first.startOfDay.timeIntervalSince1970))
             fetchData(from: from, to: to)
+        }
+    }
+    
+    private func updateGraphs() {
+        if(self.selectedDates.count <= 1) {
+            remove(asChildViewController: WeeklyViewController)
+            add(asChildViewController: DailyViewController)
+        } else {
+            remove(asChildViewController: DailyViewController)
+            add(asChildViewController: WeeklyViewController)
         }
     }
     
