@@ -8,25 +8,37 @@
 
 import UIKit
 import XLPagerTabStrip
+import KeychainSwift
 
 class safeListViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, IndicatorInfoProvider {
     
     var safeFoodNameArray:[Food] = []
     var filteredFoodNameArray:[Food] = []
     let extractedTextArray = ExtractedTextArray.sharedInstance
-
+    let extractedSafeArray = ExtractedSafeArray.sharedInstance
+    var pService = PersonService()
+    var arrayOfNutritionalOverLimit:[String] = []
+    var safe:Int = 0
+    var arrayofsafe:[Int] = []
+    var datatec:Int = 0
+    
     @IBOutlet weak var tableView: UITableView!
     override func viewDidLoad() {
         super.viewDidLoad()
         setupTableView()
         filteredFoodNameArray = extractedTextArray.objectArray!
+        safeFoodNameArray = extractedSafeArray.objectArray!
         
         
-        for food in filteredFoodNameArray {
-            if food.sodium < 1500 {
-                safeFoodNameArray.append(food)
-            }
-        }
+//        for food in filteredFoodNameArray {
+//            if food.sodium < 1500 {
+//                safeFoodNameArray.append(food)
+//            }
+//        }
+        
+        print("THIS IS THE SAFE ZONE")
+        print(safeFoodNameArray)
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -52,6 +64,7 @@ class safeListViewController: UIViewController, UITableViewDataSource, UITableVi
         return cell
     }
     
+    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 80
     }
@@ -66,5 +79,25 @@ class safeListViewController: UIViewController, UITableViewDataSource, UITableVi
     func indicatorInfo(for pagerTabStripController: PagerTabStripViewController) -> IndicatorInfo {
         return IndicatorInfo(title: "Safe")
     }
-
+    
+    
+    
+    
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        // Get the new view controller using segue.destinationViewController.
+        // Pass the selected object to the new view controller.
+        if segue.identifier == "SafeSegue"
+        {
+            let fdc = segue.destination as! ResultSafeViewController
+            if tableView.indexPathForSelectedRow != nil
+            {
+                let foodName = safeFoodNameArray[tableView.indexPathForSelectedRow!.row]
+                fdc.selectedFood = foodName
+            }
+        }
+        
+    }
+    
 }

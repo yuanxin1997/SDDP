@@ -26,6 +26,7 @@ class FoodDetailsController: ButtonBarPagerTabStripViewController, NVActivityInd
     var pService = PersonService()
     var fService = FoodService()
     let popTip = PopTip()
+    var arrayOfNutritionalOverLimit:[String] = []
     
     override func viewDidLoad() {
         
@@ -58,11 +59,7 @@ class FoodDetailsController: ButtonBarPagerTabStripViewController, NVActivityInd
                 if let result = result {
                     print("retrieved food \(result)")
                     FoodDetailsController.selectedFood = result
-                    if result.sodium < 1500 {
-                        self.determineSafeOrAvoid(suggestion: "Safe")
-                    } else {
-                        self.determineSafeOrAvoid(suggestion: "Avoid")
-                    }
+                    self.inspectFood(food: result)
                     NotificationCenter.default.post(name: Notification.Name(NotificationKey.foodData), object: nil)
                     self.stopAnimating()
                 } else {
@@ -75,15 +72,7 @@ class FoodDetailsController: ButtonBarPagerTabStripViewController, NVActivityInd
     }
     
     @IBAction func logFood(_ sender: Any) {
-        //        guard let id = Int(KeychainSwift().get("id")!) else { return }
-        //        let timestamp = UInt64(floor(Date().timeIntervalSince1970 * 1000))
-        //        pService.createFoodLog(personId: id, foodId: id, timestamp: timestamp,  completion: { (result: Int?) in
-        //            DispatchQueue.global().async {
-        //                if let result = result {
-        //                    print("create log result \(result)")
-        //                }
-        //            }
-        //        })
+
     }
     
     override func willMove(toParentViewController parent: UIViewController?) {
@@ -143,19 +132,26 @@ class FoodDetailsController: ButtonBarPagerTabStripViewController, NVActivityInd
         suggestionBtn.layer.shadowOpacity = 0.3
     }
     
-    func determineSafeOrAvoid(suggestion: String){
+    func determineSafeOrAvoid(){
         suggestionBtn.alpha = 1.0
-        suggestionBtn.setTitle(suggestion ,for: .normal)
-        showToolTip()
-        if suggestion == "Safe" {
-            suggestionBtn.backgroundColor = Colors.green
-        } else if suggestion == "avoid" {
+        if arrayOfNutritionalOverLimit.count > 0 {
+            suggestionBtn.setTitle("avoid" ,for: .normal)
             suggestionBtn.backgroundColor = Colors.red
+        } else {
+            suggestionBtn.setTitle("safe" ,for: .normal)
+            suggestionBtn.backgroundColor = Colors.green
         }
     }
     
     func showToolTip() {
-        popTip.show(text: "The sodium level has hit your limit", direction: .up, maxWidth: (suggestionBtn.frame.width * 1.5), in: view, from: suggestionBtn.frame)
+        var finalText = ""
+        if arrayOfNutritionalOverLimit.count > 0 {
+            let text = arrayOfNutritionalOverLimit.reduce("", { $0 == "" ? $1 : $0 + ", " + $1 })
+            finalText = "The \(text) level has hit your limit"
+        } else {
+            finalText = "None of its nutritional value will hit your limit"
+        }
+        popTip.show(text: finalText, direction: .up, maxWidth: (suggestionBtn.frame.width * 1.5), in: view, from: suggestionBtn.frame)
     }
     
     func setupTabBar(){
@@ -176,6 +172,50 @@ class FoodDetailsController: ButtonBarPagerTabStripViewController, NVActivityInd
             oldCell?.label.textColor = Colors.lightgrey
             newCell?.label.textColor = Colors.pink
         }
+    }
+    
+    func inspectFood(food: Food) {
+        guard let id = Int(KeychainSwift().get("id")!) else { return }
+        let to = UInt64(floor(Date().timeIntervalSince1970))
+        let from = UInt64(floor(Date().startOfDay.timeIntervalSince1970))
+        pService.getFoodLog(personId: id, from: from, to: to, completion: { (result: [Food]?) in
+            DispatchQueue.main.async {
+                if let result = result {
+                    let myIndicator = MyIndicatorService().getMyIndicator()
+                    let foodMirror = Mirror(reflecting: food)
+                    for (name, value) in foodMirror.children {
+                        for i in myIndicator {
+                            if name == i.name {
+                                let valueToMatch = value as! Double
+                                if self.getTotalValueFromLog(foods: result, indicatorName: i.name!, currentNutritionValue: valueToMatch) > i.maxValue {
+                                    self.arrayOfNutritionalOverLimit.append(name!)
+                                }
+                                print(self.getTotalValueFromLog(foods: result, indicatorName: i.name!, currentNutritionValue: valueToMatch))
+                            }
+                        }
+                    }
+                    self.determineSafeOrAvoid()
+                    self.showToolTip()
+                }
+                print(result)
+            }
+        })
+    }
+    
+    func getTotalValueFromLog(foods: [Food], indicatorName: String, currentNutritionValue: Double) -> Double {
+        var totalValue = currentNutritionValue
+        for food in foods {
+            let foodMirror = Mirror(reflecting: food)
+            for (name, value) in foodMirror.children {
+                if name == indicatorName {
+                    let valueToSum = value as! Double
+                    print(valueToSum)
+                    totalValue += valueToSum
+                    print(totalValue)
+                }
+            }
+        }
+        return totalValue
     }
     
 }

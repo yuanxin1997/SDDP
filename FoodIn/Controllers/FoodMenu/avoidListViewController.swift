@@ -8,28 +8,41 @@
 
 import UIKit
 import XLPagerTabStrip
+import KeychainSwift
 
 class avoidListViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, IndicatorInfoProvider {
-    
     
     var avoidFoodNameArray:[Food] = []
     var filteredFoodNameArray:[Food] = []
     let extractedTextArray = ExtractedTextArray.sharedInstance
-    
+    let extractedAvoidArray = ExtractedAvoidArray.sharedInstance
+    var pService = PersonService()
+    var arrayOfNutritionalOverLimit:[String] = []
+    var safe:Int = 0
+    var arrayofavoid:[Int] = []
+    var datatec:Int = 0
+    var timer: Timer!
     @IBOutlet weak var tableView: UITableView!
     override func viewDidLoad() {
         super.viewDidLoad()
         setupTableView()
         filteredFoodNameArray = extractedTextArray.objectArray!
+        avoidFoodNameArray = extractedAvoidArray.objectArray!
         
+        //        for food in filteredFoodNameArray {
+        //            if food.sodium > 1500 {
+        //                avoidFoodNameArray.append(food)
+        //            }
+        //        }
         
-        for food in filteredFoodNameArray {
-            if food.sodium > 1500 {
-                avoidFoodNameArray.append(food)
-            }
-        }
+        print("THIS IS THE AVOID ZONE")
+        print(avoidFoodNameArray)
+        
         
     }
+    
+    
+    
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -54,6 +67,7 @@ class avoidListViewController: UIViewController, UITableViewDataSource, UITableV
         return cell
     }
     
+    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 80
     }
@@ -68,5 +82,25 @@ class avoidListViewController: UIViewController, UITableViewDataSource, UITableV
     func indicatorInfo(for pagerTabStripController: PagerTabStripViewController) -> IndicatorInfo {
         return IndicatorInfo(title: "Avoid")
     }
-
+    
+    
+    
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        // Get the new view controller using segue.destinationViewController.
+        // Pass the selected object to the new view controller.
+        if segue.identifier == "AvoidSegue"
+        {
+            let fdc = segue.destination as! ResultAvoidViewController
+            if tableView.indexPathForSelectedRow != nil
+            {
+                let foodName = avoidFoodNameArray[tableView.indexPathForSelectedRow!.row]
+                fdc.selectedFood = foodName
+            }
+        }
+        
+    }
+    
 }
+

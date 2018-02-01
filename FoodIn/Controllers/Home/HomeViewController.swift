@@ -24,6 +24,9 @@ class HomeViewController: UIViewController {
     var centerOrigin: CGPoint!
     var timer = Timer()
     
+    let pService = PersonService()
+    let fService = FoodService()
+    
     @IBAction func unwindToHome(segue:UIStoryboardSegue) { }
     
     override func viewDidLoad() {
@@ -51,6 +54,8 @@ class HomeViewController: UIViewController {
             print("printing \(element.name) ")
         }
         
+        
+        getPersonFoodLog()
 
 //                KeychainSwift().clear()
 //                MyInfoService().clearMyInfo()
@@ -170,6 +175,31 @@ class HomeViewController: UIViewController {
         }) { (true) in
             self.performSegue(withIdentifier: "showCamera", sender: self)
         }
+    }
+    
+    func getPersonFoodLog() {
+        
+        
+        guard let id = Int(KeychainSwift().get("id")!) else { return }
+        print("my id is \(id)")
+        let to = UInt64(floor(Date().timeIntervalSince1970))
+        let from = UInt64(floor(Date().startOfDay.timeIntervalSince1970))
+        print(to)
+        print(from)
+        
+        let myIndicator = MyIndicatorService().getMyIndicator()
+        for i in myIndicator {
+            print(i.name)
+        }
+
+        pService.getFoodLog(personId: id, from: from, to: to, completion: { (result: [Food]?) in
+            if let result = result {
+                for i in result {
+                    print(i.sodium)
+                }
+                print("\(result.count) results today")
+            }
+        })
     }
     
 }
