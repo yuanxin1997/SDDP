@@ -13,6 +13,7 @@
 		1EE930002022C3400011FFC0 /* FoodLogDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EE92FFF2022C3400011FFC0 /* FoodLogDate.swift */; };
 		1EE930032022C3540011FFC0 /* StatisticsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EE930022022C3540011FFC0 /* StatisticsViewController.swift */; };
 		1EE930052022C3E60011FFC0 /* FoodLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EE930042022C3E60011FFC0 /* FoodLog.swift */; };
+		1EE930092022CC090011FFC0 /* SingleDayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EE930082022CC090011FFC0 /* SingleDayViewController.swift */; };
 		320270B6AD059333954A5E77 /* Pods_FoodInUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DE6276EEC363FA3C9C6980F /* Pods_FoodInUITests.framework */; };
 		6E11142E1FF94E9D00F657AB /* UIViewController+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E11142D1FF94E9D00F657AB /* UIViewController+.swift */; };
 		6E16DFF21FF213DA00301322 /* ImageActivityIndicatorController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E16DFF11FF213DA00301322 /* ImageActivityIndicatorController.swift */; };
@@ -123,6 +124,7 @@
 		1EE92FFF2022C3400011FFC0 /* FoodLogDate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FoodLogDate.swift; sourceTree = "<group>"; };
 		1EE930022022C3540011FFC0 /* StatisticsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatisticsViewController.swift; sourceTree = "<group>"; };
 		1EE930042022C3E60011FFC0 /* FoodLog.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FoodLog.swift; sourceTree = "<group>"; };
+		1EE930082022CC090011FFC0 /* SingleDayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleDayViewController.swift; sourceTree = "<group>"; };
 		6C5D2AA64CF473EA53B9A117 /* Pods-FoodInUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FoodInUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FoodInUITests/Pods-FoodInUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		6E11142D1FF94E9D00F657AB /* UIViewController+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+.swift"; sourceTree = "<group>"; };
 		6E16DFF11FF213DA00301322 /* ImageActivityIndicatorController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageActivityIndicatorController.swift; sourceTree = "<group>"; };
@@ -270,6 +272,7 @@
 			isa = PBXGroup;
 			children = (
 				1EE930022022C3540011FFC0 /* StatisticsViewController.swift */,
+				1EE930082022CC090011FFC0 /* SingleDayViewController.swift */,
 			);
 			path = Statistics;
 			sourceTree = "<group>";
@@ -1084,6 +1087,7 @@
 				6E555D5C1FF6B32D00141FEC /* Food.swift in Sources */,
 				6E39510C2004EECB00C165C4 /* Fonts.swift in Sources */,
 				6E2C3C6520020ED5009B0D13 /* MyIndicatorService.swift in Sources */,
+				1EE930092022CC090011FFC0 /* SingleDayViewController.swift in Sources */,
 				6EB1F6EC2019E0F60018A573 /* APIkey.swift in Sources */,
 				6E2C3C6F20021191009B0D13 /* MyInfo+CoreDataProperties.swift in Sources */,
 				6ECE2D461FEE0217001B33F8 /* HomeViewController.swift in Sources */,
