@@ -17,8 +17,8 @@ class LabelNutrientViewController: UIViewController, IndicatorInfoProvider {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // Listen to notification
-        NotificationCenter.default.addObserver(self, selector: #selector(setupPieChart), name: Notification.Name(NotificationKey.foodData), object: nil)
+        // Setup
+        setupPieChart()
     }
     
     override func didReceiveMemoryWarning() {

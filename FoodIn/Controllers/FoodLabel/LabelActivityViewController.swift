@@ -49,7 +49,10 @@ class LabelActivityIndicatorController: UIViewController {
                                 "sodium": 0.0,
                                 "potassium": 0.0,
                                 "calcium": 0.0,
-                                "iron": 0.0
+                                "iron": 0.0,
+                                "saturated": 0.0,
+                                "trans": 0.0
+                                
                             ]
                             
                             for (key, value) in data {
@@ -59,6 +62,15 @@ class LabelActivityIndicatorController: UIViewController {
                                 if matches.count > 0 {
                                     let amount = Double(matches[0][2].trimmingCharacters(in: .whitespacesAndNewlines))
                                     data[key] = amount != nil ? amount : 0.0
+                                }
+                            }
+                            
+                            if let fat = data["fat"], fat == 0 {
+                                if let sat = data["saturated"] {
+                                    data["fat"]! += sat
+                                }
+                                if let trans = data["saturated"] {
+                                    data["fat"]! += trans
                                 }
                             }
                             
@@ -80,11 +92,11 @@ class LabelActivityIndicatorController: UIViewController {
         do {
             let regex = try NSRegularExpression(pattern: regex)
             let results = regex.matches(in: text,
-                                        range: NSRange(text.startIndex..., in: text))
+                                        range: NSMakeRange(0, text.count))
             let nsStr = NSString(string: text)
             return results.map {
                 var matches: [String] = []
-                for i in 0...$0.numberOfRanges - 1 {
+                for i in 0...2 {
                     matches.append(nsStr.substring(with: $0.range(at: i)))
                 }
                 return matches

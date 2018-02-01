@@ -59,11 +59,11 @@ class LabelVitaminViewController: UIViewController, IndicatorInfoProvider, UICir
         // IU of vitamin A -> IU =  3.33 * mcg
         // 5000 IU of vitamin A = 100% daily value
         let IUofVitaminA = 3.33 * mcgOfvitaminA
-        let dvOfVitaminA = CGFloat((IUofVitaminA/5000).roundTo(places: 2))*100
+        let dvOfVitaminA = CGFloat(mcgOfvitaminA.roundTo(places: 2))
         
         // vitaminC value received from database is in (mg)
         // 60 mg of vitamin C = 100% daily value
-        let dvOfVitaminC = CGFloat((mcgOfvitaminC/60).roundTo(places: 2))*100
+        let dvOfVitaminC = CGFloat(mcgOfvitaminC.roundTo(places: 2))
         
         // Ring animation
         ringVitaminA.animationStyle = kCAMediaTimingFunctionLinear
