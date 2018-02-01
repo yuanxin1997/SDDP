@@ -18,7 +18,7 @@ class StatisticsViewController: UIViewController, UIGestureRecognizerDelegate {
     @IBOutlet weak var calendar: FSCalendar!
     @IBOutlet weak var radarChart: RadarChartView!
     
-    var foodLogs: [FoodLog]?
+    static var foodLogs: [FoodLog]?
     var pService = PersonService()
     var selectedDates: [Date] = []
     
@@ -164,7 +164,8 @@ class StatisticsViewController: UIViewController, UIGestureRecognizerDelegate {
         pService.getFoodLog(personId: id, from: from, to: to, completion: { (result: [FoodLog]?) in
             DispatchQueue.main.async {
                 if let result = result {
-                    self.foodLogs = result
+                    StatisticsViewController.foodLogs = result
+                    NotificationCenter.default.post(name: Notification.Name(NotificationKey.foodLogs), object: nil)
                     self.updateGraphs()
 //                    self.updateRadarChart()
                 }
@@ -232,7 +233,7 @@ class StatisticsViewController: UIViewController, UIGestureRecognizerDelegate {
     }
     
     func updateRadarChart() {
-        guard let foodLogs = self.foodLogs else { return }
+        guard let foodLogs = StatisticsViewController.foodLogs else { return }
         let logs = sumNutrition(foodLogs)
         let rec = getRecommended()
         let data = RadarChartData(dataSets: [
@@ -322,7 +323,7 @@ extension StatisticsViewController: FSCalendarDataSource, FSCalendarDelegate {
         
         if (self.selectedDates.count == 0) {
 //            fetchData(from: 0, to: 0)
-            self.foodLogs = []
+            StatisticsViewController.foodLogs = []
         } else {
             // Sot by ascending
             let selectedDates = self.selectedDates.sorted(by: { $0 < $1})

@@ -2485,10 +2485,10 @@
             </objects>
             <point key="canvasLocation" x="-452.17391304347831" y="1515.4891304347827"/>
         </scene>
-        <!--View Controller-->
+        <!--Daily View Controller-->
         <scene sceneID="hue-ec-Gza">
             <objects>
-                <viewController storyboardIdentifier="DailyViewController" id="Nxs-xq-Ot9" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="DailyViewController" id="Nxs-xq-Ot9" customClass="DailyViewController" customModule="FoodIn" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8cZ-3f-eMh">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="1000"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -2501,7 +2501,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cEV-Dx-vtd">
-                                <rect key="frame" x="174" y="227" width="42" height="21"/>
+                                <rect key="frame" x="97" y="107" width="42" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
@@ -2514,15 +2514,27 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="7M3-13-uxV">
+                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </stackView>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Snp-o5-1qM" customClass="PieChartView" customModule="Charts">
+                                <rect key="frame" x="20" y="159" width="374" height="254"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <viewLayoutGuide key="safeArea" id="Qge-wv-Dfv"/>
                     </view>
                     <size key="freeformSize" width="414" height="1000"/>
+                    <connections>
+                        <outlet property="pieChart" destination="Snp-o5-1qM" id="X7A-ED-t4V"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZqF-AK-gpr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-822" y="2485"/>
+            <point key="canvasLocation" x="-823.1884057971015" y="2484.7826086956525"/>
         </scene>
     </scenes>
     <resources>
