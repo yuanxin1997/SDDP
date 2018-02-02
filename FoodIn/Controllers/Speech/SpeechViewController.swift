@@ -536,7 +536,6 @@ class SpeechViewController: UIViewController, AVAudioPlayerDelegate, SpeechServi
                     }
                     var finalText = ""
                     if self.arrayOfNutritionalOverLimit.count > 0 {
-                        print("printing hereeeeeeeee\(self.arrayOfNutritionalOverLimit)")
                         let text = self.arrayOfNutritionalOverLimit.reduce("", { $0 == "" ? $1 : $0 + ", " + $1 })
                         finalText = "You should avoid eating \(value), as the \(text) level has hit your limit"
                     } else {
