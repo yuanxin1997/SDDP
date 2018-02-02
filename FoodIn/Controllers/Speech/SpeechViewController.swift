@@ -140,6 +140,9 @@ class SpeechViewController: UIViewController, AVAudioPlayerDelegate, SpeechServi
                 // Holding...
                 isHolding = true
                 
+                // Deactivate existing audio
+                deactivateAudio()
+                
                 // Play sound and vibration
                 playSound(name: "hold")
                 AudioServicesPlayAlertSound(kSystemSoundID_Vibrate)
@@ -245,7 +248,19 @@ class SpeechViewController: UIViewController, AVAudioPlayerDelegate, SpeechServi
         }
     }
     
+    func deactivateAudio() {
+        let audioSession = AVAudioSession.sharedInstance()
+        do {
+            try audioSession.setCategory(AVAudioSessionCategoryPlayback)
+            try audioSession.setMode(AVAudioSessionModeDefault)
+            try audioSession.setActive(false, with: .notifyOthersOnDeactivation)
+        } catch {
+            print("audioSession properties weren't set because of an error.")
+        }
+    }
+    
     func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool) {
+        player.stop()
         if isHolding {
             do {
                 try self.speechService.startRecording()
@@ -297,6 +312,7 @@ class SpeechViewController: UIViewController, AVAudioPlayerDelegate, SpeechServi
             callBackSpeech = false
             executeTextToSpeechQueue()
         }
+        
     }
     
     func speak(text: String) {
