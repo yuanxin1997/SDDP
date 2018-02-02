@@ -155,9 +155,9 @@ class SpeechViewController: UIViewController, AVAudioPlayerDelegate, SpeechServi
                 // Get a queue session ID to start new speech session
                 queueSessionID = Int(Date().timeIntervalSince1970)
                 
-                // Start listening
+                // Start listening and reset queue to default
                 messageQueue = ["I'm listening..."]
-                arrayOfNutritionalOverLimit = []
+                textToSpeechQueue = []
                 let cell = getTopLabelCell()
                 cell.lblMessage.textAlignment = .left
                 table.reloadData()
@@ -512,6 +512,9 @@ class SpeechViewController: UIViewController, AVAudioPlayerDelegate, SpeechServi
             DispatchQueue.main.async {
                 if let result = result {
                     
+                    // Clear array
+                    self.arrayOfNutritionalOverLimit = []
+                    
                     // Get person illness indicator
                     let myIndicator = MyIndicatorService().getMyIndicator()
                     
@@ -533,6 +536,7 @@ class SpeechViewController: UIViewController, AVAudioPlayerDelegate, SpeechServi
                     }
                     var finalText = ""
                     if self.arrayOfNutritionalOverLimit.count > 0 {
+                        print("printing hereeeeeeeee\(self.arrayOfNutritionalOverLimit)")
                         let text = self.arrayOfNutritionalOverLimit.reduce("", { $0 == "" ? $1 : $0 + ", " + $1 })
                         finalText = "You should avoid eating \(value), as the \(text) level has hit your limit"
                     } else {
