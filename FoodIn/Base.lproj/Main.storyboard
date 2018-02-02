@@ -3162,9 +3162,9 @@
                         <viewLayoutGuide key="safeArea" id="SPY-zv-sah"/>
                     </view>
                     <connections>
-                        <outlet property="bubbleOne" destination="bc7-Ds-rWa" id="W2O-AU-WkG"/>
-                        <outlet property="bubbleThree" destination="zbF-03-CgL" id="twa-ml-SdM"/>
-                        <outlet property="bubbleTwo" destination="yyK-9b-5E0" id="9X2-Ba-zhV"/>
+                        <outlet property="bubbleOne" destination="zbF-03-CgL" id="5D5-dT-rEW"/>
+                        <outlet property="bubbleThree" destination="bc7-Ds-rWa" id="16s-zi-PnZ"/>
+                        <outlet property="bubbleTwo" destination="yyK-9b-5E0" id="aTq-ld-VVx"/>
                         <outlet property="labelOne" destination="YYG-BF-Fzr" id="PUh-zk-jXO"/>
                         <segue destination="gSI-BG-HqI" kind="show" identifier="showLabelResults" id="vV6-xh-E97"/>
                     </connections>

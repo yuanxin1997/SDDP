@@ -15,9 +15,8 @@ class LabelActivityIndicatorController: UIViewController {
     @IBOutlet weak var labelOne: UILabel!
     
     @IBOutlet weak var bubbleOne: UIImageView!
-    
-    @IBOutlet weak var bubbleThree: UIImageView!
     @IBOutlet weak var bubbleTwo: UIImageView!
+    @IBOutlet weak var bubbleThree: UIImageView!
     let snapshot = Snapshot.sharedInstance
     let extractedTextArray = ExtractedTextArray.sharedInstance
     
@@ -52,7 +51,6 @@ class LabelActivityIndicatorController: UIViewController {
                                 "iron": 0.0,
                                 "saturated": 0.0,
                                 "trans": 0.0
-                                
                             ]
                             
                             for (key, value) in data {
