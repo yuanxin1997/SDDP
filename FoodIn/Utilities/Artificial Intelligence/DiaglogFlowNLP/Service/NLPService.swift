@@ -12,7 +12,7 @@ import ApiAI
 
 class NLPService {
     
-    func sendMessage(text: String?, completion: @escaping (AIResponse?) -> Void) {
+    func sendMessage(text: String?, sessionID: Int, completion: @escaping (AIResponse?, Int) -> Void) {
         let request = ApiAI.shared().textRequest()
         
         if let text = text, text != "" {
@@ -21,7 +21,7 @@ class NLPService {
         
         request?.setMappedCompletionBlockSuccess({ (request, response) in
             let response = response as! AIResponse
-            completion(response)
+            completion(response, sessionID)
         }, failure: { (request, error) in
             print(error!)
         })

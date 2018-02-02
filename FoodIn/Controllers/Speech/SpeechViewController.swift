@@ -22,6 +22,7 @@ class SpeechViewController: UIViewController, AVAudioPlayerDelegate, SpeechServi
     var callBackSpeech = false
     var player: AVAudioPlayer?
     var isHolding = false
+    var queueSessionID: Int?
     var messageQueue: [String] = ["What food do you want me to inspect ?"]
     var textToSpeechQueue: [String] = []
     var arrayOfNutritionalOverLimit:[String] = []
@@ -151,6 +152,9 @@ class SpeechViewController: UIViewController, AVAudioPlayerDelegate, SpeechServi
                     self.hintLabel.alpha = 0
                 })
                 
+                // Get a queue session ID to start new speech session
+                queueSessionID = Int(Date().timeIntervalSince1970)
+                
                 // Start listening
                 messageQueue = ["I'm listening..."]
                 arrayOfNutritionalOverLimit = []
@@ -275,12 +279,12 @@ class SpeechViewController: UIViewController, AVAudioPlayerDelegate, SpeechServi
     func speechService(_ speechService: SpeechRecognitionService, didRecogniseText text: String) {
         
         // Send the text to dialogflow to understand the text
-        nlpService.sendMessage(text: text, completion: { (response: AIResponse?) in
+        nlpService.sendMessage(text: text, sessionID: queueSessionID!, completion: { (response: AIResponse?, sessionID: Int) in
             DispatchQueue.main.async {
                 if let response = response {
                     
                     // Pass to handler to handle the logic
-                    self.handleResponse(response: response)
+                    self.handleResponse(response: response, sessionID: sessionID)
                 }
             }
         })
@@ -305,7 +309,7 @@ class SpeechViewController: UIViewController, AVAudioPlayerDelegate, SpeechServi
         speechSynthesizer.speak(speechUtterance)
     }
     
-    func handleResponse(response: AIResponse) {
+    func handleResponse(response: AIResponse, sessionID: Int) {
         
         // Get text response
         guard let textResponse = response.result.fulfillment.speech else { return }
@@ -317,24 +321,24 @@ class SpeechViewController: UIViewController, AVAudioPlayerDelegate, SpeechServi
         guard let intent = response.result.action else { return }
         
         // Match intent to task
-        matchIntent(intent: intent, parameters: parameters, textResponse: textResponse)
+        matchIntent(intent: intent, parameters: parameters, textResponse: textResponse, sessionID: sessionID)
     }
     
-    func matchIntent(intent: String, parameters: [String: AIResponseParameter], textResponse: String) {
+    func matchIntent(intent: String, parameters: [String: AIResponseParameter], textResponse: String, sessionID: Int) {
         
         // Match intent to task
         if intent != "input.unknown" {
             switch intent {
             case "inspect.food":
-                inspectFoodAction(intent: intent, parameters: parameters, textResponse: textResponse)
+                inspectFoodAction(intent: intent, parameters: parameters, textResponse: textResponse, sessionID: sessionID)
             case "log.food":
-                logFoodAction(intent: intent, parameters: parameters, textResponse: textResponse)
+                logFoodAction(intent: intent, parameters: parameters, textResponse: textResponse, sessionID: sessionID)
             case "switch.theme":
-                switchThemeAction(intent: intent, parameters: parameters, textResponse: textResponse)
+                switchThemeAction(intent: intent, parameters: parameters, textResponse: textResponse, sessionID: sessionID)
             default:
                 
                 // If no task is match add default response to queue
-                addToQueue(content: textResponse)
+                addToQueue(content: textResponse, sessionID: sessionID)
                 
                 // Run the queue
                 executeTextToSpeechQueue()
@@ -342,14 +346,14 @@ class SpeechViewController: UIViewController, AVAudioPlayerDelegate, SpeechServi
         } else {
             
             // If no task is match add default response to queue
-            addToQueue(content: textResponse)
+            addToQueue(content: textResponse, sessionID: sessionID)
             
             // Run the queue
             executeTextToSpeechQueue()
         }
     }
     
-    func inspectFoodAction(intent: String, parameters: [String: AIResponseParameter], textResponse: String) {
+    func inspectFoodAction(intent: String, parameters: [String: AIResponseParameter], textResponse: String, sessionID: Int) {
         
         // Get the value from parameters
         guard let value = parameters["food"]?.stringValue else { return }
@@ -358,11 +362,11 @@ class SpeechViewController: UIViewController, AVAudioPlayerDelegate, SpeechServi
         if value == "" {
             
             // Add response to queue
-            addToQueue(content: "Sorry, I didn't get that.")
+            addToQueue(content: "Sorry, I didn't get that.", sessionID: sessionID)
         } else {
             
             // Add response to queue
-            addToQueue(content: textResponse)
+            addToQueue(content: textResponse, sessionID: sessionID)
             
             // Get the selected food details from web service
             fService.getFoodDetails(foodName: value, completion: { (result: Food?) in
@@ -370,7 +374,7 @@ class SpeechViewController: UIViewController, AVAudioPlayerDelegate, SpeechServi
                     if let result = result {
                         
                         /// Call internal methods to handle
-                        self.inspectFood(food: result, value: value)
+                        self.inspectFood(food: result, value: value, sessionID: sessionID)
                     } else {
                         print("Empty or error")
                     }
@@ -382,18 +386,18 @@ class SpeechViewController: UIViewController, AVAudioPlayerDelegate, SpeechServi
         executeTextToSpeechQueue()
     }
     
-    func logFoodAction(intent: String, parameters: [String: AIResponseParameter], textResponse: String) {
+    func logFoodAction(intent: String, parameters: [String: AIResponseParameter], textResponse: String, sessionID: Int) {
         
         // Get the value from parameters
         guard let value = parameters["food"]?.stringValue else { return }
         
         // Check if value is empty
         if value == "" {
-            addToQueue(content: "Sorry, I didn't get that.")
+            addToQueue(content: "Sorry, I didn't get that.", sessionID: sessionID)
         } else {
             
             // Run the queue
-            addToQueue(content: textResponse)
+            addToQueue(content: textResponse, sessionID: sessionID)
             
             // Get person ID from keychain
             guard let id = Int(KeychainSwift().get("id")!) else { return }
@@ -415,7 +419,7 @@ class SpeechViewController: UIViewController, AVAudioPlayerDelegate, SpeechServi
                         }
                         
                         // Add response to queue
-                        self.addToQueue(content: finalText)
+                        self.addToQueue(content: finalText, sessionID: sessionID)
                         
                         // Identify a callback to be return
                         self.callBackSpeech = true
@@ -430,21 +434,21 @@ class SpeechViewController: UIViewController, AVAudioPlayerDelegate, SpeechServi
         executeTextToSpeechQueue()
     }
     
-    func switchThemeAction(intent: String, parameters: [String: AIResponseParameter], textResponse: String) {
+    func switchThemeAction(intent: String, parameters: [String: AIResponseParameter], textResponse: String, sessionID: Int) {
         
         // Get value from parameters
         guard let value = parameters["theme"]?.stringValue else { return }
         
         // Check if value is empty
         if value == "" {
-            addToQueue(content: "Sorry, I didn't get that.")
+            addToQueue(content: "Sorry, I didn't get that.", sessionID: sessionID)
         } else {
             
             // Update the user default
             UserDefaults.standard.set(value, forKey: "VoiceUITheme")
             
             // Add response to queue
-            addToQueue(content: textResponse)
+            addToQueue(content: textResponse, sessionID: sessionID)
         }
         
         // Run the queue
@@ -454,13 +458,16 @@ class SpeechViewController: UIViewController, AVAudioPlayerDelegate, SpeechServi
         updateVoiceUITheme()
     }
     
-    func addToQueue(content: String) {
+    func addToQueue(content: String, sessionID: Int) {
         
-        // Add to message queue
-        messageQueue.append(content)
-        
-        // Add to text to speech queue
-        textToSpeechQueue.append(content)
+        // Check if is belong to the latest/new session
+        if sessionID == queueSessionID! {
+            // Add to message queue
+            messageQueue.append(content)
+            
+            // Add to text to speech queue
+            textToSpeechQueue.append(content)
+        }
     }
     
     func executeTextToSpeechQueue() {
@@ -489,7 +496,7 @@ class SpeechViewController: UIViewController, AVAudioPlayerDelegate, SpeechServi
         return cell
     }
     
-    func inspectFood(food: Food, value: String) {
+    func inspectFood(food: Food, value: String, sessionID: Int) {
         
         // Get the person ID from keychain
         guard let id = Int(KeychainSwift().get("id")!) else { return }
@@ -533,7 +540,7 @@ class SpeechViewController: UIViewController, AVAudioPlayerDelegate, SpeechServi
                     }
                     
                     // Add response to queue
-                    self.addToQueue(content: finalText)
+                    self.addToQueue(content: finalText, sessionID: sessionID)
                     
                     // Identifiy that there's a call back speech
                     self.callBackSpeech = true
