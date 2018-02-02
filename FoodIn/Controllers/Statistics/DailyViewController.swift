@@ -26,9 +26,14 @@ class DailyViewController: UIViewController {
     
     // Perform action when notification is received
     @objc func setupPieChart() {
-        if let foodLog = StatisticsViewController.foodLogs, foodLog.count > 0 {
-            let food = foodLog[0]
-            self.pieChartUpdate(calories: food.calories, carbs: food.carbohydrate, protein: food.protein, fats: food.fat)
+        if let foodLog = StatisticsViewController.foodLogs {
+            if  (foodLog.count < 1) {
+                self.pieChart.isHidden = true
+            } else {
+                let food = foodLog[0]
+                self.pieChartUpdate(calories: food.calories, carbs: food.carbohydrate, protein: food.protein, fats: food.fat)
+                self.pieChart.isHidden = false
+            }
         }
     }
     
