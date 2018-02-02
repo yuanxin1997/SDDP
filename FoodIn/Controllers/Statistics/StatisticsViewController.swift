@@ -133,6 +133,11 @@ class StatisticsViewController: UIViewController, UIGestureRecognizerDelegate {
         radarChart.notifyDataSetChanged()
     }
     
+    override func viewDidDisappear(_ animated: Bool) {
+        // Customize Navigation bar and Status bar
+        setupCustomNavStatusBar(setting: [.defaultNavTintBar])
+    }
+    
     func setupCalendar() {
         self.calendar.allowsMultipleSelection = true
         

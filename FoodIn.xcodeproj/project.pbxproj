@@ -680,17 +680,17 @@
 		6ECE2D3F1FEE00A6001B33F8 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				844373762023AD1A009854AC /* FoodLabel */,
-				1EE930012022C34A0011FFC0 /* Statistics */,
 				6E39511820058B5200C165C4 /* Landing */,
 				6EEC2E421FFE3BCD003E89EC /* SignIn */,
 				6EB52BB81FFDF1C400FC1AF4 /* Register */,
 				6E39511620058A9F00C165C4 /* Home */,
 				6E2C3C552001EBDE009B0D13 /* Profile */,
+				1EE930012022C34A0011FFC0 /* Statistics */,
 				6E2262D420140BBF00BF252D /* Speech */,
 				6E39511520058A8700C165C4 /* Snapshot */,
 				6E39511720058AD000C165C4 /* FoodImage */,
 				6EB1F6DF2019CFD90018A573 /* FoodMenu */,
+				844373762023AD1A009854AC /* FoodLabel */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -1348,12 +1348,12 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = UV3SCVDSRX;
+				DEVELOPMENT_TEAM = L4GPPSD6LF;
 				ENABLE_BITCODE = YES;
 				INFOPLIST_FILE = FoodIn/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.ryc.FoodIn;
+				PRODUCT_BUNDLE_IDENTIFIER = com.yuanxin.FoodIn;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.0;
@@ -1368,12 +1368,12 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = UV3SCVDSRX;
+				DEVELOPMENT_TEAM = L4GPPSD6LF;
 				ENABLE_BITCODE = YES;
 				INFOPLIST_FILE = FoodIn/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.ryc.FoodIn;
+				PRODUCT_BUNDLE_IDENTIFIER = com.yuanxin.FoodIn;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.0;

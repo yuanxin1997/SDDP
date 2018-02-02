@@ -21,6 +21,7 @@ public enum navSettings {
     case greyNavTint
     case whiteNavTint
     case pinkNavTintBar
+    case defaultNavTintBar
 }
 
 extension UIViewController {
@@ -78,13 +79,17 @@ extension UIViewController {
         case [.showNavBar, .whiteNavTitle]:
             navigationController?.setNavigationBarHidden(false, animated: false)
             navigationController?.navigationBar.tintColor = Colors.white
-//            navigationController?.navigationBar.setBackgroundImage(UIImage(color: Colors.pink), for: .default)
             navigationController?.navigationBar.titleTextAttributes = [ NSAttributedStringKey.foregroundColor: Colors.white, NSAttributedStringKey.font: Fonts.Regular.of(size: 20)]
         case [.showNavBar, .whiteNavTitle, .pinkNavTintBar]:
             navigationController?.setNavigationBarHidden(false, animated: false)
             navigationController?.navigationBar.tintColor = Colors.white
             navigationController?.navigationBar.barTintColor = Colors.pink
+            navigationController?.navigationBar.isTranslucent = false
+            navigationController?.navigationBar.setBackgroundImage(UIImage(color: Colors.pink), for: .default)
             navigationController?.navigationBar.titleTextAttributes = [ NSAttributedStringKey.foregroundColor: Colors.white, NSAttributedStringKey.font: Fonts.Regular.of(size: 20)]
+        case [.defaultNavTintBar]:
+            navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
+            navigationController?.navigationBar.isTranslucent = true
         default:
             UIApplication.shared.isStatusBarHidden = false
             UIApplication.shared.statusBarStyle = .default

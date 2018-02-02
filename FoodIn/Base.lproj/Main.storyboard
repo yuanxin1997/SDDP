@@ -739,6 +739,7 @@
                                         </state>
                                         <connections>
                                             <action selector="logFood:" destination="VtW-yd-fuS" eventType="touchUpInside" id="aps-YK-uaI"/>
+                                            <segue destination="IMb-Hi-Tkp" kind="unwind" unwindAction="unwindToHomeWithSegue:" id="ba2-6x-9FY"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -2444,13 +2445,6 @@
                                     <constraint firstAttribute="height" constant="335" id="JfN-Oc-9Lq"/>
                                 </constraints>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mE0-Ck-mJ3">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="68"/>
-                                <color key="backgroundColor" red="0.94117647059999998" green="0.094117647060000004" blue="0.61568627450000002" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="68" id="cit-Gl-AbI"/>
-                                </constraints>
-                            </view>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="o2b-PT-sR2">
                                 <rect key="frame" x="0.0" y="399" width="414" height="337"/>
                                 <subviews>
@@ -2474,16 +2468,11 @@
                         <constraints>
                             <constraint firstAttribute="bottom" secondItem="o2b-PT-sR2" secondAttribute="bottom" id="HeM-uj-KwH"/>
                             <constraint firstItem="DPw-ll-hHY" firstAttribute="top" secondItem="8Wf-XI-2UH" secondAttribute="top" id="JQm-Lt-Y9f"/>
-                            <constraint firstItem="o2b-PT-sR2" firstAttribute="leading" secondItem="mE0-Ck-mJ3" secondAttribute="leading" id="MOB-E9-YT8"/>
-                            <constraint firstItem="o2b-PT-sR2" firstAttribute="trailing" secondItem="mE0-Ck-mJ3" secondAttribute="trailing" id="YBw-HQ-6Xk"/>
-                            <constraint firstItem="mE0-Ck-mJ3" firstAttribute="trailing" secondItem="8Wf-XI-2UH" secondAttribute="trailing" id="ao5-xf-kuf"/>
                             <constraint firstItem="o2b-PT-sR2" firstAttribute="leading" secondItem="8Wf-XI-2UH" secondAttribute="leading" id="dFe-nK-Tw6"/>
                             <constraint firstItem="o2b-PT-sR2" firstAttribute="top" secondItem="DPw-ll-hHY" secondAttribute="bottom" id="gpi-Vt-rB7"/>
                             <constraint firstItem="DPw-ll-hHY" firstAttribute="trailing" secondItem="8Wf-XI-2UH" secondAttribute="trailing" id="j75-9H-J1O"/>
-                            <constraint firstItem="mE0-Ck-mJ3" firstAttribute="leading" secondItem="8Wf-XI-2UH" secondAttribute="leading" id="jSP-hl-xj5"/>
                             <constraint firstItem="o2b-PT-sR2" firstAttribute="trailing" secondItem="8Wf-XI-2UH" secondAttribute="trailing" id="pdM-Lx-5hH"/>
                             <constraint firstItem="DPw-ll-hHY" firstAttribute="leading" secondItem="8Wf-XI-2UH" secondAttribute="leading" id="u0U-d7-J22"/>
-                            <constraint firstItem="mE0-Ck-mJ3" firstAttribute="top" secondItem="ii0-rg-cf1" secondAttribute="top" id="wfF-Wv-097"/>
                             <constraint firstItem="P2m-B5-dpV" firstAttribute="width" secondItem="ii0-rg-cf1" secondAttribute="width" id="xLi-36-MbR"/>
                             <constraint firstItem="8Wf-XI-2UH" firstAttribute="bottom" secondItem="o2b-PT-sR2" secondAttribute="bottom" id="zG3-e8-1VG"/>
                         </constraints>
@@ -3688,6 +3677,7 @@
                                         </state>
                                         <connections>
                                             <action selector="logFood:" destination="gSI-BG-HqI" eventType="touchUpInside" id="uk1-X2-V5c"/>
+                                            <segue destination="Dmj-Gh-CPE" kind="unwind" unwindAction="unwindToHomeWithSegue:" id="zoU-85-Aq5"/>
                                         </connections>
                                     </button>
                                 </subviews>
