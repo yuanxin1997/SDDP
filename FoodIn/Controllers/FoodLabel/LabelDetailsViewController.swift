@@ -38,7 +38,9 @@ class LabelDetailsController: ButtonBarPagerTabStripViewController, NVActivityIn
         self.navigationItem.title = "Food Label"
         
         // Display image
-        foodImage.image = snapshot.image
+        if let image = snapshot.image {
+            foodImage.image = image
+        }
         
         // Customize Navigation bar and Status bar
         setupCustomNavStatusBar(setting: [.whiteStatusBar, .whiteNavTitle, .whiteNavTint])

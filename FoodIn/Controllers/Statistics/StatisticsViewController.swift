@@ -95,13 +95,9 @@ class StatisticsViewController: UIViewController, UIGestureRecognizerDelegate {
         // Setup calendar styling
         setupCalendar()
         
-        // Select today
-        self.calendar.select(Date())
-        guard let endDay = Date().endOfDay else { return }
-        let to = UInt64(floor(endDay.timeIntervalSince1970))
-        let from = UInt64(floor(Date().startOfDay.timeIntervalSince1970))
-        fetchData(from: from, to: to)
-        
+//        // Select today
+//        self.calendar.select(Date())
+//        calendarUpdate()
         // Setup radar chart
 //        setupRadarChart()
     }

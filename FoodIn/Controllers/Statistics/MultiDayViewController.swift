@@ -9,7 +9,7 @@
 import UIKit
 import Charts
 
-class DailyViewController: UIViewController {
+class MultiDayViewController: UIViewController {
     @IBOutlet weak var pieChart: PieChartView!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var barChart: BarChartView!
@@ -17,7 +17,7 @@ class DailyViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.tableView.delegate = self
+//        self.tableView.delegate = self
         
         let xaxis = barChart.xAxis
         xaxis.drawGridLinesEnabled = true
@@ -48,14 +48,14 @@ class DailyViewController: UIViewController {
     // Perform action when notification is received
     @objc func setupView() {
         if let foodLog = StatisticsViewController.foodLogs {
-            self.tableView.reloadData()
-            self.tableView.delegate = self
+//            self.tableView.reloadData()
+//            self.tableView.delegate = self
             if  (foodLog.count < 1) {
-//                self.pieChart.isHidden = true
+                //                self.pieChart.isHidden = true
             } else {
                 let food = foodLog[0]
-                self.pieChartUpdate(calories: food.calories, carbs: food.carbohydrate, protein: food.protein, fats: food.fat)
-//                self.pieChart.isHidden = false
+//                self.pieChartUpdate(calories: food.calories, carbs: food.carbohydrate, protein: food.protein, fats: food.fat)
+                //                self.pieChart.isHidden = false
                 
                 let groupSpace = 0.08
                 let barSpace = 0.03
@@ -82,9 +82,9 @@ class DailyViewController: UIViewController {
                 
                 let chartDataSet = BarChartDataSet(values: dataEntries, label: "Consumed")
                 let chartDataSet1 = BarChartDataSet(values: dataEntries1, label: "Recommended")
-
+                
                 let dataSets: [BarChartDataSet] = [chartDataSet,chartDataSet1]
-//                chartDataSet.colors = [UIColor(red: 230/255, green: 126/255, blue: 34/255, alpha: 1)]
+                //                chartDataSet.colors = [UIColor(red: 230/255, green: 126/255, blue: 34/255, alpha: 1)]
                 chartDataSet.colors = [UIColor(red: 135/255.0, green: 211/255.0, blue: 124/255.0, alpha: 1.0)]
                 chartDataSet1.colors = [UIColor(red: 129/255.0, green: 207/255.0, blue: 224/255.0, alpha: 1.0)]
                 
@@ -112,20 +112,20 @@ class DailyViewController: UIViewController {
                 let gg = chartData.groupWidth(groupSpace: groupSpace, barSpace: barSpace)
                 print("Groupspace: \(gg)")
                 barChart.xAxis.axisMaximum = 0.0 + gg * 9
-
+                
                 chartData.groupBars(fromX: 0.0, groupSpace: groupSpace, barSpace: barSpace)
                 //chartData.groupWidth(groupSpace: groupSpace, barSpace: barSpace)
                 barChart.notifyDataSetChanged()
                 
                 barChart.data = chartData
-//
-//                data.setValueFormatter(DefaultValueFormatter(formatter: pFormatter))
-//                data.setValueFont(Fonts.Regular.of(size: 10))
+                //
+                //                data.setValueFormatter(DefaultValueFormatter(formatter: pFormatter))
+                //                data.setValueFont(Fonts.Regular.of(size: 10))
                 self.barChart.notifyDataSetChanged()
                 
                 //chart animation
                 barChart.animate(xAxisDuration: 1.5, yAxisDuration: 1.5, easingOption: .linear)
-
+                
             }
         }
     }
@@ -246,17 +246,17 @@ class DailyViewController: UIViewController {
 
 
 
-extension DailyViewController: UITableViewDelegate, UITableViewDataSource {
+extension MultiDayViewController: UITableViewDelegate, UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
-
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         guard let logs = StatisticsViewController.foodLogs else { return 0 }
         print("count \(logs.count)")
         return logs.count
     }
-
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
         guard let logs = StatisticsViewController.foodLogs else { return cell }
@@ -264,29 +264,9 @@ extension DailyViewController: UITableViewDelegate, UITableViewDataSource {
         cell.textLabel?.text = log.name
         return cell
     }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard let logs = StatisticsViewController.foodLogs else { return }
-//        let controller = LabelDetailsController()
-//        let log = logs[indexPath.row]
-//        LabelResults.sharedInstance.data = [
-//            "calories": log.calories,
-//            "carbohydrate": log.carbohydrate,
-//            "fat": log.fat,
-//            "protein": log.protein,
-//            "sodium": log.sodium,
-//            "potassium": log.potassium,
-//            "calcium": log.calcium,
-//            "iron": log.iron,
-//            "vitamin a": log.vitaminA,
-//            "vitamin c": log.vitaminC
-//        ]
-//        FoodDetailsController.selectedFood = Food(id: log.id, name: log.name, calories: log.calories, carbohydrate: log.carbohydrate, fat: log.fat, protein: log.protein, vitaminA: log.vitaminA, vitaminC: log.vitaminC, sodium: log.sodium, potassium: log.potassium, calcium: log.calcium, iron: log.iron)
-//        self.navigationController?.pushViewController(controller, animated: true)
-    }
 }
 
-extension DailyViewController: IAxisValueFormatter {
+extension MultiDayViewController: IAxisValueFormatter {
     func stringForValue(_ value: Double, axis: AxisBase?) -> String {
         var labels = [
             "Cal",
@@ -308,4 +288,5 @@ extension DailyViewController: IAxisValueFormatter {
         return label
     }
 }
+
 

@@ -10,10 +10,10 @@
 		021000FFC2622C890B6CEBF2 /* Pods_FoodIn.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D1C3AC9C444AB976CD0985A7 /* Pods_FoodIn.framework */; };
 		1E2F71532022C0980041432D /* NutritionMarkerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E2F71522022C0980041432D /* NutritionMarkerView.swift */; };
 		1E2F71552022C0BC0041432D /* NutritionMarkerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1E2F71542022C0BC0041432D /* NutritionMarkerView.xib */; };
+		1EA8C32220243CD000DA06B5 /* MultiDayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EA8C32120243CD000DA06B5 /* MultiDayViewController.swift */; };
 		1EE930002022C3400011FFC0 /* FoodLogDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EE92FFF2022C3400011FFC0 /* FoodLogDate.swift */; };
 		1EE930032022C3540011FFC0 /* StatisticsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EE930022022C3540011FFC0 /* StatisticsViewController.swift */; };
 		1EE930052022C3E60011FFC0 /* FoodLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EE930042022C3E60011FFC0 /* FoodLog.swift */; };
-		1EE930092022CC090011FFC0 /* SingleDayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EE930082022CC090011FFC0 /* SingleDayViewController.swift */; };
 		320270B6AD059333954A5E77 /* Pods_FoodInUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DE6276EEC363FA3C9C6980F /* Pods_FoodInUITests.framework */; };
 		6E11142E1FF94E9D00F657AB /* UIViewController+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E11142D1FF94E9D00F657AB /* UIViewController+.swift */; };
 		6E16DFF21FF213DA00301322 /* ImageActivityIndicatorController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E16DFF11FF213DA00301322 /* ImageActivityIndicatorController.swift */; };
@@ -132,10 +132,10 @@
 		085315057047735A09DAE59C /* Pods_FoodInTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FoodInTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1E2F71522022C0980041432D /* NutritionMarkerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NutritionMarkerView.swift; sourceTree = "<group>"; };
 		1E2F71542022C0BC0041432D /* NutritionMarkerView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NutritionMarkerView.xib; sourceTree = "<group>"; };
+		1EA8C32120243CD000DA06B5 /* MultiDayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiDayViewController.swift; sourceTree = "<group>"; };
 		1EE92FFF2022C3400011FFC0 /* FoodLogDate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FoodLogDate.swift; sourceTree = "<group>"; };
 		1EE930022022C3540011FFC0 /* StatisticsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatisticsViewController.swift; sourceTree = "<group>"; };
 		1EE930042022C3E60011FFC0 /* FoodLog.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FoodLog.swift; sourceTree = "<group>"; };
-		1EE930082022CC090011FFC0 /* SingleDayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleDayViewController.swift; sourceTree = "<group>"; };
 		6C5D2AA64CF473EA53B9A117 /* Pods-FoodInUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FoodInUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FoodInUITests/Pods-FoodInUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		6E11142D1FF94E9D00F657AB /* UIViewController+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+.swift"; sourceTree = "<group>"; };
 		6E16DFF11FF213DA00301322 /* ImageActivityIndicatorController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageActivityIndicatorController.swift; sourceTree = "<group>"; };
@@ -295,7 +295,7 @@
 			children = (
 				844C71742023D35C002A1709 /* DailyViewController.swift */,
 				1EE930022022C3540011FFC0 /* StatisticsViewController.swift */,
-				1EE930082022CC090011FFC0 /* SingleDayViewController.swift */,
+				1EA8C32120243CD000DA06B5 /* MultiDayViewController.swift */,
 			);
 			path = Statistics;
 			sourceTree = "<group>";
@@ -1133,7 +1133,6 @@
 				6E555D5C1FF6B32D00141FEC /* Food.swift in Sources */,
 				6E39510C2004EECB00C165C4 /* Fonts.swift in Sources */,
 				6E2C3C6520020ED5009B0D13 /* MyIndicatorService.swift in Sources */,
-				1EE930092022CC090011FFC0 /* SingleDayViewController.swift in Sources */,
 				6EB1F6EC2019E0F60018A573 /* APIkey.swift in Sources */,
 				6E2C3C6F20021191009B0D13 /* MyInfo+CoreDataProperties.swift in Sources */,
 				6ECE2D461FEE0217001B33F8 /* HomeViewController.swift in Sources */,
@@ -1176,6 +1175,7 @@
 				6E2C3C572001EC13009B0D13 /* ProfileViewController.swift in Sources */,
 				6E16DFF21FF213DA00301322 /* ImageActivityIndicatorController.swift in Sources */,
 				6E2C3C7120021191009B0D13 /* MyIndicator+CoreDataProperties.swift in Sources */,
+				1EA8C32220243CD000DA06B5 /* MultiDayViewController.swift in Sources */,
 				6EB1F6EE2019E11F0018A573 /* ImageUtils.swift in Sources */,
 				6E9071D12010E42A0053CEFE /* UIImage+.swift in Sources */,
 				6E2C3C6E20021191009B0D13 /* MyInfo+CoreDataClass.swift in Sources */,
@@ -1348,12 +1348,12 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = L4GPPSD6LF;
+				DEVELOPMENT_TEAM = UV3SCVDSRX;
 				ENABLE_BITCODE = YES;
 				INFOPLIST_FILE = FoodIn/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.yuanxin.FoodIn;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ryc.FoodIn;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.0;
@@ -1368,12 +1368,12 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = L4GPPSD6LF;
+				DEVELOPMENT_TEAM = UV3SCVDSRX;
 				ENABLE_BITCODE = YES;
 				INFOPLIST_FILE = FoodIn/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.yuanxin.FoodIn;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ryc.FoodIn;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.0;

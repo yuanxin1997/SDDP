@@ -38,7 +38,9 @@ class FoodDetailsController: ButtonBarPagerTabStripViewController, NVActivityInd
         self.navigationItem.title = selectedFoodName
         
         // Display image
-        foodImage.image = snapshot.image
+        if let image = snapshot.image {
+            foodImage.image = image
+        }
         
         // Customize Navigation bar and Status bar
         setupCustomNavStatusBar(setting: [.whiteStatusBar, .whiteNavTitle, .whiteNavTint])
@@ -72,7 +74,22 @@ class FoodDetailsController: ButtonBarPagerTabStripViewController, NVActivityInd
     }
     
     @IBAction func logFood(_ sender: Any) {
-
+        // Get person ID from keychain
+        guard let id = Int(KeychainSwift().get("id")!) else { return }
+        
+        // Get current date
+        let now = UInt64(floor(Date().timeIntervalSince1970))
+        
+        // Send new log to web service
+        pService.createFoodLogByFoodName(personId: id, foodName: selectedFoodName!, timestamp: now,  completion: { (result: Int?) in
+            DispatchQueue.main.async {
+                if let result = result {
+                    print("done")
+                } else {
+                    print("Empty or error")
+                }
+            }
+        })
     }
     
     override func willMove(toParentViewController parent: UIViewController?) {
