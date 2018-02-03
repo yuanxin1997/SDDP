@@ -86,6 +86,7 @@ extension UIViewController {
             navigationController?.navigationBar.barTintColor = Colors.pink
             navigationController?.navigationBar.isTranslucent = false
             navigationController?.navigationBar.setBackgroundImage(UIImage(color: Colors.pink), for: .default)
+            UIApplication.shared.statusBarStyle = .lightContent
             navigationController?.navigationBar.titleTextAttributes = [ NSAttributedStringKey.foregroundColor: Colors.white, NSAttributedStringKey.font: Fonts.Regular.of(size: 20)]
         case [.defaultNavTintBar]:
             navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
