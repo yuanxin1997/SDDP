@@ -166,7 +166,7 @@ class StatisticsViewController: UIViewController, UIGestureRecognizerDelegate {
             DispatchQueue.main.async {
                 if let result = result {
                     StatisticsViewController.foodLogs = result
-                    NotificationCenter.default.post(name: Notification.Name(NotificationKey.foodLogs), object: nil)
+                    NotificationCenter.default.post(name: Notification.Name(NotificationKey.foodLogData), object: nil)
                     self.updateGraphs()
 //                    self.updateRadarChart()
                 }

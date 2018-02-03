@@ -37,7 +37,7 @@ class DailyViewController: UIViewController {
         barChart.rightAxis.enabled = false
         
         // Listen to notification
-        NotificationCenter.default.addObserver(self, selector: #selector(setupView), name: Notification.Name(NotificationKey.foodLogs), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(setupView), name: Notification.Name(NotificationKey.foodLogData), object: nil)
     }
     
     override func didReceiveMemoryWarning() {

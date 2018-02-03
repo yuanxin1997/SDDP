@@ -51,6 +51,9 @@ class SpeechViewController: UIViewController, AVAudioPlayerDelegate, SpeechServi
         
         // Set delegate
         speechSynthesizer.delegate = self
+        
+        // Listen to notification
+        NotificationCenter.default.addObserver(self, selector: #selector(executeTextToSpeechQueue), name: Notification.Name(NotificationKey.foodData), object: nil)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -437,8 +440,14 @@ class SpeechViewController: UIViewController, AVAudioPlayerDelegate, SpeechServi
                         // Add response to queue
                         self.addToQueue(content: finalText, sessionID: sessionID)
                         
-                        // Identify a callback to be return
-                        self.callBackSpeech = true
+                        if self.speechSynthesizer.isSpeaking {
+                            
+                            // Identify a callback to be return
+                            self.callBackSpeech = true
+                        } else {
+                            
+                        }
+                        
                     } else {
                         print("Empty or error")
                     }
@@ -486,7 +495,7 @@ class SpeechViewController: UIViewController, AVAudioPlayerDelegate, SpeechServi
         }
     }
     
-    func executeTextToSpeechQueue() {
+    @objc func executeTextToSpeechQueue() {
         
         // Check that the queue is not empty
         if textToSpeechQueue.count > 0 {
