@@ -53,7 +53,7 @@ class SpeechViewController: UIViewController, AVAudioPlayerDelegate, SpeechServi
         speechSynthesizer.delegate = self
         
         // Listen to notification
-        NotificationCenter.default.addObserver(self, selector: #selector(executeTextToSpeechQueue), name: Notification.Name(NotificationKey.foodData), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(executeTextToSpeechQueue), name: Notification.Name(NotificationKey.responseReturned), object: nil)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -446,6 +446,8 @@ class SpeechViewController: UIViewController, AVAudioPlayerDelegate, SpeechServi
                             self.callBackSpeech = true
                         } else {
                             
+                            // Post a notification to run the queue if it is not running
+                            NotificationCenter.default.post(name: Notification.Name(NotificationKey.responseReturned), object: nil)
                         }
                         
                     } else {
@@ -496,7 +498,6 @@ class SpeechViewController: UIViewController, AVAudioPlayerDelegate, SpeechServi
     }
     
     @objc func executeTextToSpeechQueue() {
-        
         // Check that the queue is not empty
         if textToSpeechQueue.count > 0 {
             
@@ -570,8 +571,15 @@ class SpeechViewController: UIViewController, AVAudioPlayerDelegate, SpeechServi
                     // Add response to queue
                     self.addToQueue(content: finalText, sessionID: sessionID)
                     
-                    // Identifiy that there's a call back speech
-                    self.callBackSpeech = true
+                    if self.speechSynthesizer.isSpeaking {
+                        
+                        // Identify a callback to be return
+                        self.callBackSpeech = true
+                    } else {
+                        
+                        // Post a notification to run the queue if it is not running
+                        NotificationCenter.default.post(name: Notification.Name(NotificationKey.responseReturned), object: nil)
+                    }
                 }
             }
         })

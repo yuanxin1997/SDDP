@@ -14,5 +14,6 @@ struct NotificationKey {
     static let foodData  = "Food data retrieved"
     static let foodLogData = "Food log data retrieved"
     static let labelData = "Label data retrieved"
+    static let responseReturned = "Response had returned"
     
 }
