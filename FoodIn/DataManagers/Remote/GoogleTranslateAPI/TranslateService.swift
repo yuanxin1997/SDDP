@@ -18,11 +18,12 @@ class TranslateService {
         var params = ROGoogleTranslateParams()
         params.source = ""
         params.target = to
-        params.text = text
+        params.text = text
         
         translator.translate(params: params) { (result) in
             completion(String(result))
         }
     }
 }
+
 
