@@ -53,8 +53,19 @@ class DailyViewController: UIViewController {
             if  (foodLog.count < 1) {
 //                self.pieChart.isHidden = true
             } else {
-                let food = foodLog[0]
-                self.pieChartUpdate(calories: food.calories, carbs: food.carbohydrate, protein: food.protein, fats: food.fat)
+                var cal = 0.0
+                var carbs = 0.0
+                var prot = 0.0
+                var fats = 0.0
+                
+                for food in foodLog {
+                    cal += food.calories
+                    carbs += food.carbohydrate
+                    prot += food.protein
+                    fats += food.fat
+                }
+                
+                self.pieChartUpdate(calories: cal, carbs: carbs, protein: prot, fats: fats)
 //                self.pieChart.isHidden = false
                 
                 let groupSpace = 0.08

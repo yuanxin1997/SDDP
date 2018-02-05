@@ -100,6 +100,7 @@ class StatisticsViewController: UIViewController, UIGestureRecognizerDelegate {
 //        calendarUpdate()
         // Setup radar chart
 //        setupRadarChart()
+        
     }
     
     func setupRadarChart() {
@@ -160,12 +161,12 @@ class StatisticsViewController: UIViewController, UIGestureRecognizerDelegate {
         self.calendar.delegate = self
     }
     func fetchData(from: UInt64, to: UInt64) {
-        let tService = TranslateService()
-        tService.translate("probando el servicio de traducción de google",  completion: { (result: String) in
-            DispatchQueue.main.async {
-                print("Translation: \(result)")
-            }
-        })
+//        let tService = TranslateService()
+//        tService.translate("probando el servicio de traducción de google",  completion: { (result: String) in
+//            DispatchQueue.main.async {
+//                print("Translation: \(result)")
+//            }
+//        })
         print("fetching data from \(from) to \(to)")
         guard let id = Int(KeychainSwift().get("id")!) else { return }
         pService.getFoodLog(personId: id, from: from, to: to, completion: { (result: [FoodLog]?) in
@@ -328,9 +329,13 @@ extension StatisticsViewController: FSCalendarDataSource, FSCalendarDelegate {
         
         self.selectedDates = calendar.selectedDates
         
+        print("update \(self.selectedDates.count)")
+        
         if (self.selectedDates.count == 0) {
 //            fetchData(from: 0, to: 0)
             StatisticsViewController.foodLogs = []
+            NotificationCenter.default.post(name: Notification.Name(NotificationKey.foodLogData), object: nil)
+            self.updateGraphs()
         } else {
             // Sot by ascending
             let selectedDates = self.selectedDates.sorted(by: { $0 < $1})
@@ -344,7 +349,10 @@ extension StatisticsViewController: FSCalendarDataSource, FSCalendarDelegate {
     }
     
     private func updateGraphs() {
-        if(self.selectedDates.count <= 1) {
+        if (self.selectedDates.count == 0) {
+            remove(asChildViewController: WeeklyViewController)
+            remove(asChildViewController: DailyViewController)
+        } else if(self.selectedDates.count == 1) {
             remove(asChildViewController: WeeklyViewController)
             add(asChildViewController: DailyViewController)
         } else {
