@@ -12,7 +12,7 @@ import Foundation
 struct APIkeys {
     
     // Global API KEY
-    static let googleVision = "AIzaSyAICVslGjLgnwYUVf-bkmFd-lUBapn5Mnk"
+    static let google = "AIzaSyAICVslGjLgnwYUVf-bkmFd-lUBapn5Mnk"
     
 }
 

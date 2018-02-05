@@ -22,6 +22,7 @@ target 'FoodIn' do
   pod 'ApiAI'
   pod 'SwiftySound'
   pod 'AMPopTip'
+  pod 'ROGoogleTranslate'
 
   target 'FoodInTests' do
     inherit! :search_paths

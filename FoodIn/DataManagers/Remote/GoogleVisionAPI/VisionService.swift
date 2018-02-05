@@ -15,7 +15,7 @@ class VisionService {
     func extractText(image: UIImage, completion: @escaping ([String: Any]?) -> Void) {
         
         // Define your URL with the combination of Base URL (can be found in global constants) and its Endpoint
-        guard let url = URL(string: "\(APIurl.googleVision)?key=\(APIkeys.googleVision)") else { return }
+        guard let url = URL(string: "\(APIurl.googleVision)?key=\(APIkeys.google)") else { return }
         
         // Create URL request
         var request = URLRequest(url: url)

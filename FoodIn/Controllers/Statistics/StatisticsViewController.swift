@@ -160,6 +160,12 @@ class StatisticsViewController: UIViewController, UIGestureRecognizerDelegate {
         self.calendar.delegate = self
     }
     func fetchData(from: UInt64, to: UInt64) {
+        let tService = TranslateService()
+        tService.translate("probando el servicio de traducción de google",  completion: { (result: String) in
+            DispatchQueue.main.async {
+                print("Translation: \(result)")
+            }
+        })
         print("fetching data from \(from) to \(to)")
         guard let id = Int(KeychainSwift().get("id")!) else { return }
         pService.getFoodLog(personId: id, from: from, to: to, completion: { (result: [FoodLog]?) in
