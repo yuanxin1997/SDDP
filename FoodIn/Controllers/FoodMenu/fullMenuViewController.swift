@@ -10,10 +10,9 @@ import UIKit
 import XLPagerTabStrip
 import KeychainSwift
 
-class safeListViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, IndicatorInfoProvider {
+class fullMenuViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, IndicatorInfoProvider {
     
-    var safeFoodNameArray:[Food] = []
-    var filteredFoodNameArray:[Food] = []
+    var fullMenuArray:[Food] = []
     let extractedTextArray = ExtractedTextArray.sharedInstance
     let extractedSafeArray = ExtractedSafeArray.sharedInstance
     var pService = PersonService()
@@ -26,28 +25,27 @@ class safeListViewController: UIViewController, UITableViewDataSource, UITableVi
     override func viewDidLoad() {
         super.viewDidLoad()
         setupTableView()
-        filteredFoodNameArray = extractedTextArray.objectArray!
-        safeFoodNameArray = extractedSafeArray.objectArray!
+        fullMenuArray = extractedTextArray.objectArray!
         
         
-//        for food in filteredFoodNameArray {
-//            if food.sodium < 1500 {
-//                safeFoodNameArray.append(food)
-//            }
-//        }
+        //        for food in filteredFoodNameArray {
+        //            if food.sodium < 1500 {
+        //                safeFoodNameArray.append(food)
+        //            }
+        //        }
         
-        print("THIS IS THE SAFE ZONE")
-        print(safeFoodNameArray)
+        print("THIS IS THE FULL ZONE")
+        print(fullMenuArray)
         
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return safeFoodNameArray.count
+        return fullMenuArray.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -55,7 +53,7 @@ class safeListViewController: UIViewController, UITableViewDataSource, UITableVi
         
         // Configure cell
         cell.layoutMargins = UIEdgeInsets.zero
-        cell.textLabel?.text = safeFoodNameArray[indexPath.row].name
+        cell.textLabel?.text = fullMenuArray[indexPath.row].name
         cell.textLabel?.textColor = Colors.darkgrey
         let chevron = UIImage(named: "Chevron")
         cell.accessoryType = .disclosureIndicator
@@ -77,7 +75,7 @@ class safeListViewController: UIViewController, UITableViewDataSource, UITableVi
     }
     
     func indicatorInfo(for pagerTabStripController: PagerTabStripViewController) -> IndicatorInfo {
-        return IndicatorInfo(title: "Safe")
+        return IndicatorInfo(title: "Menu")
     }
     
     
@@ -88,17 +86,17 @@ class safeListViewController: UIViewController, UITableViewDataSource, UITableVi
         
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
-        if segue.identifier == "SafeSegue"
+        if segue.identifier == "MenuSegue"
         {
-            
-                let fdc = segue.destination as! ResultMenuViewController
-                if tableView.indexPathForSelectedRow != nil
-                {
-                    let foodName = safeFoodNameArray[tableView.indexPathForSelectedRow!.row]
-                    fdc.selectedFood = foodName
-                }
+            let fdc = segue.destination as! ResultMenuViewController
+            if tableView.indexPathForSelectedRow != nil
+            {
+                let foodName = fullMenuArray[tableView.indexPathForSelectedRow!.row]
+                fdc.selectedFood = foodName
+            }
         }
         
     }
     
 }
+

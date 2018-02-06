@@ -9,23 +9,28 @@
 import UIKit
 import XLPagerTabStrip
 
-class menuDetailsViewController: ButtonBarPagerTabStripViewController {
-
+class MenuFoodDetailsViewController: ButtonBarPagerTabStripViewController {
+    
+    
+    
+    let fService = FoodService()
+    var selectedFood : Food?
+    
     override func viewDidLoad() {
         
         // Display title
-        self.navigationItem.title = "Results"
+        self.navigationItem.title = selectedFood?.name
         
         setupTabBar()
         
         super.viewDidLoad()
-
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
         setupCustomNavStatusBar(setting: [.blackStatusBar, .greyNavTitle])
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -44,7 +49,7 @@ class menuDetailsViewController: ButtonBarPagerTabStripViewController {
         settings.style.buttonBarItemsShouldFillAvailiableWidth = true
         settings.style.buttonBarLeftContentInset = 0
         settings.style.buttonBarRightContentInset = 0
-    
+        
         changeCurrentIndexProgressive = { [weak self] (oldCell: ButtonBarViewCell?, newCell: ButtonBarViewCell?, progressPercentage: CGFloat, changeCurrentIndex: Bool, animated: Bool) -> Void in
             guard changeCurrentIndex == true else { return }
             oldCell?.label.textColor = Colors.lightgrey
@@ -58,5 +63,5 @@ class menuDetailsViewController: ButtonBarPagerTabStripViewController {
         let Avoid = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "avoidList")
         return [fullMenu, Safe, Avoid]
     }
-
+    
 }

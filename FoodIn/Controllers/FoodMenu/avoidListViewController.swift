@@ -92,10 +92,11 @@ class avoidListViewController: UIViewController, UITableViewDataSource, UITableV
         // Pass the selected object to the new view controller.
         if segue.identifier == "AvoidSegue"
         {
-            let fdc = segue.destination as! ResultAvoidViewController
+            let fdc = segue.destination as! ResultMenuViewController
             if tableView.indexPathForSelectedRow != nil
             {
                 let foodName = avoidFoodNameArray[tableView.indexPathForSelectedRow!.row]
+                //MenuSelectedFood.sharedInstance.SelectedFood = foodName
                 fdc.selectedFood = foodName
             }
         }
