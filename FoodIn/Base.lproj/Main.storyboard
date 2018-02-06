@@ -802,7 +802,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gVu-7T-Z7Q" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5055" y="2436"/>
+            <point key="canvasLocation" x="5058" y="2394"/>
         </scene>
         <!--Image View Controller-->
         <scene sceneID="zom-jB-89d">
@@ -2334,7 +2334,7 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <segue destination="uIb-OH-awd" kind="show" identifier="SafeSegue" id="9Ml-fW-fsO"/>
+                                            <segue destination="uIb-OH-awd" kind="show" identifier="SafeSegue" id="7fd-hJ-7rK"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -2390,7 +2390,7 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <segue destination="wvO-hQ-fE4" kind="show" identifier="AvoidSegue" id="3QU-PZ-ZiM"/>
+                                            <segue destination="uIb-OH-awd" kind="show" identifier="AvoidSegue" id="AZn-6z-eLd"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -2565,16 +2565,16 @@
             </objects>
             <point key="canvasLocation" x="-823.1884057971015" y="2484.7826086956525"/>
         </scene>
-        <!--Result Safe View Controller-->
+        <!--Result Menu View Controller-->
         <scene sceneID="1ZU-xx-SY7">
             <objects>
-                <viewController storyboardIdentifier="ResultSafe" id="uIb-OH-awd" customClass="ResultSafeViewController" customModule="FoodIn" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ResultSafe" id="uIb-OH-awd" customClass="ResultMenuViewController" customModule="FoodIn" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="QyF-RG-ukh">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="IKH-vO-p6E">
-                                <rect key="frame" x="32" y="255" width="350" height="227.33333333333337"/>
+                                <rect key="frame" x="32" y="57" width="350" height="227.33333333333337"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="vzr-wH-TcP">
                                         <rect key="frame" x="0.0" y="0.0" width="350" height="34.333333333333336"/>
@@ -2790,6 +2790,98 @@
                                     </stackView>
                                 </subviews>
                             </stackView>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="A7U-2x-pCh">
+                                <rect key="frame" x="32" y="364" width="350" height="150"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="ggO-0e-a7f">
+                                        <rect key="frame" x="0.0" y="0.0" width="350" height="30"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="English" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oVB-Kc-l4F">
+                                                <rect key="frame" x="0.0" y="0.0" width="50" height="30"/>
+                                                <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="14"/>
+                                                <color key="textColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3Tf-9f-hAw">
+                                                <rect key="frame" x="308" y="0.0" width="42" height="30"/>
+                                                <state key="normal" title="Listen"/>
+                                                <connections>
+                                                    <action selector="listenen" destination="uIb-OH-awd" eventType="touchUpInside" id="AsU-dF-1Zy"/>
+                                                    <action selector="listenen" destination="rfS-ly-mp8" eventType="touchUpInside" id="fkh-rp-7N6"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                        <viewLayoutGuide key="safeArea" id="jEU-M8-hkh"/>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="uFx-kF-ix6">
+                                        <rect key="frame" x="0.0" y="40" width="350" height="30"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Chinese" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SgD-ta-67A">
+                                                <rect key="frame" x="0.0" y="0.0" width="55.333333333333336" height="30"/>
+                                                <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="14"/>
+                                                <color key="textColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="miz-Kj-6Og">
+                                                <rect key="frame" x="308" y="0.0" width="42" height="30"/>
+                                                <state key="normal" title="Listen"/>
+                                                <connections>
+                                                    <action selector="listencn" destination="uIb-OH-awd" eventType="touchUpInside" id="2Yr-aD-MEG"/>
+                                                    <action selector="listencn" destination="rfS-ly-mp8" eventType="touchUpInside" id="BQR-mE-x1n"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                        <viewLayoutGuide key="safeArea" id="zdq-fB-i2n"/>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="1mV-Sy-ICd">
+                                        <rect key="frame" x="0.0" y="80" width="350" height="30"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Japanese" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eRe-AH-MHh">
+                                                <rect key="frame" x="0.0" y="0.0" width="66" height="30"/>
+                                                <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="14"/>
+                                                <color key="textColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="r6I-1u-zEp">
+                                                <rect key="frame" x="308" y="0.0" width="42" height="30"/>
+                                                <state key="normal" title="Listen"/>
+                                                <connections>
+                                                    <action selector="listenjp" destination="rfS-ly-mp8" eventType="touchUpInside" id="HFY-XC-o5A"/>
+                                                    <action selector="listenjp" destination="uIb-OH-awd" eventType="touchUpInside" id="Ok9-vr-r54"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                        <viewLayoutGuide key="safeArea" id="a3B-ul-7IB"/>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="833-JT-xR8">
+                                        <rect key="frame" x="0.0" y="120" width="350" height="30"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Korean" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WqI-qw-x3M">
+                                                <rect key="frame" x="0.0" y="0.0" width="49.333333333333336" height="30"/>
+                                                <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="14"/>
+                                                <color key="textColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4Jq-IJ-XHY">
+                                                <rect key="frame" x="308" y="0.0" width="42" height="30"/>
+                                                <state key="normal" title="Listen"/>
+                                                <connections>
+                                                    <action selector="listenkr" destination="rfS-ly-mp8" eventType="touchUpInside" id="3yT-Y8-OUd"/>
+                                                    <action selector="listenkr" destination="uIb-OH-awd" eventType="touchUpInside" id="Vjh-bz-sGn"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="1mV-Sy-ICd" firstAttribute="top" secondItem="uFx-kF-ix6" secondAttribute="bottom" constant="15" id="4rc-D4-BRq"/>
+                                    <constraint firstItem="1mV-Sy-ICd" firstAttribute="top" secondItem="uFx-kF-ix6" secondAttribute="bottom" constant="15" id="53H-jk-8Vq"/>
+                                    <constraint firstItem="833-JT-xR8" firstAttribute="top" secondItem="1mV-Sy-ICd" secondAttribute="bottom" constant="15" id="6xN-O3-yl2"/>
+                                    <constraint firstItem="uFx-kF-ix6" firstAttribute="top" secondItem="ggO-0e-a7f" secondAttribute="bottom" constant="15" id="9Qt-tw-X4x"/>
+                                    <constraint firstItem="833-JT-xR8" firstAttribute="top" secondItem="1mV-Sy-ICd" secondAttribute="bottom" constant="15" id="Jvs-SB-EJ1"/>
+                                    <constraint firstItem="uFx-kF-ix6" firstAttribute="top" secondItem="ggO-0e-a7f" secondAttribute="bottom" constant="15" id="R7R-Vk-j4C"/>
+                                </constraints>
+                            </stackView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cGn-Xc-LJW">
                                 <rect key="frame" x="0.0" y="676" width="414" height="60"/>
                                 <color key="backgroundColor" red="0.85882352939999995" green="0.039215686270000001" blue="0.35686274509999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
@@ -2809,11 +2901,15 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="IKH-vO-p6E" firstAttribute="top" secondItem="1SI-Po-Y51" secondAttribute="top" constant="30" id="918-qX-07J"/>
+                            <constraint firstItem="1SI-Po-Y51" firstAttribute="trailing" secondItem="A7U-2x-pCh" secondAttribute="trailing" constant="32" id="96X-bD-kDo"/>
                             <constraint firstItem="cGn-Xc-LJW" firstAttribute="trailing" secondItem="1SI-Po-Y51" secondAttribute="trailing" id="BOH-hp-dbY"/>
                             <constraint firstItem="cGn-Xc-LJW" firstAttribute="top" secondItem="QyF-RG-ukh" secondAttribute="top" constant="676" id="D9R-wZ-eBD"/>
+                            <constraint firstItem="A7U-2x-pCh" firstAttribute="top" secondItem="1SI-Po-Y51" secondAttribute="top" constant="344" id="G5x-vn-ha3"/>
                             <constraint firstItem="cGn-Xc-LJW" firstAttribute="bottom" secondItem="1SI-Po-Y51" secondAttribute="bottom" id="Hmr-8r-TJ5"/>
                             <constraint firstItem="cGn-Xc-LJW" firstAttribute="leading" secondItem="1SI-Po-Y51" secondAttribute="leading" id="QYG-70-lEZ"/>
+                            <constraint firstItem="A7U-2x-pCh" firstAttribute="leading" secondItem="1SI-Po-Y51" secondAttribute="leading" constant="32" id="WMb-xb-gGl"/>
                             <constraint firstItem="IKH-vO-p6E" firstAttribute="leading" secondItem="1SI-Po-Y51" secondAttribute="leading" constant="32" id="YdE-8c-gpm"/>
+                            <constraint firstItem="cGn-Xc-LJW" firstAttribute="top" secondItem="A7U-2x-pCh" secondAttribute="bottom" constant="162" id="nsD-Gr-Lbo"/>
                             <constraint firstItem="1SI-Po-Y51" firstAttribute="trailing" secondItem="IKH-vO-p6E" secondAttribute="trailing" constant="32" id="te7-AJ-is2"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="1SI-Po-Y51"/>
@@ -2821,8 +2917,16 @@
                     <connections>
                         <outlet property="calciumBar" destination="6Nh-2d-Qpm" id="Ub5-mg-X9y"/>
                         <outlet property="calciumLabel" destination="USM-hR-Dbp" id="GpE-JW-z8u"/>
+                        <outlet property="cnFood" destination="SgD-ta-67A" id="MeP-vW-dL6"/>
+                        <outlet property="cnListen" destination="miz-Kj-6Og" id="ou3-EA-Lin"/>
+                        <outlet property="enFood" destination="oVB-Kc-l4F" id="xu3-kR-F5f"/>
+                        <outlet property="enListen" destination="3Tf-9f-hAw" id="6kC-7S-iro"/>
                         <outlet property="ironBar" destination="kPf-1q-v8R" id="TF8-r4-H7W"/>
                         <outlet property="ironLabel" destination="nLD-7u-sd3" id="4ww-YW-j3W"/>
+                        <outlet property="jpFood" destination="eRe-AH-MHh" id="zvy-DA-Xv2"/>
+                        <outlet property="jpListen" destination="r6I-1u-zEp" id="a06-Dn-Dae"/>
+                        <outlet property="krFood" destination="WqI-qw-x3M" id="M14-K7-vEp"/>
+                        <outlet property="krListen" destination="4Jq-IJ-XHY" id="Lvw-J7-S6W"/>
                         <outlet property="potassiumBar" destination="9D3-yG-rjr" id="fop-hg-dGB"/>
                         <outlet property="potassiumLabel" destination="8PU-aV-7qV" id="lDI-in-MhR"/>
                         <outlet property="sodiumBar" destination="sFB-jJ-9v8" id="sfF-GY-h2h"/>
@@ -2831,275 +2935,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Nxj-N6-NdI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1544.9275362318842" y="3841.3043478260875"/>
-        </scene>
-        <!--Result Avoid View Controller-->
-        <scene sceneID="A1a-Pe-VhV">
-            <objects>
-                <viewController storyboardIdentifier="ResultAvoid" id="wvO-hQ-fE4" customClass="ResultAvoidViewController" customModule="FoodIn" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="Rzb-bx-vYe">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="Huf-yd-oVY">
-                                <rect key="frame" x="32" y="255" width="350" height="227.33333333333337"/>
-                                <subviews>
-                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="Txg-8i-ed9">
-                                        <rect key="frame" x="0.0" y="0.0" width="350" height="34.333333333333336"/>
-                                        <subviews>
-                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="ZMS-xt-Vy0">
-                                                <rect key="frame" x="0.0" y="0.0" width="350" height="16.333333333333332"/>
-                                                <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sodium" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nxD-Nx-CTg">
-                                                        <rect key="frame" x="0.0" y="0.0" width="51.333333333333336" height="16.333333333333332"/>
-                                                        <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="14"/>
-                                                        <color key="textColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
-                                                        <nil key="highlightedColor"/>
-                                                    </label>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="370 mg" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VdZ-RK-dee" userLabel="Sodium Label" customClass="EFCountingLabel" customModule="EFCountingLabel">
-                                                        <rect key="frame" x="300.33333333333331" y="0.0" width="49.666666666666686" height="16.333333333333332"/>
-                                                        <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="14"/>
-                                                        <color key="textColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
-                                                        <nil key="highlightedColor"/>
-                                                    </label>
-                                                </subviews>
-                                            </stackView>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hCj-ro-rpw" customClass="GTProgressBar" customModule="GTProgressBar">
-                                                <rect key="frame" x="0.0" y="26.333333333333329" width="350" height="8"/>
-                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="8" id="OVM-T1-2D4"/>
-                                                </constraints>
-                                                <userDefinedRuntimeAttributes>
-                                                    <userDefinedRuntimeAttribute type="number" keyPath="Progress">
-                                                        <real key="value" value="0.80000000000000004"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="displayLabel" value="NO"/>
-                                                    <userDefinedRuntimeAttribute type="color" keyPath="barFillColor">
-                                                        <color key="value" red="0.93725490199999995" green="0.094117647060000004" blue="0.58039215690000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                    <userDefinedRuntimeAttribute type="color" keyPath="barBackgroundColor">
-                                                        <color key="value" red="0.84705882349999995" green="0.84705882349999995" blue="0.84705882349999995" alpha="1" colorSpace="calibratedRGB"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                    <userDefinedRuntimeAttribute type="color" keyPath="barBorderColor">
-                                                        <color key="value" red="0.84705882349999995" green="0.84705882349999995" blue="0.84705882349999995" alpha="1" colorSpace="calibratedRGB"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                    <userDefinedRuntimeAttribute type="number" keyPath="barBorderWidth">
-                                                        <integer key="value" value="0"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                    <userDefinedRuntimeAttribute type="number" keyPath="barFillInset">
-                                                        <integer key="value" value="0"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                        <integer key="value" value="5"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                </userDefinedRuntimeAttributes>
-                                            </view>
-                                        </subviews>
-                                    </stackView>
-                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="sK5-B9-b0P">
-                                        <rect key="frame" x="0.0" y="64.333333333333329" width="350" height="34.333333333333329"/>
-                                        <subviews>
-                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="wuv-0z-k2o">
-                                                <rect key="frame" x="0.0" y="0.0" width="350" height="16.333333333333332"/>
-                                                <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Potassium" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B6C-GM-7nq">
-                                                        <rect key="frame" x="0.0" y="0.0" width="70.666666666666671" height="16.333333333333332"/>
-                                                        <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="14"/>
-                                                        <color key="textColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
-                                                        <nil key="highlightedColor"/>
-                                                    </label>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="370 mg" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ygY-A5-mtJ" userLabel="Potassium Label" customClass="EFCountingLabel" customModule="EFCountingLabel">
-                                                        <rect key="frame" x="300.33333333333331" y="0.0" width="49.666666666666686" height="16.333333333333332"/>
-                                                        <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="14"/>
-                                                        <color key="textColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
-                                                        <nil key="highlightedColor"/>
-                                                    </label>
-                                                </subviews>
-                                            </stackView>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="m8n-sb-Vms" customClass="GTProgressBar" customModule="GTProgressBar">
-                                                <rect key="frame" x="0.0" y="26.333333333333329" width="350" height="8"/>
-                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="8" id="ffd-Lg-p5N"/>
-                                                </constraints>
-                                                <userDefinedRuntimeAttributes>
-                                                    <userDefinedRuntimeAttribute type="number" keyPath="Progress">
-                                                        <real key="value" value="0.80000000000000004"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="displayLabel" value="NO"/>
-                                                    <userDefinedRuntimeAttribute type="color" keyPath="barFillColor">
-                                                        <color key="value" red="0.93725490199999995" green="0.094117647060000004" blue="0.58039215690000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                    <userDefinedRuntimeAttribute type="color" keyPath="barBackgroundColor">
-                                                        <color key="value" red="0.84705882349999995" green="0.84705882349999995" blue="0.84705882349999995" alpha="1" colorSpace="calibratedRGB"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                    <userDefinedRuntimeAttribute type="color" keyPath="barBorderColor">
-                                                        <color key="value" red="0.84705882349999995" green="0.84705882349999995" blue="0.84705882349999995" alpha="1" colorSpace="calibratedRGB"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                    <userDefinedRuntimeAttribute type="number" keyPath="barBorderWidth">
-                                                        <integer key="value" value="0"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                    <userDefinedRuntimeAttribute type="number" keyPath="barFillInset">
-                                                        <integer key="value" value="0"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                        <integer key="value" value="5"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                </userDefinedRuntimeAttributes>
-                                            </view>
-                                        </subviews>
-                                    </stackView>
-                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="35c-nh-7RB">
-                                        <rect key="frame" x="0.0" y="128.66666666666666" width="350" height="34.333333333333343"/>
-                                        <subviews>
-                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="VOd-5O-kNU">
-                                                <rect key="frame" x="0.0" y="0.0" width="350" height="16.333333333333332"/>
-                                                <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Calcium" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DPy-AW-06d">
-                                                        <rect key="frame" x="0.0" y="0.0" width="55.666666666666664" height="16.333333333333332"/>
-                                                        <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="14"/>
-                                                        <color key="textColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
-                                                        <nil key="highlightedColor"/>
-                                                    </label>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="370 mg" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dBP-kb-SQ4" userLabel="Calcium Label" customClass="EFCountingLabel" customModule="EFCountingLabel">
-                                                        <rect key="frame" x="300.33333333333331" y="0.0" width="49.666666666666686" height="16.333333333333332"/>
-                                                        <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="14"/>
-                                                        <color key="textColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
-                                                        <nil key="highlightedColor"/>
-                                                    </label>
-                                                </subviews>
-                                            </stackView>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QEd-4b-pPn" customClass="GTProgressBar" customModule="GTProgressBar">
-                                                <rect key="frame" x="0.0" y="26.333333333333343" width="350" height="8"/>
-                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="8" id="20F-z1-SAI"/>
-                                                </constraints>
-                                                <userDefinedRuntimeAttributes>
-                                                    <userDefinedRuntimeAttribute type="number" keyPath="Progress">
-                                                        <real key="value" value="0.80000000000000004"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="displayLabel" value="NO"/>
-                                                    <userDefinedRuntimeAttribute type="color" keyPath="barFillColor">
-                                                        <color key="value" red="0.93725490199999995" green="0.094117647060000004" blue="0.58039215690000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                    <userDefinedRuntimeAttribute type="color" keyPath="barBackgroundColor">
-                                                        <color key="value" red="0.84705882349999995" green="0.84705882349999995" blue="0.84705882349999995" alpha="1" colorSpace="calibratedRGB"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                    <userDefinedRuntimeAttribute type="color" keyPath="barBorderColor">
-                                                        <color key="value" red="0.84705882349999995" green="0.84705882349999995" blue="0.84705882349999995" alpha="1" colorSpace="calibratedRGB"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                    <userDefinedRuntimeAttribute type="number" keyPath="barBorderWidth">
-                                                        <integer key="value" value="0"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                    <userDefinedRuntimeAttribute type="number" keyPath="barFillInset">
-                                                        <integer key="value" value="0"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                        <integer key="value" value="5"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                </userDefinedRuntimeAttributes>
-                                            </view>
-                                        </subviews>
-                                    </stackView>
-                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="xKQ-Tr-ocx">
-                                        <rect key="frame" x="0.0" y="193" width="350" height="34.333333333333343"/>
-                                        <subviews>
-                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="uKU-Wn-rcn">
-                                                <rect key="frame" x="0.0" y="0.0" width="350" height="16.333333333333332"/>
-                                                <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Iron" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QbB-n5-snf">
-                                                        <rect key="frame" x="0.0" y="0.0" width="27" height="16.333333333333332"/>
-                                                        <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="14"/>
-                                                        <color key="textColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
-                                                        <nil key="highlightedColor"/>
-                                                    </label>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="370 mg" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="K7d-Ks-bep" userLabel="Iron Label" customClass="EFCountingLabel" customModule="EFCountingLabel">
-                                                        <rect key="frame" x="300.33333333333331" y="0.0" width="49.666666666666686" height="16.333333333333332"/>
-                                                        <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="14"/>
-                                                        <color key="textColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
-                                                        <nil key="highlightedColor"/>
-                                                    </label>
-                                                </subviews>
-                                            </stackView>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ixv-Nd-aMp" customClass="GTProgressBar" customModule="GTProgressBar">
-                                                <rect key="frame" x="0.0" y="26.333333333333314" width="350" height="8"/>
-                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="8" id="VtN-gz-Skx"/>
-                                                </constraints>
-                                                <userDefinedRuntimeAttributes>
-                                                    <userDefinedRuntimeAttribute type="number" keyPath="Progress">
-                                                        <real key="value" value="0.80000000000000004"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="displayLabel" value="NO"/>
-                                                    <userDefinedRuntimeAttribute type="color" keyPath="barFillColor">
-                                                        <color key="value" red="0.93725490199999995" green="0.094117647060000004" blue="0.58039215690000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                    <userDefinedRuntimeAttribute type="color" keyPath="barBackgroundColor">
-                                                        <color key="value" red="0.84705882349999995" green="0.84705882349999995" blue="0.84705882349999995" alpha="1" colorSpace="calibratedRGB"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                    <userDefinedRuntimeAttribute type="color" keyPath="barBorderColor">
-                                                        <color key="value" red="0.84705882349999995" green="0.84705882349999995" blue="0.84705882349999995" alpha="1" colorSpace="calibratedRGB"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                    <userDefinedRuntimeAttribute type="number" keyPath="barBorderWidth">
-                                                        <integer key="value" value="0"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                    <userDefinedRuntimeAttribute type="number" keyPath="barFillInset">
-                                                        <integer key="value" value="0"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                        <integer key="value" value="5"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                </userDefinedRuntimeAttributes>
-                                            </view>
-                                        </subviews>
-                                    </stackView>
-                                </subviews>
-                            </stackView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TNP-gO-MCd">
-                                <rect key="frame" x="0.0" y="676" width="414" height="60"/>
-                                <color key="backgroundColor" red="0.85882352939999995" green="0.039215686270000001" blue="0.35686274509999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="60" id="4vY-gQ-4s4"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="20"/>
-                                <state key="normal" title="Got It!">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
-                                <connections>
-                                    <action selector="nextBtnDidTap:" destination="Goe-kL-yaG" eventType="touchUpInside" id="UEj-7a-0vK"/>
-                                    <segue destination="SWm-Qa-26Q" kind="show" id="7yf-QG-Ajo"/>
-                                </connections>
-                            </button>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <constraints>
-                            <constraint firstItem="Huf-yd-oVY" firstAttribute="top" secondItem="UaD-FQ-uoT" secondAttribute="top" constant="30" id="0nm-t1-10r"/>
-                            <constraint firstItem="TNP-gO-MCd" firstAttribute="leading" secondItem="UaD-FQ-uoT" secondAttribute="leading" id="BkG-Mm-Yo9"/>
-                            <constraint firstItem="TNP-gO-MCd" firstAttribute="top" secondItem="Rzb-bx-vYe" secondAttribute="top" constant="676" id="FCF-UO-mVc"/>
-                            <constraint firstItem="Huf-yd-oVY" firstAttribute="leading" secondItem="UaD-FQ-uoT" secondAttribute="leading" constant="32" id="KL3-uz-hTl"/>
-                            <constraint firstItem="TNP-gO-MCd" firstAttribute="bottom" secondItem="UaD-FQ-uoT" secondAttribute="bottom" id="NVU-KH-eB9"/>
-                            <constraint firstItem="UaD-FQ-uoT" firstAttribute="trailing" secondItem="Huf-yd-oVY" secondAttribute="trailing" constant="32" id="jVA-3r-w8d"/>
-                            <constraint firstItem="TNP-gO-MCd" firstAttribute="trailing" secondItem="UaD-FQ-uoT" secondAttribute="trailing" id="obx-nw-DwM"/>
-                        </constraints>
-                        <viewLayoutGuide key="safeArea" id="UaD-FQ-uoT"/>
-                    </view>
-                    <connections>
-                        <outlet property="calciumBar" destination="QEd-4b-pPn" id="0kZ-2Y-cBs"/>
-                        <outlet property="calciumLabel" destination="dBP-kb-SQ4" id="rs4-eb-Cac"/>
-                        <outlet property="ironBar" destination="ixv-Nd-aMp" id="XM9-FT-low"/>
-                        <outlet property="ironLabel" destination="K7d-Ks-bep" id="BuF-sL-ATU"/>
-                        <outlet property="potassiumBar" destination="m8n-sb-Vms" id="idm-I7-r5L"/>
-                        <outlet property="potassiumLabel" destination="ygY-A5-mtJ" id="2Pv-ju-HkG"/>
-                        <outlet property="sodiumBar" destination="hCj-ro-rpw" id="BQP-Bp-VVQ"/>
-                        <outlet property="sodiumLabel" destination="VdZ-RK-dee" id="jBX-0Y-V2K"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="v1r-0x-jIQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2396" y="3841"/>
+            <point key="canvasLocation" x="1190" y="3986"/>
         </scene>
         <!--Label Activity Indicator Controller-->
         <scene sceneID="53B-rK-mXq">
@@ -3714,6 +3550,599 @@
             </objects>
             <point key="canvasLocation" x="839" y="-730"/>
         </scene>
+        <!--Full Menu View Controller-->
+        <scene sceneID="sVd-dz-V7b">
+            <objects>
+                <viewController storyboardIdentifier="fullMenu" id="QBv-1M-LNk" customClass="fullMenuViewController" customModule="FoodIn" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Z6C-Rf-7Rm">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="TUF-di-m54">
+                                <rect key="frame" x="0.0" y="20" width="414" height="716"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="cell" textLabel="jav-me-fcX" style="IBUITableViewCellStyleDefault" id="ovm-VW-9tm">
+                                        <rect key="frame" x="0.0" y="28" width="414" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ovm-VW-9tm" id="djS-ti-KiB">
+                                            <rect key="frame" x="0.0" y="0.0" width="381" height="43.666666666666664"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="jav-me-fcX">
+                                                    <rect key="frame" x="15" y="0.0" width="364" height="43.666666666666664"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="14"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="uIb-OH-awd" kind="show" identifier="MenuSegue" id="LsL-iZ-5Aa"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="QBv-1M-LNk" id="TDd-S8-fKz"/>
+                                    <outlet property="delegate" destination="QBv-1M-LNk" id="Q1O-Gh-YJS"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="TUF-di-m54" firstAttribute="top" secondItem="I8X-5W-qT0" secondAttribute="top" id="4c5-qr-VoC"/>
+                            <constraint firstItem="TUF-di-m54" firstAttribute="bottom" secondItem="I8X-5W-qT0" secondAttribute="bottom" id="XmY-UK-hxF"/>
+                            <constraint firstItem="TUF-di-m54" firstAttribute="leading" secondItem="I8X-5W-qT0" secondAttribute="leading" id="i9P-fZ-t8l"/>
+                            <constraint firstItem="TUF-di-m54" firstAttribute="trailing" secondItem="I8X-5W-qT0" secondAttribute="trailing" id="rCf-lZ-haw"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="I8X-5W-qT0"/>
+                    </view>
+                    <connections>
+                        <outlet property="tableView" destination="TUF-di-m54" id="CMC-St-ELN"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="jDY-Pm-PcR" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="693" y="3139"/>
+        </scene>
+        <!--Menu Food Details View Controller-->
+        <scene sceneID="NGV-hC-B4P">
+            <objects>
+                <viewController id="Wi6-TD-lCY" customClass="MenuFoodDetailsViewController" customModule="FoodIn" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="nXO-aQ-m8Q">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="23C-Lf-zEJ">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="676"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="a7y-Bu-fCI">
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="60"/>
+                                        <subviews>
+                                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="KBt-AN-2xh" customClass="ButtonBarView" customModule="XLPagerTabStrip">
+                                                <rect key="frame" x="0.0" y="0.0" width="414" height="60"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="ZyA-PT-NVf">
+                                                    <size key="itemSize" width="50" height="50"/>
+                                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                                </collectionViewFlowLayout>
+                                                <cells/>
+                                            </collectionView>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="60" id="ZS3-nz-As5"/>
+                                        </constraints>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ySM-Kz-7Q9">
+                                        <rect key="frame" x="0.0" y="60" width="414" height="616"/>
+                                        <subviews>
+                                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dj0-2E-Q04">
+                                                <rect key="frame" x="0.0" y="0.0" width="414" height="616"/>
+                                            </scrollView>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                            </stackView>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="2vA-cs-Zuo">
+                                <rect key="frame" x="0.0" y="676" width="414" height="60"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="S6e-MA-C0S">
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="60"/>
+                                        <color key="backgroundColor" red="0.85882352939999995" green="0.039215686270000001" blue="0.35686274509999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="20"/>
+                                        <state key="normal" title="Got It!">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="logFood:" destination="Wi6-TD-lCY" eventType="touchUpInside" id="ZDY-Pz-eH3"/>
+                                            <segue destination="tss-no-71k" kind="unwind" unwindAction="unwindToHomeWithSegue:" id="Dbd-9r-mvF"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="kjp-09-PQP"/>
+                                </constraints>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="23C-Lf-zEJ" firstAttribute="trailing" secondItem="ZTr-bg-JE3" secondAttribute="trailing" id="5Pu-mx-GS4"/>
+                            <constraint firstItem="2vA-cs-Zuo" firstAttribute="top" secondItem="23C-Lf-zEJ" secondAttribute="bottom" id="9Zs-N4-PJ1"/>
+                            <constraint firstItem="2vA-cs-Zuo" firstAttribute="trailing" secondItem="ZTr-bg-JE3" secondAttribute="trailing" id="FZa-ku-Dsf"/>
+                            <constraint firstItem="2vA-cs-Zuo" firstAttribute="leading" secondItem="ZTr-bg-JE3" secondAttribute="leading" id="LI3-ne-GBn"/>
+                            <constraint firstItem="2vA-cs-Zuo" firstAttribute="bottom" secondItem="ZTr-bg-JE3" secondAttribute="bottom" id="gx7-01-jfd"/>
+                            <constraint firstItem="23C-Lf-zEJ" firstAttribute="top" secondItem="nXO-aQ-m8Q" secondAttribute="top" id="o2C-XQ-OSC"/>
+                            <constraint firstItem="23C-Lf-zEJ" firstAttribute="leading" secondItem="ZTr-bg-JE3" secondAttribute="leading" id="rSV-aJ-7rf"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="ZTr-bg-JE3"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="vEJ-WF-ryq"/>
+                    <connections>
+                        <outlet property="buttonBarView" destination="KBt-AN-2xh" id="fmc-cH-8Pj"/>
+                        <outlet property="containerView" destination="dj0-2E-Q04" id="uZG-WL-hp4"/>
+                        <outlet property="logBtn" destination="S6e-MA-C0S" id="Ydb-qL-LXM"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="yPQ-0O-cpK" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="tss-no-71k" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="4225" y="4017"/>
+        </scene>
+        <!--Menu Vitamin View Controller-->
+        <scene sceneID="dut-92-ugp">
+            <objects>
+                <viewController storyboardIdentifier="MenuvitaminChild" id="cit-Ym-r6i" customClass="MenuVitaminViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="LQT-tK-AKC">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="50" translatesAutoresizingMaskIntoConstraints="NO" id="eJp-CW-wPw">
+                                <rect key="frame" x="0.0" y="70" width="414" height="210"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" spacing="50" translatesAutoresizingMaskIntoConstraints="NO" id="HYK-kc-yx7">
+                                        <rect key="frame" x="110.66666666666669" y="0.0" width="193" height="80"/>
+                                        <subviews>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QgE-Mv-3yG" customClass="UICircularProgressRingView" customModule="UICircularProgressRing">
+                                                <rect key="frame" x="0.0" y="0.0" width="80" height="80"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="80" id="SaO-7v-usP"/>
+                                                    <constraint firstAttribute="width" constant="80" id="sxj-Vd-zkk"/>
+                                                </constraints>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="maxValue">
+                                                        <integer key="value" value="100"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="outerRingColor">
+                                                        <color key="value" red="0.50588235290000005" green="0.81176470590000005" blue="0.87843137250000003" alpha="0.20000000000000001" colorSpace="calibratedRGB"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="innerRingColor">
+                                                        <color key="value" red="0.50588235290000005" green="0.81176470590000005" blue="0.87843137250000003" alpha="1" colorSpace="calibratedRGB"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="innerRingWidth">
+                                                        <integer key="value" value="5"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="outerRingWidth">
+                                                        <integer key="value" value="5"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="value">
+                                                        <integer key="value" value="90"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="startAngle">
+                                                        <real key="value" value="270"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="fontColor">
+                                                        <color key="value" red="0.50588235290000005" green="0.81176470590000005" blue="0.87843137250000003" alpha="1" colorSpace="calibratedRGB"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                            </view>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="vitamin A" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DTY-T6-Nr0">
+                                                <rect key="frame" x="130" y="0.0" width="63" height="80"/>
+                                                <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="14"/>
+                                                <color key="textColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" spacing="50" translatesAutoresizingMaskIntoConstraints="NO" id="NuM-h3-N8G">
+                                        <rect key="frame" x="110.33333333333333" y="130" width="193.33333333333337" height="80"/>
+                                        <subviews>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Cfc-vL-WVA" customClass="UICircularProgressRingView" customModule="UICircularProgressRing">
+                                                <rect key="frame" x="0.0" y="0.0" width="80" height="80"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="80" id="3Ax-Gg-cpe"/>
+                                                    <constraint firstAttribute="width" constant="80" id="4M4-vn-CwP"/>
+                                                </constraints>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="maxValue">
+                                                        <integer key="value" value="100"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="outerRingColor">
+                                                        <color key="value" red="0.52941176469999995" green="0.82745098039999998" blue="0.48627450979999998" alpha="0.20000000000000001" colorSpace="calibratedRGB"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="innerRingColor">
+                                                        <color key="value" red="0.52941176469999995" green="0.82745098039999998" blue="0.48627450979999998" alpha="1" colorSpace="calibratedRGB"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="innerRingWidth">
+                                                        <integer key="value" value="5"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="outerRingWidth">
+                                                        <integer key="value" value="5"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="value">
+                                                        <integer key="value" value="90"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="startAngle">
+                                                        <real key="value" value="270"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="fontColor">
+                                                        <color key="value" red="0.52941176469999995" green="0.82745098039999998" blue="0.48627450979999998" alpha="1" colorSpace="calibratedRGB"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                            </view>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="vitamin C" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ftv-Uz-u9x">
+                                                <rect key="frame" x="130" y="0.0" width="63.333333333333343" height="80"/>
+                                                <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="14"/>
+                                                <color key="textColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="eJp-CW-wPw" firstAttribute="top" secondItem="tr0-RP-sml" secondAttribute="top" constant="50" id="BkA-HO-wS3"/>
+                            <constraint firstItem="eJp-CW-wPw" firstAttribute="centerX" secondItem="LQT-tK-AKC" secondAttribute="centerX" id="l5H-5G-mYc"/>
+                            <constraint firstItem="eJp-CW-wPw" firstAttribute="width" secondItem="LQT-tK-AKC" secondAttribute="width" id="t1D-Rv-M2i"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="tr0-RP-sml"/>
+                    </view>
+                    <connections>
+                        <outlet property="ringVitaminA" destination="QgE-Mv-3yG" id="WZf-tL-qFC"/>
+                        <outlet property="ringVitaminC" destination="Cfc-vL-WVA" id="Mc2-YV-kbz"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Hsd-RE-iG1" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2659" y="4839"/>
+        </scene>
+        <!--Menu Mineral View Controller-->
+        <scene sceneID="Qz1-Bc-MXn">
+            <objects>
+                <viewController storyboardIdentifier="MenumineralChild" id="bLH-lr-9GG" customClass="MenuMineralViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="6Li-Pd-DYD">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="Jov-qb-EGA">
+                                <rect key="frame" x="32" y="50.000000000000014" width="350" height="227.33333333333337"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="bfl-Cb-1BC">
+                                        <rect key="frame" x="0.0" y="0.0" width="350" height="34.333333333333336"/>
+                                        <subviews>
+                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="zd5-yc-xph">
+                                                <rect key="frame" x="0.0" y="0.0" width="350" height="16.333333333333332"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sodium" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fUh-uM-0C4">
+                                                        <rect key="frame" x="0.0" y="0.0" width="51.333333333333336" height="16.333333333333332"/>
+                                                        <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="14"/>
+                                                        <color key="textColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="370 mg" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aJz-rr-UbG" userLabel="Sodium Label" customClass="EFCountingLabel" customModule="EFCountingLabel">
+                                                        <rect key="frame" x="300.33333333333331" y="0.0" width="49.666666666666686" height="16.333333333333332"/>
+                                                        <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="14"/>
+                                                        <color key="textColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                </subviews>
+                                            </stackView>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gvg-K1-NRd" customClass="GTProgressBar" customModule="GTProgressBar">
+                                                <rect key="frame" x="0.0" y="26.333333333333329" width="350" height="8"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="8" id="i5W-M9-O3M"/>
+                                                </constraints>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="Progress">
+                                                        <real key="value" value="0.80000000000000004"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="displayLabel" value="NO"/>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="barFillColor">
+                                                        <color key="value" red="0.93725490199999995" green="0.094117647060000004" blue="0.58039215690000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="barBackgroundColor">
+                                                        <color key="value" red="0.84705882349999995" green="0.84705882349999995" blue="0.84705882349999995" alpha="1" colorSpace="calibratedRGB"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="barBorderColor">
+                                                        <color key="value" red="0.84705882349999995" green="0.84705882349999995" blue="0.84705882349999995" alpha="1" colorSpace="calibratedRGB"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="barBorderWidth">
+                                                        <integer key="value" value="0"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="barFillInset">
+                                                        <integer key="value" value="0"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                        <integer key="value" value="5"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                            </view>
+                                        </subviews>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="sbW-ka-L1b">
+                                        <rect key="frame" x="0.0" y="64.333333333333329" width="350" height="34.333333333333329"/>
+                                        <subviews>
+                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="tac-8r-FKB">
+                                                <rect key="frame" x="0.0" y="0.0" width="350" height="16.333333333333332"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Potassium" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qM1-LV-HOB">
+                                                        <rect key="frame" x="0.0" y="0.0" width="70.666666666666671" height="16.333333333333332"/>
+                                                        <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="14"/>
+                                                        <color key="textColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="370 mg" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1lr-2F-p8P" userLabel="Potassium Label" customClass="EFCountingLabel" customModule="EFCountingLabel">
+                                                        <rect key="frame" x="300.33333333333331" y="0.0" width="49.666666666666686" height="16.333333333333332"/>
+                                                        <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="14"/>
+                                                        <color key="textColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                </subviews>
+                                            </stackView>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hEZ-iV-bRd" customClass="GTProgressBar" customModule="GTProgressBar">
+                                                <rect key="frame" x="0.0" y="26.333333333333329" width="350" height="8"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="8" id="fSQ-lb-ts5"/>
+                                                </constraints>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="Progress">
+                                                        <real key="value" value="0.80000000000000004"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="displayLabel" value="NO"/>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="barFillColor">
+                                                        <color key="value" red="0.93725490199999995" green="0.094117647060000004" blue="0.58039215690000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="barBackgroundColor">
+                                                        <color key="value" red="0.84705882349999995" green="0.84705882349999995" blue="0.84705882349999995" alpha="1" colorSpace="calibratedRGB"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="barBorderColor">
+                                                        <color key="value" red="0.84705882349999995" green="0.84705882349999995" blue="0.84705882349999995" alpha="1" colorSpace="calibratedRGB"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="barBorderWidth">
+                                                        <integer key="value" value="0"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="barFillInset">
+                                                        <integer key="value" value="0"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                        <integer key="value" value="5"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                            </view>
+                                        </subviews>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="Mn4-Rf-UQT">
+                                        <rect key="frame" x="0.0" y="128.66666666666666" width="350" height="34.333333333333343"/>
+                                        <subviews>
+                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="59f-XK-NYh">
+                                                <rect key="frame" x="0.0" y="0.0" width="350" height="16.333333333333332"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Calcium" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Sfr-F6-hNU">
+                                                        <rect key="frame" x="0.0" y="0.0" width="55.666666666666664" height="16.333333333333332"/>
+                                                        <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="14"/>
+                                                        <color key="textColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="370 mg" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="90j-3B-n7k" userLabel="Calcium Label" customClass="EFCountingLabel" customModule="EFCountingLabel">
+                                                        <rect key="frame" x="300.33333333333331" y="0.0" width="49.666666666666686" height="16.333333333333332"/>
+                                                        <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="14"/>
+                                                        <color key="textColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                </subviews>
+                                            </stackView>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SDu-kJ-2mm" customClass="GTProgressBar" customModule="GTProgressBar">
+                                                <rect key="frame" x="0.0" y="26.333333333333343" width="350" height="8"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="8" id="xLi-9U-MFK"/>
+                                                </constraints>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="Progress">
+                                                        <real key="value" value="0.80000000000000004"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="displayLabel" value="NO"/>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="barFillColor">
+                                                        <color key="value" red="0.93725490199999995" green="0.094117647060000004" blue="0.58039215690000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="barBackgroundColor">
+                                                        <color key="value" red="0.84705882349999995" green="0.84705882349999995" blue="0.84705882349999995" alpha="1" colorSpace="calibratedRGB"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="barBorderColor">
+                                                        <color key="value" red="0.84705882349999995" green="0.84705882349999995" blue="0.84705882349999995" alpha="1" colorSpace="calibratedRGB"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="barBorderWidth">
+                                                        <integer key="value" value="0"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="barFillInset">
+                                                        <integer key="value" value="0"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                        <integer key="value" value="5"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                            </view>
+                                        </subviews>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="rzz-0I-9j1">
+                                        <rect key="frame" x="0.0" y="193" width="350" height="34.333333333333343"/>
+                                        <subviews>
+                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="vEu-sd-joO">
+                                                <rect key="frame" x="0.0" y="0.0" width="350" height="16.333333333333332"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Iron" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4wH-aC-eft">
+                                                        <rect key="frame" x="0.0" y="0.0" width="27" height="16.333333333333332"/>
+                                                        <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="14"/>
+                                                        <color key="textColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="370 mg" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CsA-aS-fjf" userLabel="Iron Label" customClass="EFCountingLabel" customModule="EFCountingLabel">
+                                                        <rect key="frame" x="300.33333333333331" y="0.0" width="49.666666666666686" height="16.333333333333332"/>
+                                                        <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="14"/>
+                                                        <color key="textColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                </subviews>
+                                            </stackView>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nny-rr-0zh" customClass="GTProgressBar" customModule="GTProgressBar">
+                                                <rect key="frame" x="0.0" y="26.333333333333314" width="350" height="8"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="8" id="Flc-SZ-KUs"/>
+                                                </constraints>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="Progress">
+                                                        <real key="value" value="0.80000000000000004"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="displayLabel" value="NO"/>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="barFillColor">
+                                                        <color key="value" red="0.93725490199999995" green="0.094117647060000004" blue="0.58039215690000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="barBackgroundColor">
+                                                        <color key="value" red="0.84705882349999995" green="0.84705882349999995" blue="0.84705882349999995" alpha="1" colorSpace="calibratedRGB"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="barBorderColor">
+                                                        <color key="value" red="0.84705882349999995" green="0.84705882349999995" blue="0.84705882349999995" alpha="1" colorSpace="calibratedRGB"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="barBorderWidth">
+                                                        <integer key="value" value="0"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="barFillInset">
+                                                        <integer key="value" value="0"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                        <integer key="value" value="5"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                            </view>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="Jov-qb-EGA" firstAttribute="top" secondItem="qTo-Ys-8nF" secondAttribute="top" constant="30" id="3sM-o6-sdb"/>
+                            <constraint firstItem="qTo-Ys-8nF" firstAttribute="trailing" secondItem="Jov-qb-EGA" secondAttribute="trailing" constant="32" id="SdG-Ru-LDM"/>
+                            <constraint firstItem="Jov-qb-EGA" firstAttribute="leading" secondItem="qTo-Ys-8nF" secondAttribute="leading" constant="32" id="XcT-xz-8NQ"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="qTo-Ys-8nF"/>
+                    </view>
+                    <connections>
+                        <outlet property="calciumBar" destination="SDu-kJ-2mm" id="ZWg-dR-iQQ"/>
+                        <outlet property="calciumLabel" destination="90j-3B-n7k" id="9NZ-q9-7k1"/>
+                        <outlet property="ironBar" destination="nny-rr-0zh" id="HG6-Iz-zjZ"/>
+                        <outlet property="ironLabel" destination="CsA-aS-fjf" id="NpN-zf-PsM"/>
+                        <outlet property="potassiumBar" destination="hEZ-iV-bRd" id="Ihh-K6-bht"/>
+                        <outlet property="potassiumLabel" destination="1lr-2F-p8P" id="IHn-rW-hyn"/>
+                        <outlet property="sodiumBar" destination="gvg-K1-NRd" id="is7-wN-k1M"/>
+                        <outlet property="sodiumLabel" destination="aJz-rr-UbG" id="jnl-26-QbW"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Fxq-Tc-pxz" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3370" y="4839"/>
+        </scene>
+        <!--Menu Nutrient View Controller-->
+        <scene sceneID="ssT-jg-i7e">
+            <objects>
+                <viewController storyboardIdentifier="MenunutrientChild" id="wP9-DY-CtA" customClass="MenuNutrientViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Tbj-lb-1Kh">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="J5G-eG-1vS" customClass="PieChartView" customModule="Charts">
+                                <rect key="frame" x="0.0" y="50" width="414" height="300"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="J5G-eG-1vS" secondAttribute="height" multiplier="207:100" constant="-207" id="lhL-9g-q9q"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="J5G-eG-1vS" firstAttribute="trailing" secondItem="G6H-35-iGK" secondAttribute="trailing" id="CEe-AC-NN2"/>
+                            <constraint firstItem="J5G-eG-1vS" firstAttribute="leading" secondItem="G6H-35-iGK" secondAttribute="leading" id="Shf-o6-cYR"/>
+                            <constraint firstItem="J5G-eG-1vS" firstAttribute="top" secondItem="G6H-35-iGK" secondAttribute="top" constant="30" id="lC6-9x-iMy"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="G6H-35-iGK"/>
+                    </view>
+                    <connections>
+                        <outlet property="pieChart" destination="J5G-eG-1vS" id="ndN-f3-CLG"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="5N6-7Y-jt7" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1859" y="4838"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="Ysw-p2-z8d">
+            <objects>
+                <navigationController id="Eak-TI-1My" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Z3q-D6-God">
+                        <rect key="frame" x="0.0" y="20" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="Wi6-TD-lCY" kind="relationship" relationship="rootViewController" id="a89-hs-vp4"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="tuX-BN-1XB" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3386" y="4017"/>
+        </scene>
+        <!--Menu Translate View Controller-->
+        <scene sceneID="oaP-du-6Ha">
+            <objects>
+                <viewController storyboardIdentifier="MenuTranslateChild" id="rfS-ly-mp8" customClass="MenuTranslateViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="pJb-ei-Ibi">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="UTM-xO-JQx">
+                                <rect key="frame" x="32" y="50" width="350" height="150"/>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="UTM-xO-JQx" firstAttribute="top" secondItem="1Up-VN-Gv4" secondAttribute="top" constant="30" id="JeB-hh-1Zd"/>
+                            <constraint firstItem="1Up-VN-Gv4" firstAttribute="trailing" secondItem="UTM-xO-JQx" secondAttribute="trailing" constant="32" id="phM-Ms-vaa"/>
+                            <constraint firstItem="UTM-xO-JQx" firstAttribute="leading" secondItem="1Up-VN-Gv4" secondAttribute="leading" constant="32" id="x50-LM-b6y"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="1Up-VN-Gv4"/>
+                    </view>
+                    <connections>
+                        <outlet property="cnFood" destination="SgD-ta-67A" id="Wf6-ZD-Jbt"/>
+                        <outlet property="cnListen" destination="miz-Kj-6Og" id="LOd-vh-Lcw"/>
+                        <outlet property="enFood" destination="oVB-Kc-l4F" id="G6G-Fe-fgi"/>
+                        <outlet property="enListen" destination="3Tf-9f-hAw" id="fkr-Il-FBg"/>
+                        <outlet property="jpFood" destination="eRe-AH-MHh" id="s5K-nt-RkE"/>
+                        <outlet property="jpListen" destination="r6I-1u-zEp" id="Y23-l3-oRC"/>
+                        <outlet property="krFood" destination="WqI-qw-x3M" id="fhc-NB-85i"/>
+                        <outlet property="krListen" destination="4Jq-IJ-XHY" id="x59-iv-Ed7"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="lCE-1j-UYn" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2130" y="3986"/>
+        </scene>
     </scenes>
     <resources>
         <image name="ArcLeft" width="70" height="160"/>
@@ -3735,7 +4164,8 @@
         <image name="mic" width="288" height="288"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="AZn-6z-eLd"/>
         <segue reference="noF-HR-YDN"/>
-        <segue reference="S7a-MS-7bf"/>
+        <segue reference="jf2-p4-JiK"/>
     </inferredMetricsTieBreakers>
 </document>
