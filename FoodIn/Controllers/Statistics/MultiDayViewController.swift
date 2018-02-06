@@ -14,12 +14,14 @@ class MultiDayViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var barChart: BarChartView!
     
+    @IBOutlet weak var bubbleChart: BubbleChartView!
+    var days: [Double] = []
     override func viewDidLoad() {
         super.viewDidLoad()
         
 //        self.tableView.delegate = self
         
-        let xaxis = barChart.xAxis
+        let xaxis = bubbleChart.xAxis
         xaxis.drawGridLinesEnabled = true
         xaxis.labelPosition = .bottom
         xaxis.centerAxisLabelsEnabled = true
@@ -29,12 +31,16 @@ class MultiDayViewController: UIViewController {
         let leftAxisFormatter = NumberFormatter()
         leftAxisFormatter.maximumFractionDigits = 1
         
-        let yaxis = barChart.leftAxis
+        let yaxis = bubbleChart.leftAxis
         yaxis.spaceTop = 0.35
         yaxis.axisMinimum = 0
         yaxis.drawGridLinesEnabled = false
         
-        barChart.rightAxis.enabled = false
+        
+        bubbleChart.setScaleEnabled(true)
+
+        bubbleChart.rightAxis.enabled = false
+        bubbleChart.leftAxis.enabled = false
         
         // Listen to notification
         NotificationCenter.default.addObserver(self, selector: #selector(setupView), name: Notification.Name(NotificationKey.foodLogData), object: nil)
@@ -57,41 +63,90 @@ class MultiDayViewController: UIViewController {
 //                self.pieChartUpdate(calories: food.calories, carbs: food.carbohydrate, protein: food.protein, fats: food.fat)
                 //                self.pieChart.isHidden = false
                 
-                let groupSpace = 0.08
-                let barSpace = 0.03
-                let barWidth = 0.2
+                var foodLogDays: [[FoodLog]] =  []
+                for date in StatisticsViewController.selectedDates {
+                    let timestamp = date.startOfDay.timeIntervalSince1970
+                    if (!days.contains(timestamp)) {
+                        print("date \(date) \(date.startOfDay.timeIntervalSince1970)")
+                        self.days.append(timestamp)
+                        foodLogDays.append([])
+                    }
+                }
+                self.days = []
+                for log in foodLog {
+                    guard let timestamp = log.timestamp else { continue }
+                    let date = Date(timeIntervalSince1970: TimeInterval(timestamp))
+                    let dayTimestamp = date.startOfDay.timeIntervalSince1970
+                    
+                    // Add if does not contain
+                    if (!days.contains(dayTimestamp)) {
+                        print("date \(date) \(date.startOfDay.timeIntervalSince1970)")
+                        self.days.append(dayTimestamp)
+                        foodLogDays.append([])
+                    }
+                    
+                    guard let index = days.index(of: dayTimestamp) else { continue }
+                    foodLogDays[index].append(log)
+                }
                 
-                let totalNutrition = sumNutrition(foodLog)
+                var nutritionDays: [Dictionary<String, Double>] = []
+                for foodLogs in foodLogDays {
+                    nutritionDays.append(self.sumNutrition(foodLogs))
+                }
                 let recNutrition = getRecommended()
                 
-                var dataEntries: [BarChartDataEntry] = []
-                var dataEntries1: [BarChartDataEntry] = []
+                var dataEntries: [BubbleChartDataEntry] = []
+                var dataEntries1: [BubbleChartDataEntry] = []
                 
                 
-                var entries: [BarChartDataEntry] = []
-                var i = 0
-                for (key, value) in totalNutrition {
-                    let dataEntry = BarChartDataEntry(x: Double(i) , y: value)
-                    dataEntries.append(dataEntry)
-                    
-                    let dataEntry1 = BarChartDataEntry(x: Double(i) , y: recNutrition[key]!)
-                    dataEntries1.append(dataEntry1)
-                    i += 1
+                var entries: [BubbleChartDataEntry] = []
+                var x = 0
+                var y = 0
+                
+                
+                var entryData: [[BubbleChartDataEntry]] = []
+                var entryKey: [String] = [
+                    "calories",
+                    "carbohydrate",
+                    "fat",
+                    "protein",
+                    "vitaminA",
+                    "vitaminC",
+                    "sodium",
+                    "potassium",
+                    "calcium",
+                    "iron"
+                ]
+                for nutrition in nutritionDays {
+                    for _ in entryKey {
+                        entryData.append([])
+                    }
+                    for (key, value) in nutrition {
+                        guard let rec = recNutrition[key] else { continue }
+                        let percent = value / (rec / 100)
+                        
+                        guard let index = entryKey.index(of: key) else { continue }
+                        let dataEntry = BubbleChartDataEntry(x: Double(x), y: Double(index), size: CGFloat(percent / 100))
+                        entryData[index].append(dataEntry)
+                    }
+                    x += 1
                 }
                 //                set1.setColor(UIColor(red: 104/255, green: 241/255, blue: 175/255, alpha: 1))
                 
-                let chartDataSet = BarChartDataSet(values: dataEntries, label: "Consumed")
-                let chartDataSet1 = BarChartDataSet(values: dataEntries1, label: "Recommended")
-                
-                let dataSets: [BarChartDataSet] = [chartDataSet,chartDataSet1]
-                //                chartDataSet.colors = [UIColor(red: 230/255, green: 126/255, blue: 34/255, alpha: 1)]
-                chartDataSet.colors = [UIColor(red: 135/255.0, green: 211/255.0, blue: 124/255.0, alpha: 1.0)]
-                chartDataSet1.colors = [UIColor(red: 129/255.0, green: 207/255.0, blue: 224/255.0, alpha: 1.0)]
+                var chartDataSets: [BubbleChartDataSet] = []
+                for (index, entries) in entryData.enumerated() {
+                    if index >= entryKey.count { continue }
+                    let chartDataSet = BubbleChartDataSet(values: entries, label: entryKey[index])
+                    
+                    chartDataSet.colors = [UIColor(red: 135/255.0, green: 211/255.0, blue: 124/255.0, alpha: 0.5)]
+                    chartDataSets.append(chartDataSet)
+                    
+                }
                 
                 //chartDataSet.colors = ChartColorTemplates.colorful()
                 //let chartData = BarChartData(dataSet: chartDataSet)
                 
-                let chartData = BarChartData(dataSets: dataSets)
+                let chartData = BubbleChartData(dataSets: chartDataSets)
                 
                 // Format text label inside the pie chart
                 let pFormatter = NumberFormatter()
@@ -101,30 +156,16 @@ class MultiDayViewController: UIViewController {
                 pFormatter.percentSymbol = "%"
                 
                 // Make data with dataset//                data.groupBars(fromX: Double(startYear), groupSpace: groupSpace, barSpace: barSpace)
-                self.barChart.data = chartData
+                self.bubbleChart.data = chartData
                 
-                barChart.noDataText = "No data"
+                bubbleChart.noDataText = "No data"
                 
-                chartData.barWidth = barWidth;
-                barChart.xAxis.axisMinimum = 0.0
-                barChart.xAxis.valueFormatter = self
-                barChart.xAxis.labelWidth = CGFloat(barSpace + barWidth * 2)
-                let gg = chartData.groupWidth(groupSpace: groupSpace, barSpace: barSpace)
-                print("Groupspace: \(gg)")
-                barChart.xAxis.axisMaximum = 0.0 + gg * 9
+                bubbleChart.xAxis.valueFormatter = self
+                bubbleChart.notifyDataSetChanged()
                 
-                chartData.groupBars(fromX: 0.0, groupSpace: groupSpace, barSpace: barSpace)
-                //chartData.groupWidth(groupSpace: groupSpace, barSpace: barSpace)
-                barChart.notifyDataSetChanged()
-                
-                barChart.data = chartData
-                //
-                //                data.setValueFormatter(DefaultValueFormatter(formatter: pFormatter))
-                //                data.setValueFont(Fonts.Regular.of(size: 10))
-                self.barChart.notifyDataSetChanged()
-                
+                bubbleChart.data = chartData
                 //chart animation
-                barChart.animate(xAxisDuration: 1.5, yAxisDuration: 1.5, easingOption: .linear)
+                bubbleChart.animate(xAxisDuration: 1.5, yAxisDuration: 1.5, easingOption: .linear)
                 
             }
         }
@@ -268,24 +309,13 @@ extension MultiDayViewController: UITableViewDelegate, UITableViewDataSource {
 
 extension MultiDayViewController: IAxisValueFormatter {
     func stringForValue(_ value: Double, axis: AxisBase?) -> String {
-        var labels = [
-            "Cal",
-            "Carbo",
-            "Fat",
-            "Protein",
-            "Vita-A",
-            "Vita-C",
-            "Sodium",
-            "Potas",
-            "Calcium",
-            "Iron"
-        ]
-        var index = Int(value)
-        var label = String(value)
-        if index > -1 && Int(value) < labels.count {
-            label = labels[index]
-        }
-        return label
+        let date = Date(timeIntervalSince1970: TimeInterval(value))
+        let dateFormatter = DateFormatter()
+        dateFormatter.timeZone = TimeZone(identifier: "SGT") //Set timezone that you want
+        dateFormatter.locale = NSLocale.current
+        dateFormatter.dateFormat = "dd-MM" //Specify your format that you want
+        let strDate = dateFormatter.string(from: date)
+        return strDate
     }
 }
 

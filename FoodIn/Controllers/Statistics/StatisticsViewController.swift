@@ -20,7 +20,7 @@ class StatisticsViewController: UIViewController, UIGestureRecognizerDelegate {
     
     static var foodLogs: [FoodLog]?
     var pService = PersonService()
-    var selectedDates: [Date] = []
+    static var selectedDates: [Date] = []
     
     fileprivate let gregorian = Calendar(identifier: .gregorian)
     fileprivate lazy var scopeGesture: UIPanGestureRecognizer = {
@@ -327,18 +327,18 @@ extension StatisticsViewController: FSCalendarDataSource, FSCalendarDelegate {
             self.configure(cell: cell, for: date, at: position)
         }
         
-        self.selectedDates = calendar.selectedDates
+        StatisticsViewController.selectedDates = calendar.selectedDates
         
-        print("update \(self.selectedDates.count)")
+        print("update \(StatisticsViewController.selectedDates.count)")
         
-        if (self.selectedDates.count == 0) {
+        if (StatisticsViewController.selectedDates.count == 0) {
 //            fetchData(from: 0, to: 0)
             StatisticsViewController.foodLogs = []
             NotificationCenter.default.post(name: Notification.Name(NotificationKey.foodLogData), object: nil)
             self.updateGraphs()
         } else {
             // Sot by ascending
-            let selectedDates = self.selectedDates.sorted(by: { $0 < $1})
+            let selectedDates = StatisticsViewController.selectedDates.sorted(by: { $0 < $1})
             guard let first = selectedDates.first else { return }
             guard let last = selectedDates.last else { return }
             guard let endDay = last.endOfDay else { return }
@@ -349,16 +349,23 @@ extension StatisticsViewController: FSCalendarDataSource, FSCalendarDelegate {
     }
     
     private func updateGraphs() {
-        if (self.selectedDates.count == 0) {
+        if (StatisticsViewController.selectedDates.count == 0) {
             remove(asChildViewController: WeeklyViewController)
             remove(asChildViewController: DailyViewController)
-        } else if(self.selectedDates.count == 1) {
-            remove(asChildViewController: WeeklyViewController)
-            add(asChildViewController: DailyViewController)
         } else {
             remove(asChildViewController: DailyViewController)
-            add(asChildViewController: WeeklyViewController)
+            add(asChildViewController: DailyViewController)
         }
+//        if (StatisticsViewController.selectedDates.count == 0) {
+//            remove(asChildViewController: WeeklyViewController)
+//            remove(asChildViewController: DailyViewController)
+//        } else if(self.selectedDates.count == 1) {
+//            remove(asChildViewController: WeeklyViewController)
+//            add(asChildViewController: DailyViewController)
+//        } else {
+//            remove(asChildViewController: DailyViewController)
+//            add(asChildViewController: WeeklyViewController)
+//        }
     }
     
     private func configure(cell: FSCalendarCell, for date: Date, at position: FSCalendarMonthPosition) {

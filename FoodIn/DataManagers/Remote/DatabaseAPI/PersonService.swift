@@ -215,7 +215,7 @@ class PersonService {
     
     // [GET]
     func getFoodLog(personId: Int, from: UInt64, to: UInt64, completion: @escaping ([FoodLog]?) -> Void) {
-        
+        print("PersonID \(personId)")
         // Define your URL with the combination of Base URL (can be found in global constants) and its Endpoint
         guard let url = URL(string: "\(APIurl.database)/person/getPersonFood/\(personId)/\(from)/\(to)") else { return }
         

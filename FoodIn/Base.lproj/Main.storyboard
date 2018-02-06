@@ -2265,17 +2265,22 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="u7a-HW-Pll" customClass="BarChartView" customModule="Charts">
-                                <rect key="frame" x="20" y="20" width="374" height="254"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="u7a-HW-Pll" customClass="BubbleChartView" customModule="Charts">
+                                <rect key="frame" x="0.0" y="20" width="414" height="716"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="4Zv-Wq-PJq" firstAttribute="trailing" secondItem="u7a-HW-Pll" secondAttribute="trailing" id="1XS-fT-Iyh"/>
+                            <constraint firstItem="u7a-HW-Pll" firstAttribute="top" secondItem="4Zv-Wq-PJq" secondAttribute="top" id="Dne-2Z-Zql"/>
+                            <constraint firstItem="4Zv-Wq-PJq" firstAttribute="bottom" secondItem="u7a-HW-Pll" secondAttribute="bottom" id="YZT-OW-yon"/>
+                            <constraint firstItem="u7a-HW-Pll" firstAttribute="leading" secondItem="4Zv-Wq-PJq" secondAttribute="leading" id="sPp-w5-OsW"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="4Zv-Wq-PJq"/>
                     </view>
                     <connections>
-                        <outlet property="barChart" destination="u7a-HW-Pll" id="6ZK-33-LZZ"/>
+                        <outlet property="bubbleChart" destination="u7a-HW-Pll" id="rkM-tv-nfg"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aG2-qF-B4l" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -2435,7 +2440,7 @@
             <objects>
                 <viewController id="aRU-dD-kIg" customClass="StatisticsViewController" customModule="FoodIn" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ii0-rg-cf1">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="1000"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DPw-ll-hHY" customClass="FSCalendar">
@@ -2478,7 +2483,6 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="8Wf-XI-2UH"/>
                     </view>
-                    <size key="freeformSize" width="414" height="1000"/>
                     <connections>
                         <outlet property="calendar" destination="DPw-ll-hHY" id="7M8-kJ-nOH"/>
                         <outlet property="calendarHeightConstraint" destination="JfN-Oc-9Lq" id="xnG-Jl-bBd"/>
@@ -2494,7 +2498,7 @@
             <objects>
                 <viewController storyboardIdentifier="DailyViewController" id="Nxs-xq-Ot9" customClass="DailyViewController" customModule="FoodIn" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8cZ-3f-eMh">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="1000"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Snp-o5-1qM" customClass="PieChartView" customModule="Charts">
@@ -2551,7 +2555,6 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <viewLayoutGuide key="safeArea" id="Qge-wv-Dfv"/>
                     </view>
-                    <size key="freeformSize" width="414" height="1000"/>
                     <connections>
                         <outlet property="barChart" destination="cyX-ww-ruI" id="azN-m6-gCQ"/>
                         <outlet property="pieChart" destination="Snp-o5-1qM" id="X7A-ED-t4V"/>
