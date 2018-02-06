@@ -13,6 +13,7 @@ import KeychainSwift
 class MenuActivityIndicatorController: UIViewController {
     
     var fService = FoodService()
+    var tService = TranslateService()
     var foodNameList = [Food]()
     var filteredFoodNameList = [Food]() //update table
     var selectedFoodArr = [Food]()
@@ -25,6 +26,8 @@ class MenuActivityIndicatorController: UIViewController {
     var safeFoodNameArray:[Food] = []
     var avoidFoodNameArray:[Food] = []
     var todayLog: [FoodLog]?
+    var fullMenuArray:[Food] = []
+    var enocrtext: String?
     
     @IBOutlet weak var labelOne: UILabel!
     @IBOutlet weak var bubbleOne: UIImageView!
@@ -53,70 +56,67 @@ class MenuActivityIndicatorController: UIViewController {
                         if let textAnnotations = responses[0]["textAnnotations"] as? [[String: Any]], !textAnnotations.isEmpty {
                             let ocrtext = String(describing: textAnnotations[0]["description"]!).lowercased()
                             print(ocrtext)
-                            //for count of data loop max
-                            //get name
-                            //filter
-                            //add new array insert name
-                            //display base on sodium intake for the day max
                             
-                            let fService = FoodService()
-                            
-                            fService.getFoodNameList(completion: { (result: [Food]?) in
+                            self.tService.translate(ocrtext, completion: { (result: String) in
                                 DispatchQueue.main.async {
-                                    if let result = result {
-                                        self.foodNameList = result
-                                        self.filteredFoodNameList = self.foodNameList
-                                        //print(self.foodNameList)
-                                        
-                                        for food in self.filteredFoodNameList {
-                                            //print(food.name)
-                                            
-                                            if ocrtext.range(of:food.name.lowercased()) != nil {
-                                                self.detectedlist.append(food)
-                                                print(food.name)
-                                            }
-                                        }
-                                        print(self.detectedlist)
-                                        self.extractedTextArray.objectArray = self.detectedlist
-                                        
-                                        
-                                        print("Retrieving today's log")
-                                        guard let id = Int(KeychainSwift().get("id")!) else { return }
-                                        let to = UInt64(floor(Date().endOfDay!.timeIntervalSince1970))
-                                        let from = UInt64(floor(Date().startOfDay.timeIntervalSince1970))
-                                        self.pService.getFoodLog(personId: id, from: from, to: to, completion: { (result: [FoodLog]?) in
-                                            DispatchQueue.main.async {
-                                                if let result = result {
-                                                    self.todayLog = result
+                                    self.enocrtext = result
+                                    print("this is the en version")
+                                    print(self.enocrtext)
+                                    self.fService.getFoodNameList(completion: { (result: [Food]?) in
+                                        DispatchQueue.main.async {
+                                            if let result = result {
+                                                self.foodNameList = result
+                                                self.filteredFoodNameList = self.foodNameList
+                                                //print(self.foodNameList)
+                                                
+                                                guard let enocrtext = self.enocrtext else { return }
+                                                
+                                                print("en text \(enocrtext)")
+                                                for food in self.filteredFoodNameList {
+                                                    //print(food.name)
                                                     
-                                                    for food in self.detectedlist {
-                                                        self.inspectFood(food: food)
-                                                        print("")
-                                                        print("|||||||||")
-                                                        print(self.safe)
-                                                        print("this is one food")
+                                                    if enocrtext.lowercased().range(of:food.name.lowercased()) != nil {
+                                                        self.detectedlist.append(food)
                                                         print(food.name)
-                                                        
-                                                        
                                                     }
-                                                    
-                                                    
-                                                    print("Safe food list consist of...")
-                                                    print(self.safeFoodNameArray)
-                                                    print("Avoid food list consist of...")
-                                                    print(self.avoidFoodNameArray)
-                                                    
-                                                    self.extractedSafeArray.objectArray = self.safeFoodNameArray
-                                                    self.extractedAvoidArray.objectArray = self.avoidFoodNameArray
-                                                    
-                                                    self.performSegue(withIdentifier: "showMenuResults", sender: nil)
                                                 }
+                                                print(self.detectedlist)
+                                                
+                                                
+                                                print("Retrieving today's log")
+                                                guard let id = Int(KeychainSwift().get("id")!) else { return }
+                                                let to = UInt64(floor(Date().endOfDay!.timeIntervalSince1970))
+                                                let from = UInt64(floor(Date().startOfDay.timeIntervalSince1970))
+                                                self.pService.getFoodLog(personId: id, from: from, to: to, completion: { (result: [FoodLog]?) in
+                                                    DispatchQueue.main.async {
+                                                        if let result = result {
+                                                            self.todayLog = result
+                                                            
+                                                            for food in self.detectedlist {
+                                                                self.inspectFood(food: food)
+                                                                print("")
+                                                                print("|||||||||")
+                                                                print(self.safe)
+                                                                print("this is one food")
+                                                                print(food.name)
+                                                            }
+                                                            print("Safe food list consist of...")
+                                                            print(self.safeFoodNameArray)
+                                                            print("Avoid food list consist of...")
+                                                            print(self.avoidFoodNameArray)
+                                                            
+                                                            self.extractedTextArray.objectArray = self.fullMenuArray
+                                                            self.extractedSafeArray.objectArray = self.safeFoodNameArray
+                                                            self.extractedAvoidArray.objectArray = self.avoidFoodNameArray
+                                                            
+                                                            self.performSegue(withIdentifier: "showMenuResults", sender: nil)
+                                                        }
+                                                    }
+                                                })
                                             }
-                                        })
-                                        
-                                        
-                                    }
-                                }})
+                                        }})
+                                }
+                            })
                         }
                     }
                 }
@@ -213,11 +213,13 @@ class MenuActivityIndicatorController: UIViewController {
             
             if self.safe == 1{
                 self.safeFoodNameArray.append(food)
+                self.fullMenuArray.append(food)
                 self.arrayOfNutritionalOverLimit = []
                 
             }
             if self.safe == 2{
                 self.avoidFoodNameArray.append(food)
+                self.fullMenuArray.append(food)
                 self.arrayOfNutritionalOverLimit = []
             }
             if self.safe == 0{
