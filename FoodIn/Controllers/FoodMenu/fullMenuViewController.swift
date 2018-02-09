@@ -27,13 +27,6 @@ class fullMenuViewController: UIViewController, UITableViewDataSource, UITableVi
         setupTableView()
         fullMenuArray = extractedTextArray.objectArray!
         
-        
-        //        for food in filteredFoodNameArray {
-        //            if food.sodium < 1500 {
-        //                safeFoodNameArray.append(food)
-        //            }
-        //        }
-        
         print("THIS IS THE FULL ZONE")
         print(fullMenuArray)
         

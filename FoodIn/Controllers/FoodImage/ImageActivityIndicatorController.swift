@@ -25,7 +25,7 @@ class ImageActivityIndicatorController: UIViewController {
             // Load the Custom Vision model.
             // To add a new model, drag it to the Xcode project browser making sure that the "Target Membership" is checked.
             // Then update the following line with the name of your new model.
-            let model = try VNCoreMLModel(for: FoodIn().model)
+            let model = try VNCoreMLModel(for: FoodInFinal2().model)
             let classificationRequest = VNCoreMLRequest(model: model, completionHandler: self.handleClassification)
             classificationRequest.imageCropAndScaleOption = VNImageCropAndScaleOption.centerCrop
             

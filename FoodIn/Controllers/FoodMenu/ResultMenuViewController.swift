@@ -18,62 +18,19 @@ class ResultMenuViewController: UIViewController, IndicatorInfoProvider {
     @IBOutlet weak var potassiumBar: GTProgressBar!
     @IBOutlet weak var calciumBar: GTProgressBar!
     @IBOutlet weak var ironBar: GTProgressBar!
-    @IBOutlet weak var caloriesBar: GTProgressBar!
-    @IBOutlet weak var carbohydrateBar: GTProgressBar!
-    @IBOutlet weak var fatBar: GTProgressBar!
-    @IBOutlet weak var proteinBar: GTProgressBar!
     
     @IBOutlet weak var sodiumLabel: EFCountingLabel!
     @IBOutlet weak var potassiumLabel: EFCountingLabel!
     @IBOutlet weak var calciumLabel: EFCountingLabel!
     @IBOutlet weak var ironLabel: EFCountingLabel!
-    @IBOutlet weak var caloriesLabel: EFCountingLabel!
-    @IBOutlet weak var carbohydrateLabel: EFCountingLabel!
-    @IBOutlet weak var fatLabel: GTProgressBar!
-    @IBOutlet weak var proteinLabel: EFCountingLabel!
-    
-    @IBOutlet weak var enFood: UILabel!
-    @IBOutlet weak var cnFood: UILabel!
-    @IBOutlet weak var jpFood: UILabel!
-    @IBOutlet weak var krFood: UILabel!
-    
-    
-    @IBOutlet weak var enListen: UIButton!
-    @IBOutlet weak var cnListen: UIButton!
-    @IBOutlet weak var jpListen: UIButton!
-    @IBOutlet weak var krListen: UIButton!
-    
+
+
     let fService = FoodService()
     var selectedFood : Food?
     let tService = TranslateService()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        enFood.text = selectedFood?.name
-        
-        tService.translate(selectedFood!.name, to:"zh-CN",  completion: { (result: String) in
-            DispatchQueue.main.async {
-                print("Translation: \(result)")
-                self.cnFood.text = result
-            }
-        })
-        
-        tService.translate(selectedFood!.name, to:"ja",  completion: { (result: String) in
-            DispatchQueue.main.async {
-                print("Translation: \(result)")
-                self.jpFood.text = result
-            }
-        })
-        
-        tService.translate(selectedFood!.name, to:"ko",  completion: { (result: String) in
-            DispatchQueue.main.async {
-                print("Translation: \(result)")
-                self.krFood.text = result
-            }
-        })
-        print("")
-        print(selectedFood!)
         
         navigationItem.title = selectedFood?.name
         
@@ -90,45 +47,6 @@ class ResultMenuViewController: UIViewController, IndicatorInfoProvider {
         // Dispose of any resources that can be recreated.
     }
     
-    @IBAction func listenen(){
-        
-        let string = enFood.text
-        let utterance = AVSpeechUtterance(string: string!)
-        utterance.voice = AVSpeechSynthesisVoice(language: "en-US")
-        
-        let synthesizer = AVSpeechSynthesizer()
-        synthesizer.speak(utterance)
-    }
-    
-    @IBAction func listencn(){
-        
-        let string = cnFood.text
-        let utterance = AVSpeechUtterance(string: string!)
-        utterance.voice = AVSpeechSynthesisVoice(language: "zh-CN")
-        
-        let synthesizer = AVSpeechSynthesizer()
-        synthesizer.speak(utterance)
-    }
-    
-    @IBAction func listenjp(){
-        
-        let string = jpFood.text
-        let utterance = AVSpeechUtterance(string: string!)
-        utterance.voice = AVSpeechSynthesisVoice(language: "ja-JP")
-        
-        let synthesizer = AVSpeechSynthesizer()
-        synthesizer.speak(utterance)
-    }
-    
-    @IBAction func listenkr(){
-        
-        let string = krFood.text
-        let utterance = AVSpeechUtterance(string: string!)
-        utterance.voice = AVSpeechSynthesisVoice(language: "ko-KR")
-        
-        let synthesizer = AVSpeechSynthesizer()
-        synthesizer.speak(utterance)
-    }
     func initProgressBar() {
         sodiumBar.progress = 0
         potassiumBar.progress = 0

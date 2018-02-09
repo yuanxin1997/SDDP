@@ -19,6 +19,7 @@ class HomeViewController: UIViewController {
     @IBOutlet weak var askBtn: UIButton!
     
     @IBOutlet weak var greetingLabel: UILabel!
+    @IBOutlet weak var hintLabel: UILabel!
     let inspectionMode = InspectionMode.sharedInstance
     
     var centerOrigin: CGPoint!
@@ -68,6 +69,7 @@ class HomeViewController: UIViewController {
         // Repeat the pulse effect every 0.5 seconds
         timer = Timer.scheduledTimer(withTimeInterval: 0.5, repeats: true) { timer in
             self.addPulse()
+            self.animateHintLabel()
         }
     }
     
@@ -94,6 +96,16 @@ class HomeViewController: UIViewController {
     
     func setupAskBtn() {
         askBtn.layer.cornerRadius = askBtn.frame.size.height/5
+    }
+    
+    func animateHintLabel() {
+        UIView.animate(withDuration: 0.5, animations: {
+            self.hintLabel.alpha = 1
+        }){ (true) in
+            UIView.animate(withDuration: 0.5, animations: {
+                self.hintLabel.alpha = 0.3
+            }) 
+        }
     }
     
     // Add floating effect to the camera icon
